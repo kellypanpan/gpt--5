@@ -72,15 +72,16 @@ export default async function handler(
       remainingCredits: updatedUser?.credits || 0,
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Prompt purchase error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     
-    if (error.message.includes('Unauthorized')) {
-      return res.status(401).json({ error: error.message });
+    if (errorMessage.includes('Unauthorized')) {
+      return res.status(401).json({ error: errorMessage });
     }
     
-    if (error.message.includes('credits')) {
-      return res.status(402).json({ error: error.message });
+    if (errorMessage.includes('credits')) {
+      return res.status(402).json({ error: errorMessage });
     }
 
     if (error.message.includes('already purchased')) {

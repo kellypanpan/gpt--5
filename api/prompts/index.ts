@@ -70,7 +70,7 @@ export default async function handler(
 
     // Get user's purchases and likes if authenticated
     let userPurchases: string[] = [];
-    let userLikes: string[] = [];
+    const userLikes: string[] = [];
 
     if (user) {
       const purchases = await DatabaseService.getUserPurchases(user.id);
@@ -113,7 +113,7 @@ export default async function handler(
 
     res.status(200).json(response);
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Prompts API error:', error);
     res.status(500).json({ error: 'Failed to fetch prompts' });
   }

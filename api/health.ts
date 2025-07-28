@@ -59,7 +59,7 @@ export default async function handler(
   res.status(statusCode).json(healthResponse);
 }
 
-async function checkDatabase(): Promise<any> {
+async function checkDatabase(): Promise<{ status: string; responseTime: number }> {
   try {
     const isHealthy = await DatabaseService.healthCheck();
     

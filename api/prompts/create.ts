@@ -113,15 +113,16 @@ export default async function handler(
       },
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Create prompt error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     
-    if (error.message.includes('Unauthorized')) {
-      return res.status(401).json({ error: error.message });
+    if (errorMessage.includes('Unauthorized')) {
+      return res.status(401).json({ error: errorMessage });
     }
 
-    if (error.message.includes('violates') || error.message.includes('guidelines')) {
-      return res.status(400).json({ error: error.message });
+    if (errorMessage.includes('violates') || errorMessage.includes('guidelines')) {
+      return res.status(400).json({ error: errorMessage });
     }
 
     res.status(500).json({ error: 'Failed to create prompt' });

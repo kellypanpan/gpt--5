@@ -75,11 +75,12 @@ export default async function handler(
 
     res.status(200).json(dashboardData);
 
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     console.error('Dashboard API error:', error);
     
-    if (error.message.includes('Unauthorized')) {
-      return res.status(401).json({ error: error.message });
+    if (errorMessage.includes('Unauthorized')) {
+      return res.status(401).json({ error: errorMessage });
     }
 
     res.status(500).json({ error: 'Failed to load dashboard data' });

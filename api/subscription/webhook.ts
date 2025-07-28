@@ -28,9 +28,10 @@ export default async function handler(
   try {
     const body = JSON.stringify(req.body);
     event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
-  } catch (err: any) {
-    console.error('Webhook signature verification failed:', err.message);
-    return res.status(400).json({ error: `Webhook Error: ${err.message}` });
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+    console.error('Webhook signature verification failed:', errorMessage);
+    return res.status(400).json({ error: `Webhook Error: ${errorMessage}` });
   }
 
   try {
@@ -66,7 +67,7 @@ export default async function handler(
 
     res.status(200).json({ received: true });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Webhook processing error:', error);
     res.status(500).json({ error: 'Webhook processing failed' });
   }
@@ -107,7 +108,7 @@ async function handleSubscriptionChange(subscription: Stripe.Subscription) {
     }
 
     // Find user by email
-    let user = await DatabaseService.getUserByClerkId(email); // This might need adjustment
+    const user = await DatabaseService.getUserByClerkId(email); // This might need adjustment
     
     if (!user) {
       console.error(`User not found for email: ${email}`);
@@ -154,7 +155,7 @@ async function handleSubscriptionCanceled(subscription: Stripe.Subscription) {
       return;
     }
 
-    let user = await DatabaseService.getUserByClerkId(email);
+    const user = await DatabaseService.getUserByClerkId(email);
     
     if (!user) {
       return;
@@ -188,7 +189,7 @@ async function handleLifetimePurchase(session: Stripe.Checkout.Session) {
       return;
     }
 
-    let user = await DatabaseService.getUserByClerkId(email);
+    const user = await DatabaseService.getUserByClerkId(email);
     
     if (!user) {
       return;

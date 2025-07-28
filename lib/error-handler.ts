@@ -80,7 +80,7 @@ interface ErrorResponse {
     statusCode: number;
     timestamp: string;
     path?: string;
-    details?: any;
+    details?: Record<string, unknown>;
   };
   success: false;
 }
@@ -186,7 +186,7 @@ export function asyncHandler(
   return async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
     try {
       await handler(req, res);
-    } catch (error: any) {
+    } catch (error: unknown) {
       errorHandler(error, req, res);
     }
   };
@@ -194,7 +194,7 @@ export function asyncHandler(
 
 // Error validation helpers
 export class ErrorValidator {
-  static validateRequired(value: any, fieldName: string): void {
+  static validateRequired(value: unknown, fieldName: string): void {
     if (value === undefined || value === null || value === '') {
       throw new ValidationError(`${fieldName} is required`);
     }
@@ -236,7 +236,7 @@ export class ErrorValidator {
   }
 
   static validateArray(
-    value: any[],
+    value: unknown[],
     fieldName: string,
     minLength?: number,
     maxLength?: number
@@ -322,7 +322,7 @@ export function createPaginatedResponse<T>(
 
 // Health check error handler
 export function handleHealthCheck(
-  checks: Array<{ name: string; status: 'healthy' | 'unhealthy'; details?: any }>
+  checks: Array<{ name: string; status: 'healthy' | 'unhealthy'; details?: Record<string, unknown> }>
 ): { status: 'healthy' | 'unhealthy'; checks: typeof checks; timestamp: string } {
   const overallStatus = checks.every(check => check.status === 'healthy') 
     ? 'healthy' 

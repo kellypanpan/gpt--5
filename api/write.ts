@@ -69,19 +69,20 @@ export default async function handler(
       remainingCredits: updatedUser?.credits || 0
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Writer API error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     
-    if (error.message.includes('Unauthorized')) {
-      return res.status(401).json({ error: error.message });
+    if (errorMessage.includes('Unauthorized')) {
+      return res.status(401).json({ error: errorMessage });
     }
     
-    if (error.message.includes('credits') || error.message.includes('Subscription')) {
-      return res.status(402).json({ error: error.message });
+    if (errorMessage.includes('credits') || errorMessage.includes('Subscription')) {
+      return res.status(402).json({ error: errorMessage });
     }
 
-    if (error.message.includes('Rate limit')) {
-      return res.status(429).json({ error: error.message });
+    if (errorMessage.includes('Rate limit')) {
+      return res.status(429).json({ error: errorMessage });
     }
 
     res.status(500).json({ error: 'Failed to generate content' });

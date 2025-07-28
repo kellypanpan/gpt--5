@@ -4,7 +4,7 @@ import { OpenAIService } from '../lib/openai';
 interface TestResponse {
   success: boolean;
   message: string;
-  data?: any;
+  data?: Record<string, unknown>;
   error?: string;
 }
 
@@ -43,14 +43,15 @@ export default async function handler(
       }
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('OpenAI API test error:', error);
     
     let errorMessage = 'Unknown error occurred';
+    const errorText = error instanceof Error ? error.message : '';
     
-    if (error.message.includes('API key')) {
+    if (errorText.includes('API key')) {
       errorMessage = 'Invalid API key';
-    } else if (error.message.includes('network') || error.message.includes('fetch')) {
+    } else if (errorText.includes('network') || errorText.includes('fetch')) {
       errorMessage = 'Network connection error';
     } else if (error.message.includes('quota')) {
       errorMessage = 'API quota exceeded';

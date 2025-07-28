@@ -91,7 +91,7 @@ export default async function handler(
       sessionId: session.id,
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Checkout creation error:', error);
     res.status(500).json({ error: 'Failed to create checkout session' });
   }
