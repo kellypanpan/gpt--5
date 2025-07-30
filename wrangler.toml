@@ -20,9 +20,5 @@ NODE_ENV = "production"
 port = 8787
 local_protocol = "http"
 
-# 构建配置
-[build]
-command = "npm run build"
-
 # 兼容性标志
 compatibility_flags = ["nodejs_compat"]
