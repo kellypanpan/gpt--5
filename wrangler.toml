@@ -1,5 +1,6 @@
 name = "execu-ai-hub"
 compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
 
 # Pages 项目配置
 pages_build_output_dir = "dist"
@@ -19,6 +20,3 @@ NODE_ENV = "production"
 [dev]
 port = 8787
 local_protocol = "http"
-
-# 兼容性标志
-compatibility_flags = ["nodejs_compat"]
