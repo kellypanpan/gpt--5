@@ -94,7 +94,7 @@ const Writer = () => {
             <CardContent className="space-y-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium">Content Type</label>
-                <Select value={type} onValueChange={setType} disabled={!isSignedIn}>
+                <Select value={type} onValueChange={setType}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select content type" />
                   </SelectTrigger>
@@ -110,7 +110,7 @@ const Writer = () => {
 
               <div className="space-y-2">
                 <label className="text-sm font-medium">Tone</label>
-                <Select value={tone} onValueChange={setTone} disabled={!isSignedIn}>
+                <Select value={tone} onValueChange={setTone}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select tone" />
                   </SelectTrigger>
@@ -125,7 +125,7 @@ const Writer = () => {
 
               <div className="space-y-2">
                 <label className="text-sm font-medium">Length</label>
-                <Select value={length} onValueChange={setLength} disabled={!isSignedIn}>
+                <Select value={length} onValueChange={setLength}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select length" />
                   </SelectTrigger>
@@ -144,21 +144,16 @@ const Writer = () => {
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                   className="min-h-[120px] resize-none"
-                  disabled={!isSignedIn}
+                  disabled={false}
                 />
               </div>
               
-              {!isSignedIn ? (
-                <div className="text-center space-y-4">
-                  <p className="text-muted-foreground">
-                    Please log in and upgrade to use this feature.
+              <div className="text-center">
+                {!isSignedIn && (
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Free trial mode - Sign in to unlock more features
                   </p>
-                  <Button variant="hero" className="w-full sm:w-auto">
-                    <Lock className="h-4 w-4 mr-2" />
-                    Upgrade to Unlock
-                  </Button>
-                </div>
-              ) : (
+                )}
                 <Button 
                   onClick={handleGenerate} 
                   disabled={loading || !prompt.trim()}
@@ -177,7 +172,7 @@ const Writer = () => {
                     </>
                   )}
                 </Button>
-              )}
+              </div>
             </CardContent>
           </Card>
 

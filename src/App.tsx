@@ -14,6 +14,7 @@ import ScriptGenerator from "./pages/tools/ScriptGenerator";
 import ImageGenerator from "./pages/tools/ImageGenerator";
 import PromptLab from "./pages/tools/PromptLab";
 import TestPage from "./pages/tools/TestPage";
+import ToolsIndex from "./pages/tools/index";
 
 // Blog pages
 import BlogIndex from "./pages/blog/index";
@@ -44,7 +45,8 @@ const App = () => (
               <Route path="/" element={<Index />} />
               
               {/* Tools Routes */}
-              <Route path="/tools" element={<TestPage />} />
+              <Route path="/tools" element={<ToolsIndex />} />
+              <Route path="/tools/test" element={<TestPage />} />
               <Route path="/tools/writer" element={<Writer />} />
               <Route path="/tools/pdf" element={<PDFAnalyzer />} />
               <Route path="/tools/script" element={<ScriptGenerator />} />

@@ -7,12 +7,14 @@ import { componentTagger } from "lovable-tagger";
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
-    port: 8080,
+    port: 5173, // 使用不同的端口避免冲突
     proxy: {
+      // 代理API请求到本地API服务器
       '/api': {
         target: 'http://localhost:3001',
         changeOrigin: true,
-        secure: false
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, '/api')
       }
     }
   },
@@ -30,14 +32,13 @@ export default defineConfig(({ mode }) => ({
   // 构建优化配置
   build: {
     target: 'es2015',
-    minify: 'esbuild', // 使用esbuild压缩
+    minify: 'esbuild',
     cssMinify: true,
     
     // 代码分割配置
     rollupOptions: {
       output: {
         manualChunks: {
-          // 将大型依赖分离到单独的chunk
           'react-vendor': ['react', 'react-dom'],
           'ui-vendor': [
             '@radix-ui/react-accordion',

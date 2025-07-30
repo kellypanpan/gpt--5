@@ -55,12 +55,11 @@ export function useWriter() {
     setState(prev => ({ ...prev, loading: true, error: null }));
     
     try {
-      const token = await getToken();
+      // 暂时不使用认证token，直接调用API
       const response = await fetch('/api/write', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(request)
       });
@@ -105,12 +104,10 @@ export function useScriptGenerator() {
     setState(prev => ({ ...prev, loading: true, error: null }));
     
     try {
-      const token = await getToken();
       const response = await fetch('/api/script', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(request)
       });
@@ -155,12 +152,10 @@ export function useImageGenerator() {
     setState(prev => ({ ...prev, loading: true, error: null }));
     
     try {
-      const token = await getToken();
       const response = await fetch('/api/image', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(request)
       });
@@ -205,12 +200,10 @@ export function usePDFAnalyzer() {
     setState(prev => ({ ...prev, loading: true, error: null }));
     
     try {
-      const token = await getToken();
       const response = await fetch('/api/pdf', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(request)
       });
@@ -255,12 +248,10 @@ export function useAgent() {
     setState(prev => ({ ...prev, loading: true, error: null }));
     
     try {
-      const token = await getToken();
       const response = await fetch('/api/agent', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(request)
       });

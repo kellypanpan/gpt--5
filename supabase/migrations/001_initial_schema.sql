@@ -73,6 +73,19 @@ CREATE TABLE prompt_likes (
     UNIQUE(user_id, prompt_id) -- Prevent duplicate likes
 );
 
+-- Create payment_orders table for creem payment tracking
+CREATE TABLE payment_orders (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    order_id VARCHAR(255) UNIQUE NOT NULL,
+    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    plan_type VARCHAR(20) NOT NULL CHECK (plan_type IN ('pro', 'creator', 'lifetime')),
+    amount DECIMAL(10,2) NOT NULL CHECK (amount > 0),
+    status VARCHAR(20) DEFAULT 'pending' CHECK (status IN ('pending', 'completed', 'failed', 'cancelled')),
+    creem_order_id VARCHAR(255),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 -- Create indexes for performance
 CREATE INDEX idx_users_clerk_id ON users(clerk_user_id);
 CREATE INDEX idx_users_email ON users(email);
@@ -87,6 +100,9 @@ CREATE INDEX idx_prompts_featured ON prompts(is_featured) WHERE is_featured = TR
 CREATE INDEX idx_prompts_approved ON prompts(is_approved) WHERE is_approved = TRUE;
 CREATE INDEX idx_prompt_purchases_user_id ON prompt_purchases(user_id);
 CREATE INDEX idx_prompt_likes_prompt_id ON prompt_likes(prompt_id);
+CREATE INDEX idx_payment_orders_order_id ON payment_orders(order_id);
+CREATE INDEX idx_payment_orders_user_id ON payment_orders(user_id);
+CREATE INDEX idx_payment_orders_status ON payment_orders(status);
 
 -- Create updated_at trigger function
 CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -238,6 +254,7 @@ ALTER TABLE conversations ENABLE ROW LEVEL SECURITY;
 ALTER TABLE prompts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE prompt_purchases ENABLE ROW LEVEL SECURITY;
 ALTER TABLE prompt_likes ENABLE ROW LEVEL SECURITY;
+ALTER TABLE payment_orders ENABLE ROW LEVEL SECURITY;
 
 -- Users can only access their own data
 CREATE POLICY "Users can view own data" ON users FOR SELECT USING (TRUE);
@@ -262,3 +279,7 @@ CREATE POLICY "Users can make purchases" ON prompt_purchases FOR INSERT WITH CHE
 -- Prompt likes - users can manage their own likes
 CREATE POLICY "Users can view all likes" ON prompt_likes FOR SELECT USING (TRUE);
 CREATE POLICY "Users can manage own likes" ON prompt_likes FOR ALL USING (TRUE);
+
+-- Payment orders - users can only see their own orders
+CREATE POLICY "Users can view own orders" ON payment_orders FOR SELECT USING (TRUE);
+CREATE POLICY "System can manage orders" ON payment_orders FOR ALL USING (TRUE);

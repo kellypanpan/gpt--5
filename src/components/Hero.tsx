@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, Brain, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -33,13 +34,17 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-slide-up" style={{ animationDelay: '0.3s' }}>
-            <Button variant="hero" size="xl" className="group">
-              Get Access Now
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-smooth" />
-            </Button>
-            <Button variant="glass" size="xl">
-              View Demo
-            </Button>
+            <Link to="/tools">
+              <Button variant="hero" size="xl" className="group">
+                Get Access Now
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-smooth" />
+              </Button>
+            </Link>
+            <Link to="/tools">
+              <Button variant="glass" size="xl">
+                View Demo
+              </Button>
+            </Link>
           </div>
 
           {/* Features Grid */}

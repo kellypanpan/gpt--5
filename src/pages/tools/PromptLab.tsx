@@ -18,23 +18,24 @@ import {
   Star
 } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
+import { Header } from "@/components/Header";
 
 const PromptLab = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 模拟登录状态
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Mock login state
 
   const categories = [
-    { value: "writing", label: "写作", icon: BookOpen },
-    { value: "programming", label: "编程", icon: Code },
-    { value: "image", label: "图像", icon: Image },
-    { value: "marketing", label: "营销", icon: Megaphone }
+    { value: "writing", label: "Writing", icon: BookOpen },
+    { value: "programming", label: "Programming", icon: Code },
+    { value: "image", label: "Image", icon: Image },
+    { value: "marketing", label: "Marketing", icon: Megaphone }
   ];
 
   const mockPrompts = [
     {
       id: 1,
-      title: "专业博客写作助手",
+      title: "Professional Blog Writing Assistant",
       content: "Write a comprehensive blog post about [topic] that includes an engaging introduction, detailed analysis, and actionable takeaways...",
       category: "writing",
       likes: 1247,
@@ -43,7 +44,7 @@ const PromptLab = () => {
     },
     {
       id: 2,
-      title: "Python代码优化专家",
+      title: "Python Code Optimization Expert",
       content: "Analyze and optimize this Python code for better performance and readability. Focus on best practices and efficiency...",
       category: "programming",
       likes: 892,
@@ -52,7 +53,7 @@ const PromptLab = () => {
     },
     {
       id: 3,
-      title: "社交媒体营销文案",
+      title: "Social Media Marketing Copy",
       content: "Create engaging social media posts for [platform] that will increase engagement and drive conversions...",
       category: "marketing",
       likes: 1563,
@@ -61,7 +62,7 @@ const PromptLab = () => {
     },
     {
       id: 4,
-      title: "AI艺术风格转换",
+      title: "AI Art Style Transfer",
       content: "Transform this image into [art style] while maintaining the original composition and key elements...",
       category: "image",
       likes: 734,
@@ -70,7 +71,7 @@ const PromptLab = () => {
     },
     {
       id: 5,
-      title: "技术文档编写",
+      title: "Technical Documentation Writing",
       content: "Write clear and comprehensive technical documentation for [software/tool] that is easy to understand...",
       category: "writing",
       likes: 445,
@@ -79,7 +80,7 @@ const PromptLab = () => {
     },
     {
       id: 6,
-      title: "JavaScript调试助手",
+      title: "JavaScript Debugging Assistant",
       content: "Help me debug this JavaScript code. Identify potential issues and provide solutions with explanations...",
       category: "programming",
       likes: 678,
@@ -145,7 +146,9 @@ const PromptLab = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+      <Header />
+      <div className="pt-20">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
@@ -306,6 +309,7 @@ const PromptLab = () => {
             </Card>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

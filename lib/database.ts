@@ -371,4 +371,87 @@ export class DatabaseService {
       return false;
     }
   }
+
+  // Payment order management
+  static async createPendingOrder(orderData: {
+    orderId: string;
+    userId: string;
+    planType: string;
+    amount: number;
+    status: string;
+  }): Promise<void> {
+    const { error } = await supabase
+      .from('payment_orders')
+      .insert({
+        order_id: orderData.orderId,
+        user_id: orderData.userId,
+        plan_type: orderData.planType,
+        amount: orderData.amount,
+        status: orderData.status,
+        created_at: new Date().toISOString()
+      });
+
+    if (error) throw new Error(`Failed to create order: ${error.message}`);
+  }
+
+  static async getPendingOrder(orderId: string): Promise<{
+    orderId: string;
+    userId: string;
+    planType: string;
+    amount: number;
+    status: string;
+  } | null> {
+    const { data, error } = await supabase
+      .from('payment_orders')
+      .select('*')
+      .eq('order_id', orderId)
+      .single();
+
+    if (error && error.code !== 'PGRST116') {
+      throw new Error(`Failed to get order: ${error.message}`);
+    }
+
+    if (!data) return null;
+
+    return {
+      orderId: data.order_id,
+      userId: data.user_id,
+      planType: data.plan_type,
+      amount: data.amount,
+      status: data.status
+    };
+  }
+
+  static async updateOrderStatus(orderId: string, status: string): Promise<void> {
+    const { error } = await supabase
+      .from('payment_orders')
+      .update({ 
+        status,
+        updated_at: new Date().toISOString()
+      })
+      .eq('order_id', orderId);
+
+    if (error) throw new Error(`Failed to update order status: ${error.message}`);
+  }
+
+  static async updateUserSubscription(updateData: {
+    userId: string;
+    subscriptionType: string;
+    creditsToAdd: number;
+    subscriptionExpiry: Date;
+    isSubscribed: boolean;
+  }): Promise<void> {
+    const { error } = await supabase
+      .from('users')
+      .update({
+        subscription_type: updateData.subscriptionType,
+        credits: supabase.sql`credits + ${updateData.creditsToAdd}`,
+        subscription_expires_at: updateData.subscriptionExpiry.toISOString(),
+        is_subscribed: updateData.isSubscribed,
+        updated_at: new Date().toISOString()
+      })
+      .eq('id', updateData.userId);
+
+    if (error) throw new Error(`Failed to update user subscription: ${error.message}`);
+  }
 }

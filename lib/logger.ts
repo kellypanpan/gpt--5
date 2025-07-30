@@ -54,11 +54,11 @@ export class Logger {
     this.context = context;
   }
 
-  info(message: string, meta?: any) {
+  info(message: string, meta?: Record<string, unknown>) {
     logger.info(message, { context: this.context, ...meta });
   }
 
-  error(message: string, error?: Error | any, meta?: any) {
+  error(message: string, error?: Error | unknown, meta?: Record<string, unknown>) {
     logger.error(message, {
       context: this.context,
       error: error?.message,
@@ -67,16 +67,16 @@ export class Logger {
     });
   }
 
-  warn(message: string, meta?: any) {
+  warn(message: string, meta?: Record<string, unknown>) {
     logger.warn(message, { context: this.context, ...meta });
   }
 
-  debug(message: string, meta?: any) {
+  debug(message: string, meta?: Record<string, unknown>) {
     logger.debug(message, { context: this.context, ...meta });
   }
 
   // Log API requests
-  logApiRequest(req: any, meta?: any) {
+  logApiRequest(req: { method?: string; url?: string; headers?: Record<string, string> }, meta?: Record<string, unknown>) {
     this.info('API Request', {
       method: req.method,
       url: req.url,
@@ -87,7 +87,7 @@ export class Logger {
   }
 
   // Log API responses
-  logApiResponse(req: any, res: any, duration: number, meta?: any) {
+  logApiResponse(req: { method?: string; url?: string }, res: { statusCode?: number }, duration: number, meta?: Record<string, unknown>) {
     this.info('API Response', {
       method: req.method,
       url: req.url,
@@ -98,7 +98,7 @@ export class Logger {
   }
 
   // Log user actions
-  logUserAction(userId: string, action: string, meta?: any) {
+  logUserAction(userId: string, action: string, meta?: Record<string, unknown>) {
     this.info('User Action', {
       userId,
       action,
@@ -107,7 +107,7 @@ export class Logger {
   }
 
   // Log system events
-  logSystemEvent(event: string, meta?: any) {
+  logSystemEvent(event: string, meta?: Record<string, unknown>) {
     this.info('System Event', {
       event,
       ...meta
@@ -115,7 +115,7 @@ export class Logger {
   }
 
   // Log database operations
-  logDatabaseOperation(operation: string, table: string, meta?: any) {
+  logDatabaseOperation(operation: string, table: string, meta?: Record<string, unknown>) {
     this.debug('Database Operation', {
       operation,
       table,
@@ -124,7 +124,7 @@ export class Logger {
   }
 
   // Log external API calls
-  logExternalApiCall(service: string, endpoint: string, meta?: any) {
+  logExternalApiCall(service: string, endpoint: string, meta?: Record<string, unknown>) {
     this.info('External API Call', {
       service,
       endpoint,
