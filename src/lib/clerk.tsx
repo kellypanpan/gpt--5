@@ -1,4 +1,4 @@
-import { ClerkProvider } from '@clerk/clerk-react';
+import { ClerkProvider, useAuth, useUser } from '@clerk/clerk-react';
 import React from 'react';
 
 // Clerk 配置
@@ -26,4 +26,20 @@ export function ClerkProviderWrapper({ children }: ClerkProviderWrapperProps) {
 // 导出配置供其他地方使用
 export const clerkConfig = {
   publishableKey,
+};
+
+// 导出常用的 hooks
+export const useAuthState = () => {
+  const { isSignedIn, isLoaded } = useAuth();
+  return { isSignedIn, isLoaded };
+};
+
+export const useCurrentUser = () => {
+  const { user } = useUser();
+  return user;
+};
+
+export const useAuthToken = () => {
+  const { getToken } = useAuth();
+  return { getToken };
 }; 
