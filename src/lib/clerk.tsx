@@ -34,8 +34,13 @@ export const clerkConfig = {
 
 // 导出常用的 hooks
 export const useAuthState = () => {
-  const { isSignedIn, isLoaded } = useAuth();
-  return { isSignedIn, isLoaded };
+  try {
+    const { isSignedIn, isLoaded } = useAuth();
+    return { isSignedIn, isLoaded, isLoading: !isLoaded };
+  } catch (error) {
+    // If not within ClerkProvider, return default values
+    return { isSignedIn: false, isLoaded: true, isLoading: false };
+  }
 };
 
 export const useCurrentUser = () => {
