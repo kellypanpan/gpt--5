@@ -1,9 +1,11 @@
 import { ClerkProvider, useAuth, useUser } from '@clerk/clerk-react';
 import React from 'react';
+import { viteEnv } from '../../vite.env';
 
-// Clerk 配置
+// Clerk 配置 - 使用 vite 环境变量
 const publishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY || 
-                       import.meta.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+                       import.meta.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+                       viteEnv.VITE_CLERK_PUBLISHABLE_KEY; // 使用 vite 环境变量
 
 // Clerk Provider 组件
 interface ClerkProviderWrapperProps {
@@ -11,8 +13,10 @@ interface ClerkProviderWrapperProps {
 }
 
 export function ClerkProviderWrapper({ children }: ClerkProviderWrapperProps) {
-  if (!publishableKey) {
-    console.warn('Clerk publishable key is not set');
+  console.log('Clerk publishable key:', publishableKey); // 调试日志
+  
+  if (!publishableKey || publishableKey === 'pk_test_your-publishable-key') {
+    console.warn('Clerk publishable key is not set or is using test key');
     return <>{children}</>;
   }
 
