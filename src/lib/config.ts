@@ -1,13 +1,17 @@
+import { viteEnv } from '../../vite.env';
+
 // 环境变量配置
 export const config = {
   // Clerk认证配置
   clerk: {
-    publishableKey: import.meta.env.VITE_CLERK_PUBLISHABLE_KEY || 'pk_test_your-publishable-key',
+    publishableKey: import.meta.env.VITE_CLERK_PUBLISHABLE_KEY || 
+                    import.meta.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+                    viteEnv.VITE_CLERK_PUBLISHABLE_KEY,
   },
   
   // OpenAI配置
   openai: {
-    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY || viteEnv.VITE_OPENAI_API_KEY,
     enabled: import.meta.env.VITE_OPENAI_ENABLED === 'true',
   },
   
