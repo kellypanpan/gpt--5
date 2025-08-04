@@ -10,8 +10,26 @@ import { AuthStatus } from "@/components/AuthButton";
 import { useAuthState } from "@/lib/clerk";
 import { Header } from "@/components/Header";
 import { TestOpenAI } from "@/components/TestOpenAI";
+import { SEOHead } from "@/components/SEOHead";
 
 const Writer = () => {
+  // SEO structured data for GPT-5 writing tool
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "GPT-5 Writing Tool",
+    "description": "How to use GPT-5 for writing: Professional content creation with advanced AI capabilities",
+    "keywords": "gpt-5 writing tool, how to use gpt-5 for writing, gpt-5 content creation",
+    "applicationCategory": "AI Writing Assistant"
+  };
+
+  // Add structured data to head
+  if (typeof document !== 'undefined') {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(structuredData);
+    document.head.appendChild(script);
+  }
   const [prompt, setPrompt] = useState("");
   const [tone, setTone] = useState("professional");
   const [length, setLength] = useState("medium");
@@ -57,6 +75,19 @@ const Writer = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+      <SEOHead 
+        title="GPT-5 Writing Tool - Advanced AI Content Creation"
+        description="How to use GPT-5 for writing: Create professional blog posts, articles, and marketing copy with our advanced GPT-5 writing tool. Best GPT-5 tools for content creators."
+        keywords="gpt-5 writing tool, how to use gpt-5 for writing, gpt-5 content creation, best gpt-5 tools for content creators, gpt-5 ai writing"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "GPT-5 Writing Tool",
+          "description": "How to use GPT-5 for writing: Professional content creation with advanced AI capabilities",
+          "keywords": "gpt-5 writing tool, how to use gpt-5 for writing, gpt-5 content creation",
+          "applicationCategory": "AI Writing Assistant"
+        }}
+      />
       <Header />
       <div className="container mx-auto px-4 py-8 pt-20">
         {/* Header */}
@@ -64,11 +95,11 @@ const Writer = () => {
           <div className="flex items-center justify-center gap-2 mb-4">
             <Sparkles className="h-8 w-8 text-primary animate-glow-pulse" />
             <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              GPT-5 Writer
+              GPT-5 Writing Tool
             </h1>
           </div>
           <p className="text-xl text-muted-foreground">
-            AI Blog & Copywriting Tool
+            How to use GPT-5 for writing: Professional AI content creation
           </p>
         </div>
 

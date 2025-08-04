@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { OpenAIService } from '../lib/openai';
 
 interface TestResponse {
   success: boolean;
@@ -20,25 +19,22 @@ export default async function handler(
   }
 
   try {
-    // 检查环境变量
-    if (!process.env.OPENAI_API_KEY) {
-      return res.status(500).json({
-        success: false,
-        message: 'OpenAI API key not configured',
-        error: 'OPENAI_API_KEY environment variable is missing'
-      });
+    // Test OpenRouter API via simple-api server
+    const apiResponse = await fetch('http://localhost:3001/api/test-openai');
+    
+    if (!apiResponse.ok) {
+      throw new Error(`API request failed: ${apiResponse.status}`);
     }
 
-    // 测试简单的内容审核API调用（消耗最少的token）
-    const testText = "Hello, this is a test message.";
-    const isFlagged = await OpenAIService.moderateContent(testText);
-
+    const result = await apiResponse.json();
+    
     return res.status(200).json({
       success: true,
-      message: 'OpenAI API connection successful',
+      message: 'OpenRouter API connection successful',
       data: {
-        testText,
-        moderated: isFlagged,
+        apiProvider: 'OpenRouter',
+        response: result.response,
+        model: result.model,
         timestamp: new Date().toISOString()
       }
     });

@@ -156,10 +156,62 @@ export class AuthService {
     secret: string
   ): boolean {
     try {
-      // This would typically use Stripe's webhook signature validation
-      // For now, return true for development
-      return true;
-    } catch {
+      if (!signature || !secret || !body) {
+        console.error('Missing required parameters for webhook signature validation');
+        return false;
+      }
+
+      // 处理 Stripe 风格的签名格式
+      let timestamp = '';
+      let signatures: string[] = [];
+      
+      const elements = signature.split(',');
+      for (const element of elements) {
+        const [key, value] = element.split('=');
+        if (key === 't') {
+          timestamp = value;
+        } else if (key === 'v1') {
+          signatures.push(value);
+        }
+      }
+
+      if (!timestamp || signatures.length === 0) {
+        console.error('Invalid signature format');
+        return false;
+      }
+
+      // 检查时间戳是否在合理范围内（5分钟）
+      const timestampNumber = parseInt(timestamp, 10);
+      const now = Math.floor(Date.now() / 1000);
+      if (Math.abs(now - timestampNumber) > 300) {
+        console.error('Webhook timestamp too old');
+        return false;
+      }
+
+      // 创建签名有效载荷
+      const payloadForSignature = `${timestamp}.${body}`;
+      
+      // 使用 Node.js crypto 模块验证签名
+      const crypto = require('crypto');
+      const expectedSignature = crypto
+        .createHmac('sha256', secret)
+        .update(payloadForSignature, 'utf8')
+        .digest('hex');
+
+      // 使用时间安全的比较验证任何提供的签名
+      for (const sig of signatures) {
+        if (crypto.timingSafeEqual(
+          Buffer.from(sig),
+          Buffer.from(expectedSignature)
+        )) {
+          return true;
+        }
+      }
+
+      console.error('No valid signatures found');
+      return false;
+    } catch (error) {
+      console.error('Error validating webhook signature:', error);
       return false;
     }
   }

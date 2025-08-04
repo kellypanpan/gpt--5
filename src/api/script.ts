@@ -1,5 +1,4 @@
 import { authUserAndCheckCredits, AuthService } from '@/lib/auth';
-import { openai, SYSTEM_PROMPTS, TOOL_CONFIG } from '@/lib/openai';
 
 export async function POST(req: Request) {
   try {
@@ -14,43 +13,37 @@ export async function POST(req: Request) {
     }
 
     // 认证用户并检查Credits
-    const user = await authUserAndCheckCredits(req, TOOL_CONFIG.SCRIPT.credits);
+    const user = await authUserAndCheckCredits(req, 1);
 
-    // 构建脚本提示词
-    const userPrompt = buildScriptPrompt(scene, style, platform, duration);
-
-    // 调用OpenAI API
-    const completion = await openai.chat.completions.create({
-      model: TOOL_CONFIG.SCRIPT.model,
-      messages: [
-        { 
-          role: 'system', 
-          content: SYSTEM_PROMPTS.SCRIPT_WRITER 
-        },
-        { 
-          role: 'user', 
-          content: userPrompt 
-        }
-      ],
-      temperature: TOOL_CONFIG.SCRIPT.temperature,
-      max_tokens: TOOL_CONFIG.SCRIPT.max_tokens,
+    // Use OpenRouter API via simple-api server
+    const apiResponse = await fetch('http://localhost:3001/api/script', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ scene, style, platform, duration }),
     });
 
-    const generatedScript = completion.choices[0]?.message?.content || '';
+    if (!apiResponse.ok) {
+      throw new Error(`API request failed: ${apiResponse.status}`);
+    }
+
+    const result = await apiResponse.json();
+    const generatedScript = result.script;
 
     // 记录生成日志
     await AuthService.logGeneration({
       userId: user.id,
       tool: 'script',
-      creditsUsed: TOOL_CONFIG.SCRIPT.credits,
-      prompt: userPrompt,
+      creditsUsed: 1,
+      prompt: scene,
       result: generatedScript,
       status: 'success'
     });
 
     return Response.json({
       script: generatedScript,
-      creditsUsed: TOOL_CONFIG.SCRIPT.credits,
+      creditsUsed: 1,
       remainingCredits: user.credits
     });
 

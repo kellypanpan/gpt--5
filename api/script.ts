@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { OpenAIService } from '../lib/openai';
 import { authUserAndCheckCredits } from '../lib/auth';
 import { DatabaseService } from '../lib/database';
 import { rateLimit } from '../lib/rate-limit';
@@ -47,13 +46,26 @@ export default async function handler(
       return res.status(400).json({ error: 'Scene description is too long (max 500 characters)' });
     }
 
-    // Generate script using OpenAI
-    const { script, metadata } = await OpenAIService.generateScript({
-      scene,
-      style,
-      platform,
-      duration
+    // Use OpenRouter API via simple-api server
+    const apiResponse = await fetch('http://localhost:3001/api/script', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ scene, style, platform, duration }),
     });
+
+    if (!apiResponse.ok) {
+      throw new Error(`API request failed: ${apiResponse.status}`);
+    }
+
+    const result = await apiResponse.json();
+    const script = result.script;
+    const metadata = {
+      scenes: 1,
+      estimatedDuration: duration,
+      platform
+    };
 
     // Log the generation
     await DatabaseService.logGeneration({

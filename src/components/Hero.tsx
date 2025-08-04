@@ -17,32 +17,32 @@ const Hero = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-card/20 backdrop-blur-sm border border-border/20 rounded-full px-4 py-2 mb-8 animate-slide-up">
             <Sparkles className="h-4 w-4 text-primary animate-glow-pulse" />
-            <span className="text-sm text-muted-foreground">The Next Leap of AI: GPT-5</span>
+            <span className="text-sm text-muted-foreground">Experience GPT-5 AI Tools</span>
           </div>
 
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            <span className="bg-gradient-primary bg-clip-text text-transparent">Beyond Answers</span>
+            <span className="bg-gradient-primary bg-clip-text text-transparent">GPT-5 AI</span>
             <br />
-            <span className="text-foreground">Into Action</span>
+            <span className="text-foreground">Tools Hub</span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl leading-relaxed animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            Your thinking, creating, doing assistant. GPT-5AI doesn't just answer questions—it executes complex tasks, calls external tools, and delivers results that matter.
+            Powerful GPT-5 tools for writing, image generation, and content creation. Advanced AI capabilities for creators, businesses, and professionals who demand excellence.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-slide-up" style={{ animationDelay: '0.3s' }}>
             <Link to="/tools">
               <Button variant="hero" size="xl" className="group">
-                Get Access Now
+                Try GPT-5 Tools Now
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-smooth" />
               </Button>
             </Link>
-            <Link to="/tools">
+            <Link to="/blog/what-is-gpt-5">
               <Button variant="glass" size="xl">
-                View Demo
+                What is GPT-5?
               </Button>
             </Link>
           </div>
@@ -53,32 +53,32 @@ const Hero = () => {
               <div className="bg-gradient-primary rounded-lg w-12 h-12 flex items-center justify-center mb-4 shadow-glow-sm">
                 <Brain className="h-6 w-6 text-primary-foreground" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Task Understanding</h3>
-              <p className="text-muted-foreground">Comprehends complex multi-step instructions and breaks them down into actionable plans.</p>
+              <h3 className="text-lg font-semibold mb-2">GPT-5 Writing Tool</h3>
+              <p className="text-muted-foreground">Advanced GPT-5 writing capabilities for content creators, blogs, and business communications.</p>
             </div>
 
             <div className="bg-card/10 backdrop-blur-sm border border-border/20 rounded-lg p-6 hover:bg-card/20 transition-smooth">
               <div className="bg-gradient-secondary rounded-lg w-12 h-12 flex items-center justify-center mb-4 shadow-glow-accent">
                 <Zap className="h-6 w-6 text-primary-foreground" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Tool Integration</h3>
-              <p className="text-muted-foreground">Seamlessly connects with external APIs, databases, and specialized tools for real results.</p>
+              <h3 className="text-lg font-semibold mb-2">GPT-5 Image Generator</h3>
+              <p className="text-muted-foreground">Create stunning visuals with GPT-5 AI image generation technology for any creative project.</p>
             </div>
 
             <div className="bg-card/10 backdrop-blur-sm border border-border/20 rounded-lg p-6 hover:bg-card/20 transition-smooth">
               <div className="bg-gradient-primary rounded-lg w-12 h-12 flex items-center justify-center mb-4 shadow-glow-sm">
                 <Sparkles className="h-6 w-6 text-primary-foreground" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Quality Output</h3>
-              <p className="text-muted-foreground">Delivers professional-grade content, analysis, and solutions ready for immediate use.</p>
+              <h3 className="text-lg font-semibold mb-2">GPT-5 Features</h3>
+              <p className="text-muted-foreground">Experience cutting-edge GPT-5 capabilities with professional-grade AI tools and features.</p>
             </div>
           </div>
 
           {/* Trust Indicator */}
           <div className="mt-16 text-center animate-slide-up" style={{ animationDelay: '0.5s' }}>
-            <p className="text-sm text-muted-foreground mb-4">Trusted by professionals worldwide</p>
+            <p className="text-sm text-muted-foreground mb-4">Best GPT-5 tools for content creators and businesses</p>
             <div className="text-xs text-muted-foreground/60">
-              Only serious creators allowed. Get access, get things done.
+              Professional GPT-5 AI tools. Experience the future of content creation.
             </div>
           </div>
         </div>

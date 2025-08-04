@@ -5,6 +5,8 @@ import { SignInButton } from '@/components/auth/SignInButton';
 import { UserMenu } from '@/components/auth/UserMenu';
 import { useAuthState } from '@/lib/clerk';
 import { Sparkles, ChevronDown } from 'lucide-react';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { useTranslation } from '@/hooks/useTranslation';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,6 +16,7 @@ import {
 
 export const Header: React.FC = () => {
   const { isSignedIn, isLoading } = useAuthState();
+  const { t } = useTranslation();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
@@ -23,27 +26,27 @@ export const Header: React.FC = () => {
           <Link to="/" className="flex items-center gap-2">
             <Sparkles className="h-6 w-6 text-primary" />
             <span className="text-xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              GPT-5AI
+              GPT-5 Tools
             </span>
           </Link>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-6">
             <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
-              Home
+              {t('home')}
             </Link>
             <Link to="/tools" className="text-sm font-medium hover:text-primary transition-colors">
-              Tools
+              {t('tools')}
             </Link>
             <Link to="/use-cases" className="text-sm font-medium hover:text-primary transition-colors">
-              Use Cases
+              {t('useCases')}
             </Link>
             
             {/* Blog Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="text-sm font-medium hover:text-primary transition-colors">
-                  Blog
+                  {t('blog')}
                   <ChevronDown className="h-4 w-4 ml-1" />
                 </Button>
               </DropdownMenuTrigger>
@@ -64,14 +67,18 @@ export const Header: React.FC = () => {
                   <Link to="/blog/gpt-5-release-tracker">Release Tracker</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/blog/gpt-5-for-business">For Business</Link>
+                  <Link to="/blog/gpt-5-for-business">GPT-5 Business Use Cases</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/blog/gpt-5-jobs-impact">GPT-5 Jobs Impact</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </nav>
 
-          {/* Auth */}
-          <div className="flex items-center gap-4">
+          {/* Auth and Language */}
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher variant="compact" />
             {isLoading ? (
               <div className="w-8 h-8 animate-spin rounded-full border-2 border-primary border-t-transparent"></div>
             ) : isSignedIn ? (

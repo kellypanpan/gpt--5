@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { OpenAIService } from '../lib/openai';
 import { authUserAndCheckCredits } from '../lib/auth';
 import { DatabaseService, Conversation } from '../lib/database';
 import { rateLimit } from '../lib/rate-limit';
@@ -50,10 +49,7 @@ export default async function handler(
       return res.status(400).json({ error: 'Message is too long (max 2000 characters)' });
     }
 
-    // Content moderation
-    if (await OpenAIService.moderateContent(message)) {
-      return res.status(400).json({ error: 'Message violates our content policy. Please rephrase your request.' });
-    }
+    // Skip content moderation for now (could be added to OpenRouter API later)
 
     // Get conversation history if conversationId is provided
     let conversationHistory: Conversation[] = [];
@@ -61,14 +57,22 @@ export default async function handler(
       conversationHistory = await DatabaseService.getConversationHistory(conversationId, user.id);
     }
 
-    // Generate response using OpenAI
-    const { response, suggestions } = await OpenAIService.generateAgentResponse({
-      message,
-      context,
-      taskType,
-      conversationHistory,
-      userId: user.id
+    // Use OpenRouter API via simple-api server
+    const apiResponse = await fetch('http://localhost:3001/api/agent', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message, context, taskType }),
     });
+
+    if (!apiResponse.ok) {
+      throw new Error(`API request failed: ${apiResponse.status}`);
+    }
+
+    const result = await apiResponse.json();
+    const response = result.response;
+    const suggestions = [];
 
     // Generate or use existing conversation ID
     const finalConversationId = conversationId || `conv_${user.id}_${Date.now()}`;

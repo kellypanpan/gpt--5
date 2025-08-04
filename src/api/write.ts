@@ -1,5 +1,4 @@
 import { authUserAndCheckCredits, AuthService } from '@/lib/auth';
-import { openai, SYSTEM_PROMPTS, TOOL_CONFIG, handleOpenAIResponse } from '@/lib/openai';
 
 export async function POST(req: Request) {
   try {
@@ -14,43 +13,37 @@ export async function POST(req: Request) {
     }
 
     // 认证用户并检查Credits
-    const user = await authUserAndCheckCredits(req, TOOL_CONFIG.WRITER.credits);
+    const user = await authUserAndCheckCredits(req, 1);
 
-    // 构建用户提示词
-    const userPrompt = buildWriterPrompt(prompt, tone, length, type);
-
-    // 调用OpenAI API
-    const completion = await openai.chat.completions.create({
-      model: TOOL_CONFIG.WRITER.model,
-      messages: [
-        { 
-          role: 'system', 
-          content: SYSTEM_PROMPTS.WRITER 
-        },
-        { 
-          role: 'user', 
-          content: userPrompt 
-        }
-      ],
-      temperature: TOOL_CONFIG.WRITER.temperature,
-      max_tokens: TOOL_CONFIG.WRITER.max_tokens,
+    // Use OpenRouter API via simple-api server
+    const apiResponse = await fetch('http://localhost:3001/api/write', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt, tone, length }),
     });
 
-    const generatedContent = completion.choices[0]?.message?.content || '';
+    if (!apiResponse.ok) {
+      throw new Error(`API request failed: ${apiResponse.status}`);
+    }
+
+    const result = await apiResponse.json();
+    const generatedContent = result.content;
 
     // 记录生成日志
     await AuthService.logGeneration({
       userId: user.id,
       tool: 'writer',
-      creditsUsed: TOOL_CONFIG.WRITER.credits,
-      prompt: userPrompt,
+      creditsUsed: 1,
+      prompt: prompt,
       result: generatedContent,
       status: 'success'
     });
 
     return Response.json({
       content: generatedContent,
-      creditsUsed: TOOL_CONFIG.WRITER.credits,
+      creditsUsed: 1,
       remainingCredits: user.credits
     });
 

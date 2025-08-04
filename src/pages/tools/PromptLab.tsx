@@ -19,10 +19,11 @@ import {
 } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import { Header } from "@/components/Header";
+import { SEOHead } from "@/components/SEOHead";
 
 const PromptLab = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Mock login state
 
   const categories = [
@@ -35,8 +36,8 @@ const PromptLab = () => {
   const mockPrompts = [
     {
       id: 1,
-      title: "Professional Blog Writing Assistant",
-      content: "Write a comprehensive blog post about [topic] that includes an engaging introduction, detailed analysis, and actionable takeaways...",
+      title: "GPT-5 Blog Writing Assistant",
+      content: "Write a comprehensive blog post about [topic] using GPT-5 capabilities. Include engaging introduction, detailed analysis, and actionable takeaways...",
       category: "writing",
       likes: 1247,
       isLiked: false,
@@ -44,8 +45,8 @@ const PromptLab = () => {
     },
     {
       id: 2,
-      title: "Python Code Optimization Expert",
-      content: "Analyze and optimize this Python code for better performance and readability. Focus on best practices and efficiency...",
+      title: "GPT-5 Code Optimization Expert",
+      content: "Use GPT-5 to analyze and optimize this Python code for better performance and readability. Focus on best practices and efficiency...",
       category: "programming",
       likes: 892,
       isLiked: true,
@@ -53,8 +54,8 @@ const PromptLab = () => {
     },
     {
       id: 3,
-      title: "Social Media Marketing Copy",
-      content: "Create engaging social media posts for [platform] that will increase engagement and drive conversions...",
+      title: "GPT-5 Social Media Marketing Copy",
+      content: "Create engaging social media posts for [platform] using GPT-5 AI that will increase engagement and drive conversions...",
       category: "marketing",
       likes: 1563,
       isLiked: false,
@@ -62,8 +63,8 @@ const PromptLab = () => {
     },
     {
       id: 4,
-      title: "AI Art Style Transfer",
-      content: "Transform this image into [art style] while maintaining the original composition and key elements...",
+      title: "GPT-5 AI Art Style Transfer",
+      content: "Use GPT-5 image generation to transform this image into [art style] while maintaining the original composition and key elements...",
       category: "image",
       likes: 734,
       isLiked: false,
@@ -71,8 +72,8 @@ const PromptLab = () => {
     },
     {
       id: 5,
-      title: "Technical Documentation Writing",
-      content: "Write clear and comprehensive technical documentation for [software/tool] that is easy to understand...",
+      title: "GPT-5 Technical Documentation Writing",
+      content: "How to use GPT-5 for writing clear and comprehensive technical documentation for [software/tool] that is easy to understand...",
       category: "writing",
       likes: 445,
       isLiked: false,
@@ -80,10 +81,28 @@ const PromptLab = () => {
     },
     {
       id: 6,
-      title: "JavaScript Debugging Assistant",
-      content: "Help me debug this JavaScript code. Identify potential issues and provide solutions with explanations...",
+      title: "GPT-5 JavaScript Debugging Assistant",
+      content: "Use GPT-5 capabilities to debug this JavaScript code. Identify potential issues and provide solutions with explanations...",
       category: "programming",
       likes: 678,
+      isLiked: false,
+      isLocked: false
+    },
+    {
+      id: 7,
+      title: "GPT-5 Business Use Cases",
+      content: "Discover powerful GPT-5 business use cases for automation, content creation, and productivity enhancement...",
+      category: "marketing",
+      likes: 923,
+      isLiked: false,
+      isLocked: false
+    },
+    {
+      id: 8,
+      title: "Best GPT-5 Tools for Content Creators",
+      content: "Complete guide to the best GPT-5 tools for content creators, including writing, image generation, and video scripts...",
+      category: "writing",
+      likes: 1456,
       isLiked: false,
       isLocked: false
     }
@@ -92,7 +111,7 @@ const PromptLab = () => {
   const filteredPrompts = mockPrompts.filter(prompt => {
     const matchesSearch = prompt.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          prompt.content.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = !selectedCategory || prompt.category === selectedCategory;
+    const matchesCategory = selectedCategory === "all" || prompt.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
@@ -147,19 +166,31 @@ const PromptLab = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+      <SEOHead 
+        title="GPT-5 Prompt Examples - Advanced AI Prompt Library"
+        description="Discover GPT-5 prompt examples and templates for writing, coding, and content creation. Best GPT-5 tools for content creators with professional prompt library."
+        keywords="gpt-5 prompt examples, gpt-5 prompts, best gpt-5 tools for content creators, gpt-5 business use cases, how to use gpt-5"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "GPT-5 Prompt Examples",
+          "description": "GPT-5 prompt examples and templates for optimal AI performance and results",
+          "keywords": "gpt-5 prompt examples, gpt-5 prompts, ai prompt library",
+          "applicationCategory": "AI Prompt Library"
+        }}
+      />
       <Header />
-      <div className="pt-20">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 pt-24">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Sparkles className="h-8 w-8 text-primary animate-glow-pulse" />
             <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              Prompt Lab
+              GPT-5 Prompt Examples
             </h1>
           </div>
           <p className="text-xl text-muted-foreground">
-            Discover and Share AI Prompts
+            Best GPT-5 tools for content creators - Professional prompt library
           </p>
         </div>
 
@@ -171,7 +202,7 @@ const PromptLab = () => {
                 <div className="flex-1 relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder="Search prompts..."
+                    placeholder="Search GPT-5 prompt examples..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-10"
@@ -184,7 +215,7 @@ const PromptLab = () => {
                       <SelectValue placeholder="All Categories" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Categories</SelectItem>
+                      <SelectItem value="all">All Categories</SelectItem>
                       {categories.map((category) => {
                         const Icon = category.icon;
                         return (
@@ -288,28 +319,27 @@ const PromptLab = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
             <Card className="text-center p-4">
               <BookOpen className="h-8 w-8 text-primary mx-auto mb-2" />
-              <h3 className="font-semibold mb-2">Browse All</h3>
+              <h3 className="font-semibold mb-2">Browse GPT-5 Prompts</h3>
               <p className="text-sm text-muted-foreground">
-                Free browsing of all prompts
+                Free browsing of all GPT-5 prompt examples
               </p>
             </Card>
             <Card className="text-center p-4">
               <Lock className="h-8 w-8 text-primary mx-auto mb-2" />
-              <h3 className="font-semibold mb-2">Premium Access</h3>
+              <h3 className="font-semibold mb-2">Premium GPT-5 Access</h3>
               <p className="text-sm text-muted-foreground">
-                Login and subscribe to use prompts
+                Login and subscribe to use advanced GPT-5 prompts
               </p>
             </Card>
             <Card className="text-center p-4">
               <Plus className="h-8 w-8 text-primary mx-auto mb-2" />
-              <h3 className="font-semibold mb-2">Share Your Own</h3>
+              <h3 className="font-semibold mb-2">Share GPT-5 Prompts</h3>
               <p className="text-sm text-muted-foreground">
-                Upload and share your prompts
+                Upload and share your GPT-5 prompt examples
               </p>
             </Card>
           </div>
         </div>
-      </div>
       </div>
     </div>
   );

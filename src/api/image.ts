@@ -1,5 +1,4 @@
 import { authUserAndCheckCredits, AuthService } from '@/lib/auth';
-import { openai, SYSTEM_PROMPTS, TOOL_CONFIG } from '@/lib/openai';
 
 export async function POST(req: Request) {
   try {
@@ -14,41 +13,39 @@ export async function POST(req: Request) {
     }
 
     // 认证用户并检查Credits
-    const user = await authUserAndCheckCredits(req, TOOL_CONFIG.IMAGE_GENERATOR.credits);
+    const user = await authUserAndCheckCredits(req, 2);
 
-    // 构建图像生成提示词
-    const enhancedPrompt = buildImagePrompt(prompt, style);
-
-    // 调用OpenAI DALL-E API
-    const response = await openai.images.generate({
-      model: TOOL_CONFIG.IMAGE_GENERATOR.model,
-      prompt: enhancedPrompt,
-      n: 1,
-      size: size as '1024x1024' | '1792x1024' | '1024x1792',
-      quality: quality as 'standard' | 'hd',
+    // Use OpenRouter API via simple-api server
+    const apiResponse = await fetch('http://localhost:3001/api/image', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt, size, quality, style }),
     });
 
-    const imageUrl = response.data[0]?.url;
-
-    if (!imageUrl) {
-      throw new Error('Failed to generate image');
+    if (!apiResponse.ok) {
+      throw new Error(`API request failed: ${apiResponse.status}`);
     }
+
+    const result = await apiResponse.json();
+    const imageUrl = result.imageUrl;
 
     // 记录生成日志
     await AuthService.logGeneration({
       userId: user.id,
       tool: 'image',
-      creditsUsed: TOOL_CONFIG.IMAGE_GENERATOR.credits,
-      prompt: enhancedPrompt,
+      creditsUsed: 2,
+      prompt: prompt,
       result: imageUrl,
       status: 'success'
     });
 
     return Response.json({
       imageUrl: imageUrl,
-      creditsUsed: TOOL_CONFIG.IMAGE_GENERATOR.credits,
+      creditsUsed: 2,
       remainingCredits: user.credits,
-      prompt: enhancedPrompt
+      prompt: prompt
     });
 
   } catch (error: any) {

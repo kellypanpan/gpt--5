@@ -9,7 +9,7 @@ const PricingSection = () => {
       name: "Pro",
       price: "$15",
       period: "/month",
-      description: "Perfect for content creators and professionals",
+      description: "Perfect for GPT-5 content creators and professionals",
       credits: "500 credits/month",
       icon: Zap,
       features: [
@@ -26,7 +26,7 @@ const PricingSection = () => {
       name: "Creator",
       price: "$39",
       period: "/month",
-      description: "For serious creators and businesses",
+      description: "Best GPT-5 tools for content creators and businesses",
       credits: "Unlimited usage",
       icon: Crown,
       features: [
@@ -46,7 +46,7 @@ const PricingSection = () => {
       name: "Lifetime",
       price: "$299",
       period: "one-time",
-      description: "Buy once, use forever",
+      description: "Lifetime access to GPT-5 tools - Buy once, use forever",
       credits: "Lifetime access",
       icon: Star,
       features: [
@@ -67,10 +67,10 @@ const PricingSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-primary bg-clip-text text-transparent">Simple, Powerful Pricing</span>
+            <span className="bg-gradient-primary bg-clip-text text-transparent">GPT-5 Tools Pricing</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Choose the plan that matches your ambition. All plans include full access to GPT-5 powered tools.
+            Choose the perfect plan for your GPT-5 AI needs. All plans include full access to our comprehensive GPT-5 tools suite.
           </p>
         </div>
 

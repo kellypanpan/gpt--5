@@ -1,8 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { OpenAIService } from '../lib/openai';
 import { authUserAndCheckCredits } from '../lib/auth';
 import { DatabaseService } from '../lib/database';
 import { rateLimit } from '../lib/rate-limit';
+import { apiSchemas, validateRequest, ValidationError, sanitizeInput } from '../lib/validation';
+import { asyncHandler, ValidationError as ErrorHandlerValidationError } from '../lib/error-handler';
 
 interface WriteRequest {
   prompt: string;
@@ -17,74 +18,66 @@ interface WriteResponse {
   remainingCredits: number;
 }
 
-export default async function handler(
+async function writeHandler(
   req: NextApiRequest,
   res: NextApiResponse<WriteResponse | { error: string }>
-) {
+): Promise<void> {
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    throw new ErrorHandlerValidationError('Method not allowed');
+  }
+  
+  // Rate limiting
+  await rateLimit(req, res, { max: 10, windowMs: 60000 }); // 10 requests per minute
+
+  // 验证请求数据
+  const validator = validateRequest(apiSchemas.writeRequest);
+  const validatedData = validator(req);
+  
+  // 清理输入
+  const cleanPrompt = sanitizeInput.cleanText(validatedData.prompt);
+  
+  // Authenticate user and check credits
+  const user = await authUserAndCheckCredits(req, 1);
+
+  // Use OpenRouter API via simple-api server
+  const apiResponse = await fetch('http://localhost:3001/api/write', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ 
+      prompt: cleanPrompt, 
+      tone: validatedData.tone || 'professional', 
+      length: validatedData.length || 'medium' 
+    }),
+  });
+
+  if (!apiResponse.ok) {
+    throw new Error(`API request failed: ${apiResponse.status}`);
   }
 
-  try {
-    // Rate limiting
-    await rateLimit(req, res, { max: 10, windowMs: 60000 }); // 10 requests per minute
+  const result = await apiResponse.json();
+  const content = result.content;
 
-    // Authenticate user and check credits
-    const user = await authUserAndCheckCredits(req, 1);
+  // Log the generation
+  await DatabaseService.logGeneration({
+    userId: user.id,
+    tool: 'writer',
+    creditsUsed: 1,
+    prompt: cleanPrompt,
+    result: content,
+    status: 'success'
+  });
 
-    const { prompt, tone = 'professional', length = 'medium', type = 'blog' } = req.body as WriteRequest;
+  // Get updated user credits
+  const updatedUser = await DatabaseService.getUser(user.id);
 
-    if (!prompt || prompt.trim().length === 0) {
-      return res.status(400).json({ error: 'Prompt is required' });
-    }
-
-    if (prompt.length > 1000) {
-      return res.status(400).json({ error: 'Prompt is too long (max 1000 characters)' });
-    }
-
-    // Generate content using OpenAI
-    const content = await OpenAIService.generateText({
-      prompt,
-      tone,
-      length,
-      type
-    });
-
-    // Log the generation
-    await DatabaseService.logGeneration({
-      userId: user.id,
-      tool: 'writer',
-      creditsUsed: 1,
-      prompt,
-      result: content,
-      status: 'success'
-    });
-
-    // Get updated user credits
-    const updatedUser = await DatabaseService.getUser(user.id);
-
-    res.status(200).json({
-      content,
-      creditsUsed: 1,
-      remainingCredits: updatedUser?.credits || 0
-    });
-
-  } catch (error: unknown) {
-    console.error('Writer API error:', error);
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    
-    if (errorMessage.includes('Unauthorized')) {
-      return res.status(401).json({ error: errorMessage });
-    }
-    
-    if (errorMessage.includes('credits') || errorMessage.includes('Subscription')) {
-      return res.status(402).json({ error: errorMessage });
-    }
-
-    if (errorMessage.includes('Rate limit')) {
-      return res.status(429).json({ error: errorMessage });
-    }
-
-    res.status(500).json({ error: 'Failed to generate content' });
-  }
+  res.status(200).json({
+    content,
+    creditsUsed: 1,
+    remainingCredits: updatedUser?.credits || 0
+  });
 }
+
+// 使用错误处理包装器导出
+export default asyncHandler(writeHandler, 'WriteAPI');

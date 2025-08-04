@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { OpenAIService } from '../lib/openai';
 import { authUserAndCheckCredits } from '../lib/auth';
 import { DatabaseService } from '../lib/database';
 import { rateLimit } from '../lib/rate-limit';
@@ -57,19 +56,21 @@ export default async function handler(
     // Authenticate user and check credits
     const user = await authUserAndCheckCredits(req, totalCredits);
 
-    // Content safety check
-    if (await OpenAIService.moderateContent(prompt)) {
-      return res.status(400).json({ error: 'Content violates our policy. Please modify your prompt.' });
+    // Use OpenRouter API via simple-api server
+    const apiResponse = await fetch('http://localhost:3001/api/image', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt, size, quality, style }),
+    });
+
+    if (!apiResponse.ok) {
+      throw new Error(`API request failed: ${apiResponse.status}`);
     }
 
-    // Generate images using OpenAI DALL-E
-    const imageUrls = await OpenAIService.generateImages({
-      prompt,
-      size,
-      quality,
-      style,
-      count
-    });
+    const result = await apiResponse.json();
+    const imageUrls = [result.imageUrl];
 
     // Upload images to our CDN and get permanent URLs
     const images = await Promise.all(

@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { authUserAndCheckCredits } from '../../lib/auth';
 import { DatabaseService } from '../../lib/database';
-import { OpenAIService } from '../../lib/openai';
 
 interface CreatePromptRequest {
   title: string;
@@ -76,12 +75,7 @@ export default async function handler(
       return res.status(400).json({ error: 'Tags must be an array with maximum 10 items' });
     }
 
-    // Content moderation
-    const isContentFlagged = await OpenAIService.moderateContent(title + ' ' + description + ' ' + content);
-    
-    if (isContentFlagged) {
-      return res.status(400).json({ error: 'Content violates our community guidelines. Please revise and try again.' });
-    }
+    // Skip content moderation for now (could be added via OpenRouter API later)
 
     // Clean and validate tags
     const cleanTags = tags

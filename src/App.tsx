@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { config } from "@/lib/config";
 import { ClerkProviderWrapper } from "@/lib/clerk";
+import { I18nProvider } from "@/components/I18nProvider";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Writer from "./pages/tools/Writer";
@@ -33,12 +34,13 @@ const queryClient = new QueryClient();
 config.validate();
 
 const App = () => (
-  <ClerkProviderWrapper>
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
+  <I18nProvider>
+    <ClerkProviderWrapper>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
           <div className="min-h-screen bg-background">
             <Header />
             <Routes>
@@ -68,10 +70,11 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-  </ClerkProviderWrapper>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+    </ClerkProviderWrapper>
+  </I18nProvider>
 );
 
 export default App;

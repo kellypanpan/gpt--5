@@ -1,0 +1,57 @@
+{
+  "navigation": {
+    "home": "Home",
+    "tools": "Tools",
+    "blog": "Blog",
+    "useCases": "Use Cases",
+    "pricing": "Pricing"
+  },
+  "actions": {
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "tryNow": "Try Now",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "signUp": "Sign Up",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "submit": "Submit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close"
+  },
+  "status": {
+    "loading": "Loading...",
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Information"
+  },
+  "time": {
+    "now": "now",
+    "today": "today",
+    "yesterday": "yesterday",
+    "tomorrow": "tomorrow",
+    "thisWeek": "this week",
+    "lastWeek": "last week",
+    "thisMonth": "this month",
+    "lastMonth": "last month"
+  },
+  "credits": {
+    "remaining": "{{count}} credits remaining",
+    "used": "{{count}} credits used",
+    "purchase": "Purchase Credits",
+    "insufficient": "Insufficient credits"
+  },
+  "subscription": {
+    "free": "Free Plan",
+    "pro": "Pro Plan",
+    "creator": "Creator Plan",
+    "lifetime": "Lifetime Plan",
+    "upgrade": "Upgrade Plan",
+    "manage": "Manage Subscription"
+  }
+}

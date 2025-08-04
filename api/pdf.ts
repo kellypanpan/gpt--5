@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { OpenAIService } from '../lib/openai';
 import { authUserAndCheckCredits } from '../lib/auth';
 import { DatabaseService } from '../lib/database';
 import { rateLimit } from '../lib/rate-limit';
@@ -93,13 +92,21 @@ router
       // Authenticate user and check credits
       const user = await authUserAndCheckCredits(req, creditsRequired);
 
-      // Perform analysis using OpenAI
-      const analysis = await OpenAIService.analyzePDF({
-        text,
-        analysisType,
-        question,
-        language
+      // Use OpenRouter API via simple-api server
+      const apiResponse = await fetch('http://localhost:3001/api/pdf', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text, analysisType, question }),
       });
+
+      if (!apiResponse.ok) {
+        throw new Error(`API request failed: ${apiResponse.status}`);
+      }
+
+      const result = await apiResponse.json();
+      const analysis = result.analysis;
 
       const metadata = {
         wordCount: text.split(/\s+/).length,

@@ -1,0 +1,43 @@
+{
+  "hero": {
+    "title": "The Future of AI is Here",
+    "subtitle": "Experience the power of GPT-5 with our advanced AI tools for writing, image generation, and more.",
+    "description": "Transform your creative workflow with cutting-edge artificial intelligence. Generate content, analyze documents, create images, and automate tasks with unprecedented quality and speed."
+  },
+  "features": {
+    "title": "Powerful AI Tools",
+    "subtitle": "Everything you need to supercharge your productivity",
+    "writer": {
+      "title": "AI Writer",
+      "description": "Generate high-quality content for blogs, articles, marketing copy, and more with advanced language models."
+    },
+    "imageGenerator": {
+      "title": "Image Generator",
+      "description": "Create stunning visuals and artwork from text descriptions using state-of-the-art image AI."
+    },
+    "pdfAnalyzer": {
+      "title": "PDF Analyzer",
+      "description": "Extract insights, summarize documents, and ask questions about your PDF files instantly."
+    },
+    "scriptGenerator": {
+      "title": "Script Generator",
+      "description": "Generate code, automation scripts, and technical documentation with AI assistance."
+    }
+  },
+  "pricing": {
+    "title": "Choose Your Plan",
+    "subtitle": "Flexible pricing for individuals and teams",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "save": "Save {{percent}}%"
+  },
+  "testimonials": {
+    "title": "What Our Users Say",
+    "subtitle": "Join thousands of satisfied customers"
+  },
+  "cta": {
+    "title": "Ready to Get Started?",
+    "subtitle": "Join thousands of users who are already transforming their workflow with AI",
+    "button": "Start Free Trial"
+  }
+}

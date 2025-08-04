@@ -25,9 +25,11 @@ export default async function handler(
       return res.status(500).json({ error: 'Webhook secret not configured' });
     }
 
-    // TODO: 验证creem webhook签名
+    // 验证creem webhook签名
     const signature = req.headers['x-creem-signature'] as string;
-    if (!verifyCreemSignature(req.body, signature, webhookSecret)) {
+    const rawBody = JSON.stringify(req.body);
+    
+    if (!verifyCreemSignature(rawBody, signature, webhookSecret)) {
       console.error('Invalid creem webhook signature');
       return res.status(400).json({ error: 'Invalid signature' });
     }
@@ -75,7 +77,7 @@ async function handlePaymentSuccess(payload: CreemWebhookPayload) {
     }
 
     // 根据计划类型更新用户信息
-    let subscriptionExpiry = null;
+    let subscriptionExpiry: Date | null = null;
     let creditsToAdd = 0;
 
     switch (order.planType) {
@@ -131,10 +133,34 @@ async function handlePaymentCancelled(payload: CreemWebhookPayload) {
   }
 }
 
-// TODO: 实现creem签名验证
+// 实现creem签名验证
 function verifyCreemSignature(payload: unknown, signature: string, secret: string): boolean {
-  // 这里需要根据creem的文档实现签名验证
-  // 临时返回true，实际使用时需要实现真实的验证逻辑
-  console.log('TODO: Implement creem signature verification');
-  return true;
+  try {
+    if (!signature || !secret) {
+      console.error('Missing signature or secret for webhook verification');
+      return false;
+    }
+
+    // 移除 'sha256=' 前缀（如果存在）
+    const cleanSignature = signature.replace(/^sha256=/, '');
+    
+    // 将 payload 转换为字符串
+    const payloadString = typeof payload === 'string' ? payload : JSON.stringify(payload);
+    
+    // 使用 Node.js crypto 模块创建 HMAC
+    const crypto = require('crypto');
+    const expectedSignature = crypto
+      .createHmac('sha256', secret)
+      .update(payloadString, 'utf8')
+      .digest('hex');
+    
+    // 使用时间安全的比较函数防止时序攻击
+    return crypto.timingSafeEqual(
+      Buffer.from(cleanSignature, 'hex'),
+      Buffer.from(expectedSignature, 'hex')
+    );
+  } catch (error) {
+    console.error('Error verifying creem signature:', error);
+    return false;
+  }
 }

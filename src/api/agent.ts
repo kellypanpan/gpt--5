@@ -1,5 +1,4 @@
 import { authUserAndCheckCredits, AuthService } from '@/lib/auth';
-import { openai, SYSTEM_PROMPTS, TOOL_CONFIG } from '@/lib/openai';
 
 export async function POST(req: Request) {
   try {
@@ -14,36 +13,30 @@ export async function POST(req: Request) {
     }
 
     // 认证用户并检查Credits
-    const user = await authUserAndCheckCredits(req, TOOL_CONFIG.AGENT.credits);
+    const user = await authUserAndCheckCredits(req, 1);
 
-    // 构建Agent提示词
-    const userPrompt = buildAgentPrompt(message, context, taskType);
-
-    // 调用OpenAI API
-    const completion = await openai.chat.completions.create({
-      model: TOOL_CONFIG.AGENT.model,
-      messages: [
-        { 
-          role: 'system', 
-          content: SYSTEM_PROMPTS.AGENT 
-        },
-        { 
-          role: 'user', 
-          content: userPrompt 
-        }
-      ],
-      temperature: TOOL_CONFIG.AGENT.temperature,
-      max_tokens: TOOL_CONFIG.AGENT.max_tokens,
+    // Use OpenRouter API via simple-api server
+    const apiResponse = await fetch('http://localhost:3001/api/agent', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message, context, taskType }),
     });
 
-    const response = completion.choices[0]?.message?.content || '';
+    if (!apiResponse.ok) {
+      throw new Error(`API request failed: ${apiResponse.status}`);
+    }
+
+    const result = await apiResponse.json();
+    const response = result.response;
 
     // 记录生成日志
     await AuthService.logGeneration({
       userId: user.id,
       tool: 'agent',
-      creditsUsed: TOOL_CONFIG.AGENT.credits,
-      prompt: userPrompt,
+      creditsUsed: 1,
+      prompt: message,
       result: response,
       status: 'success'
     });
@@ -51,7 +44,7 @@ export async function POST(req: Request) {
     return Response.json({
       response: response,
       taskType: taskType,
-      creditsUsed: TOOL_CONFIG.AGENT.credits,
+      creditsUsed: 1,
       remainingCredits: user.credits
     });
 

@@ -1,0 +1,57 @@
+{
+  "navigation": {
+    "home": "ホーム",
+    "tools": "ツール",
+    "blog": "ブログ",
+    "useCases": "使用例",
+    "pricing": "料金"
+  },
+  "actions": {
+    "getStarted": "始める",
+    "learnMore": "詳しく見る",
+    "tryNow": "今すぐ試す",
+    "signIn": "ログイン",
+    "signOut": "ログアウト",
+    "signUp": "サインアップ",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "edit": "編集",
+    "submit": "送信",
+    "back": "戻る",
+    "next": "次へ",
+    "previous": "前へ",
+    "close": "閉じる"
+  },
+  "status": {
+    "loading": "読み込み中...",
+    "success": "成功",
+    "error": "エラー",
+    "warning": "警告",
+    "info": "情報"
+  },
+  "time": {
+    "now": "今",
+    "today": "今日",
+    "yesterday": "昨日",
+    "tomorrow": "明日",
+    "thisWeek": "今週",
+    "lastWeek": "先週",
+    "thisMonth": "今月",
+    "lastMonth": "先月"
+  },
+  "credits": {
+    "remaining": "残り{{count}}クレジット",
+    "used": "{{count}}クレジット使用済み",
+    "purchase": "クレジット購入",
+    "insufficient": "クレジット不足"
+  },
+  "subscription": {
+    "free": "無料プラン",
+    "pro": "プロプラン",
+    "creator": "クリエイタープラン",
+    "lifetime": "ライフタイムプラン",
+    "upgrade": "プランをアップグレード",
+    "manage": "サブスクリプション管理"
+  }
+}

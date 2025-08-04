@@ -7,40 +7,40 @@ const ToolsSection = () => {
   const tools = [
     {
       icon: FileText,
-      title: "GPT-5 Writer",
-      description: "Professional blog posts, emails, and marketing copy with SEO optimization",
+      title: "GPT-5 Writing Tool",
+      description: "How to use GPT-5 for writing: Professional content creation with advanced AI capabilities",
       credits: "1 Credit/use",
       path: "/tools/writer",
       gradient: "bg-gradient-primary",
     },
     {
       icon: FileText,
-      title: "PDF Analyzer",
-      description: "Upload PDFs and get intelligent summaries, key insights, and Q&A",
+      title: "GPT-5 PDF Summarizer",
+      description: "GPT-5 PDF analysis and document processing with intelligent summaries and insights",
       credits: "3 Credits/use",
       path: "/tools/pdf",
       gradient: "bg-gradient-secondary",
     },
     {
       icon: Code,
-      title: "Script Generator",
-      description: "Video scripts, TikTok content, marketing campaigns, and presentations",
+      title: "GPT-5 Script Generator",
+      description: "Create engaging video scripts and content with GPT-5 AI for all platforms",
       credits: "2 Credits/use",
       path: "/tools/script",
       gradient: "bg-gradient-primary",
     },
     {
       icon: Image,
-      title: "Image Generator",
-      description: "High-quality images using DALL·E integration with custom prompts",
+      title: "GPT-5 Image Generator",
+      description: "Generate stunning visuals with GPT-5 AI image creation technology",
       credits: "5 Credits/image",
       path: "/tools/image",
       gradient: "bg-gradient-secondary",
     },
     {
       icon: Zap,
-      title: "Universal Agent",
-      description: "Multi-step task execution with tool coordination and intelligent planning",
+      title: "GPT-5 Agent",
+      description: "GPT-5 business use cases: Advanced AI agent for complex task automation",
       credits: "5-15 Credits/task",
       path: "/agent",
       gradient: "bg-gradient-primary",
@@ -48,8 +48,8 @@ const ToolsSection = () => {
     },
     {
       icon: Code,
-      title: "Prompt Lab",
-      description: "Advanced prompt templates and optimization for maximum GPT-5 performance",
+      title: "GPT-5 Prompt Examples",
+      description: "GPT-5 prompt examples and templates for optimal AI performance and results",
       credits: "Browse free, execute costs credits",
       path: "/prompts",
       gradient: "bg-gradient-secondary",
@@ -61,10 +61,10 @@ const ToolsSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-primary bg-clip-text text-transparent">Smart Toolkits</span>
+            <span className="bg-gradient-primary bg-clip-text text-transparent">GPT-5 Tools</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Professional-grade AI tools designed for creators, developers, and professionals who demand results.
+            Comprehensive GPT-5 AI tools for writing, image generation, and content creation. Best GPT-5 tools for content creators and professionals.
           </p>
         </div>
 
@@ -114,10 +114,10 @@ const ToolsSection = () => {
 
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-6">
-            All tools require subscription or credits. No free usage available.
+            Experience the best GPT-5 tools for content creators. Professional AI tools for every need.
           </p>
           <Button variant="hero" size="lg">
-            View All Tools
+            Explore All GPT-5 Tools
           </Button>
         </div>
       </div>

@@ -1,5 +1,4 @@
 import { authUserAndCheckCredits, AuthService } from '@/lib/auth';
-import { openai, SYSTEM_PROMPTS, TOOL_CONFIG } from '@/lib/openai';
 
 export async function POST(req: Request) {
   try {
@@ -14,59 +13,37 @@ export async function POST(req: Request) {
     }
 
     // 认证用户并检查Credits
-    const user = await authUserAndCheckCredits(req, TOOL_CONFIG.PDF_ANALYZER.credits);
+    const user = await authUserAndCheckCredits(req, 1);
 
-    let analysisResult;
-    let userPrompt;
-
-    switch (analysisType) {
-      case 'summary':
-        userPrompt = buildSummaryPrompt(text);
-        break;
-      case 'qa':
-        if (!question) {
-          return Response.json(
-            { error: 'Question is required for Q&A analysis' },
-            { status: 400 }
-          );
-        }
-        userPrompt = buildQAPrompt(text, question);
-        break;
-      case 'keywords':
-        userPrompt = buildKeywordsPrompt(text);
-        break;
-      default:
-        return Response.json(
-          { error: 'Invalid analysis type' },
-          { status: 400 }
-        );
+    if (analysisType === 'qa' && !question) {
+      return Response.json(
+        { error: 'Question is required for Q&A analysis' },
+        { status: 400 }
+      );
     }
 
-    // 调用OpenAI API
-    const completion = await openai.chat.completions.create({
-      model: TOOL_CONFIG.PDF_ANALYZER.model,
-      messages: [
-        { 
-          role: 'system', 
-          content: SYSTEM_PROMPTS.PDF_ANALYZER 
-        },
-        { 
-          role: 'user', 
-          content: userPrompt 
-        }
-      ],
-      temperature: TOOL_CONFIG.PDF_ANALYZER.temperature,
-      max_tokens: TOOL_CONFIG.PDF_ANALYZER.max_tokens,
+    // Use OpenRouter API via simple-api server
+    const apiResponse = await fetch('http://localhost:3001/api/pdf', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ text, analysisType, question }),
     });
 
-    analysisResult = completion.choices[0]?.message?.content || '';
+    if (!apiResponse.ok) {
+      throw new Error(`API request failed: ${apiResponse.status}`);
+    }
+
+    const result = await apiResponse.json();
+    const analysisResult = result.analysis;
 
     // 记录生成日志
     await AuthService.logGeneration({
       userId: user.id,
       tool: 'pdf_analyzer',
-      creditsUsed: TOOL_CONFIG.PDF_ANALYZER.credits,
-      prompt: userPrompt,
+      creditsUsed: 1,
+      prompt: text.substring(0, 100),
       result: analysisResult,
       status: 'success'
     });
@@ -74,7 +51,7 @@ export async function POST(req: Request) {
     return Response.json({
       analysis: analysisResult,
       type: analysisType,
-      creditsUsed: TOOL_CONFIG.PDF_ANALYZER.credits,
+      creditsUsed: 1,
       remainingCredits: user.credits
     });
 

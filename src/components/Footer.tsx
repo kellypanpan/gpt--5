@@ -13,14 +13,14 @@ const Footer = () => {
                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-sm"></div>
               </div>
               <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                GPT-5AI.com
+                GPT-5 Tools
               </span>
             </div>
             <p className="text-muted-foreground mb-4 max-w-md">
-              The next leap of AI. Beyond answers — into action. Professional AI tools for creators, developers, and professionals who demand results.
+              Discover powerful GPT-5 AI tools for writing, image generation, and content creation. Best GPT-5 tools for content creators and businesses.
             </p>
             <div className="text-sm text-muted-foreground/60">
-              Only serious creators allowed. Get access, get things done.
+              Professional GPT-5 tools for creators and businesses worldwide.
             </div>
           </div>
 
@@ -28,12 +28,12 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-4">Tools</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li><a href="/tools/writer" className="hover:text-foreground transition-smooth">GPT-5 Writer</a></li>
-              <li><a href="/tools/pdf" className="hover:text-foreground transition-smooth">PDF Analyzer</a></li>
-              <li><a href="/tools/script" className="hover:text-foreground transition-smooth">Script Generator</a></li>
-              <li><a href="/tools/image" className="hover:text-foreground transition-smooth">Image Generator</a></li>
-              <li><a href="/agent" className="hover:text-foreground transition-smooth">Universal Agent</a></li>
-              <li><a href="/prompts" className="hover:text-foreground transition-smooth">Prompt Lab</a></li>
+              <li><a href="/tools/writer" className="hover:text-foreground transition-smooth">GPT-5 Writing Tool</a></li>
+              <li><a href="/tools/pdf" className="hover:text-foreground transition-smooth">GPT-5 PDF Summarizer</a></li>
+              <li><a href="/tools/script" className="hover:text-foreground transition-smooth">GPT-5 Script Generator</a></li>
+              <li><a href="/tools/image" className="hover:text-foreground transition-smooth">GPT-5 Image Generator</a></li>
+              <li><a href="/tools/agent" className="hover:text-foreground transition-smooth">GPT-5 Agent</a></li>
+              <li><a href="/tools/prompts" className="hover:text-foreground transition-smooth">GPT-5 Prompt Examples</a></li>
             </ul>
           </div>
 
@@ -53,7 +53,7 @@ const Footer = () => {
 
         <div className="border-t border-border/20 mt-8 pt-8 text-center">
           <p className="text-muted-foreground text-sm">
-            © 2025 GPT-5AI.com. All rights reserved. Built for professionals who demand excellence.
+            © 2025 GPT-5 Tools. All rights reserved. Best GPT-5 tools for content creators and professionals worldwide.
           </p>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { DatabaseService } from '../lib/database';
-import { OpenAIService } from '../lib/openai';
 import { UploadService } from '../lib/upload';
 import { handleHealthCheck } from '../lib/error-handler';
 import { HealthLogger } from '../lib/logger';
@@ -79,18 +78,24 @@ async function checkDatabase(): Promise<{ status: string; responseTime: number }
 
 async function checkOpenAI(): Promise<{ status: string; responseTime: string }> {
   try {
-    // Simple health check - try to moderate a safe string
+    // Test OpenRouter API via simple-api server
     const startTime = Date.now();
-    await OpenAIService.moderateContent('Hello world');
+    const response = await fetch('http://localhost:3001/api/health');
     const responseTime = Date.now() - startTime;
 
+    if (!response.ok) {
+      throw new Error(`API server unavailable: ${response.status}`);
+    }
+
+    const result = await response.json();
+    
     return {
-      status: 'connected',
+      status: result.apiConfigured ? 'connected' : 'not_configured',
       responseTime: `${responseTime}ms`,
     };
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    throw new Error(`OpenAI API error: ${errorMessage}`);
+    throw new Error(`OpenRouter API error: ${errorMessage}`);
   }
 }
 
