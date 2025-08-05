@@ -19,7 +19,8 @@ export function ClerkProviderWrapper({ children }: ClerkProviderWrapperProps) {
   const isValidKey = publishableKey && 
                      publishableKey !== 'pk_test_your_publishable_key_here' &&
                      publishableKey !== 'pk_test_your-publishable-key' &&
-                     publishableKey.startsWith('pk_');
+                     publishableKey.startsWith('pk_') &&
+                     publishableKey.length > 50; // Valid Clerk keys are typically much longer
   
   if (!isValidKey) {
     console.warn('Clerk publishable key is not properly configured. Running in demo mode.');
