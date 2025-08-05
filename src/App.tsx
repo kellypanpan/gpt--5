@@ -29,7 +29,6 @@ import GPT5ReleaseTracker from "./pages/blog/gpt-5-release-tracker";
 import GPT5ForBusiness from "./pages/blog/gpt-5-for-business";
 import GPT5TechnicalDeepDive from "./pages/blog/gpt-5-technical-deep-dive";
 import PromptEngineeringGuide from "./pages/blog/prompt-engineering-guide";
-import GPT5AgentBuildingTutorial from "./pages/blog/gpt-5-agent-building-tutorial";
 import OpenSourceAIModelsComparison from "./pages/blog/open-source-ai-models-comparison";
 import GPT5IndustryGuides from "./pages/blog/gpt-5-industry-guides";
 import GPT5AIEthicsSafety from "./pages/blog/gpt-5-ai-ethics-safety";
@@ -83,7 +82,6 @@ const App = () => (
             <Route path="/blog/gpt-5-for-business" element={<GPT5ForBusiness />} />
             <Route path="/blog/gpt-5-technical-deep-dive" element={<GPT5TechnicalDeepDive />} />
             <Route path="/blog/prompt-engineering-guide" element={<PromptEngineeringGuide />} />
-            <Route path="/blog/gpt-5-agent-building-tutorial" element={<GPT5AgentBuildingTutorial />} />
             <Route path="/blog/open-source-ai-models-comparison" element={<OpenSourceAIModelsComparison />} />
             <Route path="/blog/gpt-5-industry-guides" element={<GPT5IndustryGuides />} />
             <Route path="/blog/gpt-5-ai-ethics-safety" element={<GPT5AIEthicsSafety />} />

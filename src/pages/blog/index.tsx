@@ -83,16 +83,6 @@ const BlogIndex = () => {
       icon: BookOpen
     },
     {
-      id: 'gpt-5-agent-building-tutorial',
-      title: 'GPT-5 Agent Building Tutorial: Create Intelligent AI Agents',
-      description: 'Learn how to build powerful GPT-5 agents step-by-step. Complete tutorial covering agent architecture and tools integration.',
-      category: 'Practical Guide',
-      readTime: '25 min read',
-      date: 'January 2025',
-      path: '/blog/gpt-5-agent-building-tutorial',
-      icon: Bot
-    },
-    {
       id: 'open-source-ai-models-comparison',
       title: 'GPT-5 vs Open Source AI Models: Complete Comparison Guide',
       description: 'Compare GPT-5 with leading open source AI models including Llama 3, Mistral, and CodeLlama. Performance benchmarks and cost analysis.',
@@ -131,7 +121,7 @@ const BlogIndex = () => {
     { name: 'News & Updates', count: 1 },
     { name: 'Business Guide', count: 1 },
     { name: 'Technical Analysis', count: 1 },
-    { name: 'Practical Guide', count: 2 },
+    { name: 'Practical Guide', count: 1 },
     { name: 'Industry Guide', count: 1 },
     { name: 'Ethics & Safety', count: 1 }
   ];

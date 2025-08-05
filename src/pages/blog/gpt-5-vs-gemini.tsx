@@ -288,6 +288,7 @@ const GPT5VsGemini = () => {
           </div>
         </div>
       </div>
+      </div>
     </>
   );
 };

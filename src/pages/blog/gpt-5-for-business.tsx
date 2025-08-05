@@ -645,6 +645,7 @@ const GPT5ForBusiness = () => {
           </div>
         </div>
       </div>
+      </div>
     </>
   );
 };

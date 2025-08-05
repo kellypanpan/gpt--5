@@ -475,6 +475,7 @@ const GPT5VsClaude3 = () => {
           </article>
         </div>
       </div>
+      </div>
     </>
   );
 };

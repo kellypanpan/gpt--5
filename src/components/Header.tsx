@@ -87,9 +87,6 @@ export const Header: React.FC = () => {
                   <Link to="/blog/prompt-engineering-guide">Prompt Engineering Guide</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/blog/gpt-5-agent-building-tutorial">Agent Building Tutorial</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
                   <Link to="/blog/open-source-ai-models-comparison">GPT-5 vs Open Source Models</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>

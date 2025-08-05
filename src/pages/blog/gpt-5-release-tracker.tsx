@@ -390,7 +390,8 @@ const GPT5ReleaseTracker = () => {
           </div>
         </div>
       </div>
-    </>  
+      </div>
+    </>
   );
 };
 
