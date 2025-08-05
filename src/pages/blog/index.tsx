@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-import { Sparkles, Clock, TrendingUp, BookOpen, Users, DollarSign } from 'lucide-react';
+import { Sparkles, Clock, TrendingUp, BookOpen, Users, DollarSign, Bot, Building, Shield, Search } from 'lucide-react';
+import { BlogSearch } from '@/components/BlogSearch';
+import { SocialShare } from '@/components/SocialShare';
 
 const BlogIndex = () => {
+  const [showSearch, setShowSearch] = useState(false);
   const blogPosts = [
     {
       id: 'what-is-gpt-5',
@@ -58,15 +61,79 @@ const BlogIndex = () => {
       date: 'January 2025',
       path: '/blog/gpt-5-for-business',
       icon: DollarSign
+    },
+    {
+      id: 'gpt-5-technical-deep-dive',
+      title: 'GPT-5 Technical Deep Dive: Unified Architecture & Multimodal Capabilities',
+      description: 'In-depth technical analysis of GPT-5\'s revolutionary architecture, MoE design, and advanced multimodal processing.',
+      category: 'Technical Analysis',
+      readTime: '20 min read',
+      date: 'January 2025',
+      path: '/blog/gpt-5-technical-deep-dive',
+      icon: Sparkles
+    },
+    {
+      id: 'prompt-engineering-guide',
+      title: 'GPT-5 Prompt Engineering Guide: Master AI Communication',
+      description: 'Complete guide to prompt engineering for GPT-5. Learn advanced techniques and frameworks for optimal AI performance.',
+      category: 'Practical Guide',
+      readTime: '18 min read',
+      date: 'January 2025',
+      path: '/blog/prompt-engineering-guide',
+      icon: BookOpen
+    },
+    {
+      id: 'gpt-5-agent-building-tutorial',
+      title: 'GPT-5 Agent Building Tutorial: Create Intelligent AI Agents',
+      description: 'Learn how to build powerful GPT-5 agents step-by-step. Complete tutorial covering agent architecture and tools integration.',
+      category: 'Practical Guide',
+      readTime: '25 min read',
+      date: 'January 2025',
+      path: '/blog/gpt-5-agent-building-tutorial',
+      icon: Bot
+    },
+    {
+      id: 'open-source-ai-models-comparison',
+      title: 'GPT-5 vs Open Source AI Models: Complete Comparison Guide',
+      description: 'Compare GPT-5 with leading open source AI models including Llama 3, Mistral, and CodeLlama. Performance benchmarks and cost analysis.',
+      category: 'Comparison',
+      readTime: '22 min read',
+      date: 'January 2025',
+      path: '/blog/open-source-ai-models-comparison',
+      icon: TrendingUp
+    },
+    {
+      id: 'gpt-5-industry-guides',
+      title: 'GPT-5 Industry Implementation Guides: Education, Finance, Healthcare & Marketing',
+      description: 'Complete implementation guides for GPT-5 in specific industries. Learn best practices, use cases, and ROI strategies.',
+      category: 'Industry Guide',
+      readTime: '28 min read',
+      date: 'January 2025',
+      path: '/blog/gpt-5-industry-guides',
+      icon: Building
+    },
+    {
+      id: 'gpt-5-ai-ethics-safety',
+      title: 'GPT-5 AI Ethics & Safety: Responsible AI Implementation Guide',
+      description: 'Comprehensive guide to ethical GPT-5 implementation. Learn about AI bias mitigation, privacy protection, and safety measures.',
+      category: 'Ethics & Safety',
+      readTime: '24 min read',
+      date: 'January 2025',
+      path: '/blog/gpt-5-ai-ethics-safety',
+      icon: Shield
     }
   ];
 
   const categories = [
     { name: 'All', count: blogPosts.length },
     { name: 'Core Introduction', count: 1 },
-    { name: 'Comparison', count: 2 },
+    { name: 'Comparison', count: 3 },
     { name: 'News & Updates', count: 1 },
-    { name: 'Business Guide', count: 1 }
+    { name: 'Business Guide', count: 1 },
+    { name: 'Technical Analysis', count: 1 },
+    { name: 'Practical Guide', count: 2 },
+    { name: 'Industry Guide', count: 1 },
+    { name: 'Ethics & Safety', count: 1 }
   ];
 
   return (
@@ -91,9 +158,39 @@ const BlogIndex = () => {
               <Users className="h-3 w-3 mr-1" />
               Expert Insights
             </Badge>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={() => setShowSearch(!showSearch)}
+              className="text-sm"
+            >
+              <Search className="h-3 w-3 mr-1" />
+              Search Articles
+            </Button>
+            <SocialShare 
+              url={window.location.href}
+              title="GPT-5 Blog - Expert AI Insights"
+              description="Your ultimate resource for everything GPT-5. From comprehensive guides to latest updates."
+            />
           </div>
         </div>
 
+        {/* Search Interface */}
+        {showSearch && (
+          <div className="max-w-6xl mx-auto mb-8">
+            <Card>
+              <CardHeader>
+                <CardTitle>Search Articles</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <BlogSearch posts={blogPosts} />
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {!showSearch && (
+          <>
         {/* Featured Article */}
         {blogPosts.filter(post => post.featured).map(post => (
           <Card key={post.id} className="max-w-4xl mx-auto mb-8 border-primary/20 bg-gradient-to-r from-primary/5 to-primary/10">
@@ -173,6 +270,8 @@ const BlogIndex = () => {
             ))}
           </div>
         </div>
+        </>
+        )}
 
         {/* Newsletter Signup */}
         <Card className="max-w-2xl mx-auto mt-12">

@@ -1,10 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.SUPABASE_URL!;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
-// Create a service role client for server-side operations
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export interface User {
   id: string;
@@ -67,391 +66,297 @@ export interface PromptPurchase {
 }
 
 export class DatabaseService {
-  // User operations
-  static async createUser(userData: {
-    clerk_user_id: string;
-    email: string;
-    credits?: number;
-  }): Promise<User> {
+  // Credits管理
+  static async getUserCredits(userId: string) {
     const { data, error } = await supabase
-      .from('users')
+      .from('user_credits')
+      .select('*')
+      .eq('user_id', userId)
+      .single();
+
+    if (error && error.code !== 'PGRST116') {
+      throw error;
+    }
+
+    return data;
+  }
+
+  static async createUserCredits(userId: string, credits: number = 0) {
+    const { data, error } = await supabase
+      .from('user_credits')
       .insert({
-        clerk_user_id: userData.clerk_user_id,
-        email: userData.email,
-        credits: userData.credits || 10, // Welcome credits
-        is_subscribed: false
+        user_id: userId,
+        current_credits: credits,
+        total_credits: credits,
+        used_credits: 0
       })
       .select()
       .single();
 
-    if (error) throw new Error(`Failed to create user: ${error.message}`);
+    if (error) throw error;
     return data;
   }
 
-  static async getUser(userId: string): Promise<User | null> {
+  static async updateUserCredits(userId: string, credits: number) {
     const { data, error } = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', userId)
+      .from('user_credits')
+      .update({ current_credits: credits })
+      .eq('user_id', userId)
+      .select()
       .single();
 
-    if (error && error.code !== 'PGRST116') {
-      throw new Error(`Failed to get user: ${error.message}`);
-    }
+    if (error) throw error;
     return data;
   }
 
-  static async getUserByClerkId(clerkUserId: string): Promise<User | null> {
-    const { data, error } = await supabase
-      .from('users')
-      .select('*')
-      .eq('clerk_user_id', clerkUserId)
-      .single();
+  static async addCreditsToUser(userId: string, credits: number) {
+    // 先获取当前credits
+    const currentData = await this.getUserCredits(userId);
+    const newCredits = (currentData?.current_credits || 0) + credits;
+    const newTotalCredits = (currentData?.total_credits || 0) + credits;
 
-    if (error && error.code !== 'PGRST116') {
-      throw new Error(`Failed to get user by Clerk ID: ${error.message}`);
-    }
-    return data;
-  }
-
-  static async updateUserCredits(userId: string, credits: number): Promise<User> {
     const { data, error } = await supabase
-      .from('users')
+      .from('user_credits')
       .update({ 
-        credits,
-        updated_at: new Date().toISOString()
+        current_credits: newCredits,
+        total_credits: newTotalCredits
       })
-      .eq('id', userId)
-      .select()
-      .single();
-
-    if (error) throw new Error(`Failed to update credits: ${error.message}`);
-    return data;
-  }
-
-  static async updateUserSubscription(userId: string, subscriptionData: {
-    is_subscribed: boolean;
-    subscription_type?: string;
-    subscription_expires_at?: string;
-  }): Promise<User> {
-    const { data, error } = await supabase
-      .from('users')
-      .update({
-        ...subscriptionData,
-        updated_at: new Date().toISOString()
-      })
-      .eq('id', userId)
-      .select()
-      .single();
-
-    if (error) throw new Error(`Failed to update subscription: ${error.message}`);
-    return data;
-  }
-
-  // Generation log operations
-  static async logGeneration(logData: {
-    userId: string;
-    tool: string;
-    creditsUsed: number;
-    prompt: string;
-    result: string;
-    status: 'success' | 'failed';
-    metadata?: Record<string, unknown>;
-  }): Promise<GenerationLog> {
-    const { data, error } = await supabase
-      .from('generation_logs')
-      .insert({
-        user_id: logData.userId,
-        tool: logData.tool,
-        credits_used: logData.creditsUsed,
-        prompt: logData.prompt,
-        result: logData.result,
-        status: logData.status,
-        metadata: logData.metadata
-      })
-      .select()
-      .single();
-
-    if (error) throw new Error(`Failed to log generation: ${error.message}`);
-    return data;
-  }
-
-  static async getUserGenerationHistory(
-    userId: string, 
-    limit: number = 50,
-    offset: number = 0
-  ): Promise<GenerationLog[]> {
-    const { data, error } = await supabase
-      .from('generation_logs')
-      .select('*')
       .eq('user_id', userId)
-      .order('created_at', { ascending: false })
-      .limit(limit)
-      .offset(offset);
-
-    if (error) throw new Error(`Failed to get generation history: ${error.message}`);
-    return data || [];
-  }
-
-  // Conversation operations
-  static async saveConversation(conversationData: {
-    conversationId: string;
-    userId: string;
-    userMessage: string;
-    assistantResponse: string;
-    taskType: string;
-    context?: string;
-  }): Promise<Conversation> {
-    const { data, error } = await supabase
-      .from('conversations')
-      .insert({
-        conversation_id: conversationData.conversationId,
-        user_id: conversationData.userId,
-        user_message: conversationData.userMessage,
-        assistant_response: conversationData.assistantResponse,
-        task_type: conversationData.taskType,
-        context: conversationData.context
-      })
       .select()
       .single();
 
-    if (error) throw new Error(`Failed to save conversation: ${error.message}`);
+    if (error) throw error;
     return data;
   }
 
-  static async getConversationHistory(
-    conversationId: string,
-    userId: string,
-    limit: number = 20
-  ): Promise<Conversation[]> {
-    const { data, error } = await supabase
-      .from('conversations')
-      .select('*')
-      .eq('conversation_id', conversationId)
-      .eq('user_id', userId)
-      .order('created_at', { ascending: true })
-      .limit(limit);
+  static async useCredits(userId: string, credits: number, toolName: string, description?: string) {
+    // 先获取当前credits
+    const currentData = await this.getUserCredits(userId);
+    const newCredits = (currentData?.current_credits || 0) - credits;
+    const newUsedCredits = (currentData?.used_credits || 0) + credits;
 
-    if (error) throw new Error(`Failed to get conversation history: ${error.message}`);
-    return data || [];
-  }
+    if (newCredits < 0) {
+      throw new Error('Insufficient credits');
+    }
 
-  // Prompt marketplace operations
-  static async createPrompt(promptData: {
-    title: string;
-    description: string;
-    content: string;
-    category: string;
-    tags: string[];
-    price: number;
-    author_id: string;
-  }): Promise<Prompt> {
-    const { data, error } = await supabase
-      .from('prompts')
-      .insert({
-        ...promptData,
-        likes: 0,
-        downloads: 0,
-        is_featured: false,
-        is_approved: false
+    // 更新credits
+    const { data: creditsData, error: creditsError } = await supabase
+      .from('user_credits')
+      .update({ 
+        current_credits: newCredits,
+        used_credits: newUsedCredits
       })
+      .eq('user_id', userId)
       .select()
       .single();
 
-    if (error) throw new Error(`Failed to create prompt: ${error.message}`);
-    return data;
-  }
+    if (creditsError) throw creditsError;
 
-  static async getPrompts(filters: {
-    category?: string;
-    search?: string;
-    limit?: number;
-    offset?: number;
-    featured_only?: boolean;
-  } = {}): Promise<{ prompts: Prompt[]; total: number }> {
-    let query = supabase
-      .from('prompts')
-      .select('*, users!prompts_author_id_fkey(email)', { count: 'exact' })
-      .eq('is_approved', true);
-
-    if (filters.category) {
-      query = query.eq('category', filters.category);
-    }
-
-    if (filters.search) {
-      query = query.or(`title.ilike.%${filters.search}%,description.ilike.%${filters.search}%`);
-    }
-
-    if (filters.featured_only) {
-      query = query.eq('is_featured', true);
-    }
-
-    query = query
-      .order('created_at', { ascending: false })
-      .limit(filters.limit || 20)
-      .offset(filters.offset || 0);
-
-    const { data, error, count } = await query;
-
-    if (error) throw new Error(`Failed to get prompts: ${error.message}`);
-    return { prompts: data || [], total: count || 0 };
-  }
-
-  static async getPrompt(promptId: string): Promise<Prompt | null> {
-    const { data, error } = await supabase
-      .from('prompts')
-      .select('*, users!prompts_author_id_fkey(email)')
-      .eq('id', promptId)
-      .eq('is_approved', true)
-      .single();
-
-    if (error && error.code !== 'PGRST116') {
-      throw new Error(`Failed to get prompt: ${error.message}`);
-    }
-    return data;
-  }
-
-  static async purchasePrompt(purchaseData: {
-    userId: string;
-    promptId: string;
-    pricePaid: number;
-  }): Promise<PromptPurchase> {
-    // Start a transaction
-    const { data, error } = await supabase.rpc('purchase_prompt', {
-      p_user_id: purchaseData.userId,
-      p_prompt_id: purchaseData.promptId,
-      p_price_paid: purchaseData.pricePaid
-    });
-
-    if (error) throw new Error(`Failed to purchase prompt: ${error.message}`);
-    return data;
-  }
-
-  static async getUserPurchases(userId: string): Promise<PromptPurchase[]> {
-    const { data, error } = await supabase
-      .from('prompt_purchases')
-      .select('*, prompts(*)')
-      .eq('user_id', userId)
-      .order('created_at', { ascending: false });
-
-    if (error) throw new Error(`Failed to get user purchases: ${error.message}`);
-    return data || [];
-  }
-
-  // Analytics and stats
-  static async getUserStats(userId: string): Promise<{
-    total_generations: number;
-    credits_used: number;
-    favorite_tool: string;
-    generations_this_month: number;
-  }> {
-    const { data, error } = await supabase.rpc('get_user_stats', {
-      p_user_id: userId
-    });
-
-    if (error) throw new Error(`Failed to get user stats: ${error.message}`);
-    return data || {
-      total_generations: 0,
-      credits_used: 0,
-      favorite_tool: 'writer',
-      generations_this_month: 0
-    };
-  }
-
-  // Health check
-  static async healthCheck(): Promise<boolean> {
-    try {
-      const { data, error } = await supabase
-        .from('users')
-        .select('count')
-        .limit(1);
-      
-      return !error;
-    } catch {
-      return false;
-    }
-  }
-
-  // Payment order management
-  static async createPendingOrder(orderData: {
-    orderId: string;
-    userId: string;
-    planType: string;
-    amount: number;
-    status: string;
-  }): Promise<void> {
-    const { error } = await supabase
-      .from('payment_orders')
+    // 记录使用情况
+    const { error: usageError } = await supabase
+      .from('credits_usage')
       .insert({
-        order_id: orderData.orderId,
-        user_id: orderData.userId,
-        plan_type: orderData.planType,
-        amount: orderData.amount,
-        status: orderData.status,
-        created_at: new Date().toISOString()
+        user_id: userId,
+        tool_name: toolName,
+        credits_used: credits,
+        description
       });
 
-    if (error) throw new Error(`Failed to create order: ${error.message}`);
+    if (usageError) throw usageError;
+
+    return creditsData;
   }
 
-  static async getPendingOrder(orderId: string): Promise<{
-    orderId: string;
-    userId: string;
-    planType: string;
-    amount: number;
-    status: string;
-  } | null> {
+  // 订阅管理
+  static async getUserSubscription(userId: string) {
     const { data, error } = await supabase
-      .from('payment_orders')
+      .from('subscriptions')
+      .select('*')
+      .eq('user_id', userId)
+      .eq('status', 'active')
+      .single();
+
+    if (error && error.code !== 'PGRST116') {
+      throw error;
+    }
+
+    return data;
+  }
+
+  static async createSubscription(subscriptionData: {
+    user_id: string;
+    plan_type: string;
+    credits_per_month: number;
+    amount: number;
+    billing_cycle: string;
+    next_billing_date?: string;
+  }) {
+    const { data, error } = await supabase
+      .from('subscriptions')
+      .insert(subscriptionData)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async updateSubscription(subscriptionId: string, updates: any) {
+    const { data, error } = await supabase
+      .from('subscriptions')
+      .update(updates)
+      .eq('id', subscriptionId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  // 订单管理
+  static async createSubscriptionOrder(orderData: {
+    order_id: string;
+    user_id: string;
+    plan_type: string;
+    amount: number;
+    creem_order_id?: string;
+  }) {
+    const { data, error } = await supabase
+      .from('subscription_orders')
+      .insert(orderData)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async createCreditsOrder(orderData: {
+    order_id: string;
+    user_id: string;
+    credits: number;
+    amount: number;
+    creem_order_id?: string;
+  }) {
+    const { data, error } = await supabase
+      .from('credits_orders')
+      .insert(orderData)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async updateSubscriptionOrder(orderId: string, status: string, creemOrderId?: string) {
+    const updates: any = { status };
+    if (creemOrderId) updates.creem_order_id = creemOrderId;
+
+    const { data, error } = await supabase
+      .from('subscription_orders')
+      .update(updates)
+      .eq('order_id', orderId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async updateCreditsOrder(orderId: string, status: string, creemOrderId?: string) {
+    const updates: any = { status };
+    if (creemOrderId) updates.creem_order_id = creemOrderId;
+
+    const { data, error } = await supabase
+      .from('credits_orders')
+      .update(updates)
+      .eq('order_id', orderId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async getSubscriptionOrder(orderId: string) {
+    const { data, error } = await supabase
+      .from('subscription_orders')
       .select('*')
       .eq('order_id', orderId)
       .single();
 
-    if (error && error.code !== 'PGRST116') {
-      throw new Error(`Failed to get order: ${error.message}`);
+    if (error) throw error;
+    return data;
+  }
+
+  static async getCreditsOrder(orderId: string) {
+    const { data, error } = await supabase
+      .from('credits_orders')
+      .select('*')
+      .eq('order_id', orderId)
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  // 激活订阅
+  static async activateSubscription(orderId: string, planType: string) {
+    const order = await this.getSubscriptionOrder(orderId);
+    if (!order) throw new Error('Order not found');
+
+    // 获取计划信息
+    const planInfo = this.getPlanInfo(planType);
+    if (!planInfo) throw new Error('Invalid plan type');
+
+    // 创建或更新订阅
+    const subscriptionData = {
+      user_id: order.user_id,
+      plan_type: planType,
+      credits_per_month: planInfo.credits,
+      amount: planInfo.price,
+      billing_cycle: planInfo.type,
+      next_billing_date: this.calculateNextBillingDate(planInfo.type)
+    };
+
+    // 检查是否已有活跃订阅
+    const existingSubscription = await this.getUserSubscription(order.user_id);
+    
+    if (existingSubscription) {
+      // 更新现有订阅
+      await this.updateSubscription(existingSubscription.id, subscriptionData);
+    } else {
+      // 创建新订阅
+      await this.createSubscription(subscriptionData);
     }
 
-    if (!data) return null;
+    // 添加credits到用户账户
+    await this.addCreditsToUser(order.user_id, planInfo.credits);
 
-    return {
-      orderId: data.order_id,
-      userId: data.user_id,
-      planType: data.plan_type,
-      amount: data.amount,
-      status: data.status
+    return true;
+  }
+
+  // 辅助方法
+  private static getPlanInfo(planType: string) {
+    const plans: Record<string, any> = {
+      'starter_monthly': { credits: 100, price: 19.99, type: 'monthly' },
+      'pro_monthly': { credits: 300, price: 39.99, type: 'monthly' },
+      'business_monthly': { credits: 800, price: 79.99, type: 'monthly' },
+      'starter_yearly': { credits: 100, price: 191.88, type: 'yearly' },
+      'pro_yearly': { credits: 300, price: 383.88, type: 'yearly' },
+      'business_yearly': { credits: 800, price: 767.88, type: 'yearly' }
     };
+
+    return plans[planType];
   }
 
-  static async updateOrderStatus(orderId: string, status: string): Promise<void> {
-    const { error } = await supabase
-      .from('payment_orders')
-      .update({ 
-        status,
-        updated_at: new Date().toISOString()
-      })
-      .eq('order_id', orderId);
-
-    if (error) throw new Error(`Failed to update order status: ${error.message}`);
-  }
-
-  static async updateUserSubscription(updateData: {
-    userId: string;
-    subscriptionType: string;
-    creditsToAdd: number;
-    subscriptionExpiry: Date;
-    isSubscribed: boolean;
-  }): Promise<void> {
-    const { error } = await supabase
-      .from('users')
-      .update({
-        subscription_type: updateData.subscriptionType,
-        credits: supabase.sql`credits + ${updateData.creditsToAdd}`,
-        subscription_expires_at: updateData.subscriptionExpiry.toISOString(),
-        is_subscribed: updateData.isSubscribed,
-        updated_at: new Date().toISOString()
-      })
-      .eq('id', updateData.userId);
-
-    if (error) throw new Error(`Failed to update user subscription: ${error.message}`);
+  private static calculateNextBillingDate(billingCycle: string): string {
+    const now = new Date();
+    if (billingCycle === 'monthly') {
+      now.setMonth(now.getMonth() + 1);
+    } else if (billingCycle === 'yearly') {
+      now.setFullYear(now.getFullYear() + 1);
+    }
+    return now.toISOString();
   }
 }

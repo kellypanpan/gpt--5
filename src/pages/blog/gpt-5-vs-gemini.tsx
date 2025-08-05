@@ -4,12 +4,51 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-import { Sparkles, Zap, Brain, DollarSign, Clock, CheckCircle, XCircle } from 'lucide-react';
+import { Sparkles, Zap, Brain, DollarSign, Clock, CheckCircle, XCircle, User, Calendar } from 'lucide-react';
+import { SEOHead } from '@/components/SEOHead';
 
 const GPT5VsGemini = () => {
+  const articleMetadata = {
+    title: "GPT-5 vs Gemini 1.5: Battle of AI Titans 2025 | Complete Comparison",
+    description: "Comprehensive comparison of GPT-5 and Google's Gemini 1.5. Compare features, performance, pricing and find the best AI model for your needs in 2025.",
+    author: "GPT-5 Tools Team",
+    datePublished: "2025-01-15",
+    dateModified: "2025-01-15",
+    coverImage: "/images/gpt5-vs-gemini-cover.jpg",
+    excerpt: "A comprehensive comparison of OpenAI's GPT-5 and Google's Gemini 1.5 - two of the most advanced AI models available today.",
+    readTime: "12 min read"
+  };
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <>
+      <SEOHead 
+        title={articleMetadata.title}
+        description={articleMetadata.description}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "GPT-5 vs Gemini 1.5: Battle of the AI Titans",
+            datePublished: articleMetadata.datePublished,
+            dateModified: articleMetadata.dateModified,
+            author: { "@type": "Person", name: articleMetadata.author },
+            publisher: {
+              "@type": "Organization",
+              name: "GPT-5 Tools",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://gpt-5ai.com/g5-logo.png",
+              },
+            },
+            image: articleMetadata.coverImage,
+            description: articleMetadata.description,
+          }),
+        }}
+      />
+      <div className="min-h-screen bg-background">
+        <Header />
       <div className="container mx-auto px-4 py-8 pt-20">
         {/* Hero Section */}
         <div className="text-center mb-12">
@@ -20,10 +59,17 @@ const GPT5VsGemini = () => {
             A comprehensive comparison of OpenAI's GPT-5 and Google's Gemini 1.5 - two of the most advanced AI models available today.
           </p>
           <div className="flex items-center justify-center gap-4 mt-6">
-            <Badge variant="outline" className="text-sm">
-              <Clock className="h-3 w-3 mr-1" />
-              Updated: January 2025
-            </Badge>
+            <div className="flex items-center gap-1">
+              <User className="h-3 w-3" />
+              <span className="text-sm">Written by {articleMetadata.author}</span>
+            </div>
+            <span>•</span>
+            <div className="flex items-center gap-1">
+              <Calendar className="h-3 w-3" />
+              <span className="text-sm">Updated {new Date(articleMetadata.dateModified).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            </div>
+            <span>•</span>
+            <span className="text-sm">{articleMetadata.readTime}</span>
             <Badge variant="outline" className="text-sm">
               <Brain className="h-3 w-3 mr-1" />
               AI Comparison
@@ -242,7 +288,7 @@ const GPT5VsGemini = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FileText, Image, Code, Zap, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ToolsSection = () => {
   const tools = [
@@ -99,13 +100,15 @@ const ToolsSection = () => {
                     </Badge>
                   </div>
                   
-                  <Button 
-                    variant="ghost" 
-                    className="w-full group-hover:bg-accent/10 justify-between"
-                  >
-                    Try Tool
-                    <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-smooth" />
-                  </Button>
+                  <Link to={tool.path}>
+                    <Button 
+                      variant="ghost" 
+                      className="w-full group-hover:bg-accent/10 justify-between"
+                    >
+                      Try Tool
+                      <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-smooth" />
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             );
@@ -116,9 +119,11 @@ const ToolsSection = () => {
           <p className="text-muted-foreground mb-6">
             Experience the best GPT-5 tools for content creators. Professional AI tools for every need.
           </p>
-          <Button variant="hero" size="lg">
-            Explore All GPT-5 Tools
-          </Button>
+          <Link to="/tools">
+            <Button variant="hero" size="lg">
+              Explore All GPT-5 Tools
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

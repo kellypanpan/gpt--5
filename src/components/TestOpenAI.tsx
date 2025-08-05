@@ -8,7 +8,7 @@ import { useWriter } from "@/hooks/useAPI";
 import { useAuthState } from "@/lib/clerk";
 import { useTestOpenAI } from "@/hooks/useTestAPI";
 
-export function TestOpenAI() {
+export function TestOpenRouter() {
   const [testPrompt, setTestPrompt] = useState("Write a short hello message");
   const { isSignedIn } = useAuthState();
   const { data, loading, error, generateContent } = useWriter();
@@ -43,7 +43,7 @@ export function TestOpenAI() {
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          OpenAI API 连接测试
+          OpenRouter API 连接测试
           {(testResult?.success || data?.content) && <CheckCircle className="h-5 w-5 text-green-500" />}
           {(testResult?.error || error) && <XCircle className="h-5 w-5 text-red-500" />}
         </CardTitle>
@@ -74,7 +74,7 @@ export function TestOpenAI() {
             ) : (
               <>
                 <Zap className="h-4 w-4 mr-2" />
-                测试 OpenAI API 连接
+                测试 OpenRouter API 连接
               </>
             )}
           </Button>
@@ -160,7 +160,7 @@ export function TestOpenAI() {
           <ul className="text-xs space-y-1 list-disc list-inside">
             <li>请先登录Clerk账户</li>
             <li>输入测试提示词并点击测试</li>
-            <li>成功则说明OpenAI API配置正确</li>
+            <li>成功则说明OpenRouter API配置正确</li>
             <li>失败请检查API密钥和网络连接</li>
           </ul>
         </div>

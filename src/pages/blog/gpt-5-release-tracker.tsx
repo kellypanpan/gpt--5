@@ -4,12 +4,51 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-import { Sparkles, Calendar, Clock, AlertTriangle, CheckCircle, TrendingUp, Users } from 'lucide-react';
+import { Sparkles, Calendar, Clock, AlertTriangle, CheckCircle, TrendingUp, Users, User } from 'lucide-react';
+import { SEOHead } from '@/components/SEOHead';
 
 const GPT5ReleaseTracker = () => {
+  const articleMetadata = {
+    title: "GPT-5 Release Tracker: Latest News and Updates 2025 | Official Timeline",
+    description: "Stay updated with the latest GPT-5 release news, official announcements, and timeline. Track OpenAI's progress toward GPT-5 launch with real-time updates.",
+    author: "GPT-5 Tools Team",
+    datePublished: "2025-01-15",
+    dateModified: "2025-01-15",
+    coverImage: "/images/gpt5-release-tracker-cover.jpg",
+    excerpt: "Stay updated with the latest news, rumors, and official announcements about GPT-5's release timeline.",
+    readTime: "6 min read"
+  };
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <>
+      <SEOHead 
+        title={articleMetadata.title}
+        description={articleMetadata.description}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "GPT-5 Release Tracker: Latest News and Updates",
+            datePublished: articleMetadata.datePublished,
+            dateModified: articleMetadata.dateModified,
+            author: { "@type": "Person", name: articleMetadata.author },
+            publisher: {
+              "@type": "Organization",
+              name: "GPT-5 Tools",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://gpt-5ai.com/g5-logo.png",
+              },
+            },
+            image: articleMetadata.coverImage,
+            description: articleMetadata.description,
+          }),
+        }}
+      />
+      <div className="min-h-screen bg-background">
+        <Header />
       <div className="container mx-auto px-4 py-8 pt-20">
         {/* Hero Section */}
         <div className="text-center mb-12">
@@ -20,10 +59,15 @@ const GPT5ReleaseTracker = () => {
             Stay updated with the latest news, rumors, and official announcements about GPT-5's release timeline.
           </p>
           <div className="flex items-center justify-center gap-4 mt-6">
-            <Badge variant="outline" className="text-sm">
-              <Clock className="h-3 w-3 mr-1" />
-              Last Updated: January 2025
-            </Badge>
+            <div className="flex items-center gap-1">
+              <User className="h-3 w-3" />
+              <span className="text-sm">Written by {articleMetadata.author}</span>
+            </div>
+            <span>•</span>
+            <div className="flex items-center gap-1">
+              <Clock className="h-3 w-3" />
+              <span className="text-sm">Updated {new Date(articleMetadata.dateModified).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            </div>
             <Badge variant="outline" className="text-sm">
               <TrendingUp className="h-3 w-3 mr-1" />
               Live Updates
@@ -180,10 +224,86 @@ const GPT5ReleaseTracker = () => {
           </CardContent>
         </Card>
 
+        {/* Official Announcements Timeline */}
+        <Card className="max-w-4xl mx-auto mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Calendar className="h-5 w-5 text-primary" />
+              Official Announcements Timeline
+            </CardTitle>
+            <p className="text-sm text-muted-foreground">
+              Chronological list of verified statements and announcements about GPT-5 from OpenAI officials
+            </p>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              <div className="border-l-4 border-primary pl-4 bg-primary/5 p-4 rounded-r-lg">
+                <div className="flex justify-between items-start mb-2">
+                  <h4 className="font-semibold">Sam Altman Confirms GPT-5 Development</h4>
+                  <Badge variant="outline" className="text-xs">January 15, 2025</Badge>
+                </div>
+                <p className="text-sm text-muted-foreground mb-2">
+                  OpenAI CEO Sam Altman confirmed in a recent interview that GPT-5 is actively being developed, 
+                  with significant improvements in reasoning capabilities and safety measures.
+                </p>
+                <Badge variant="outline" className="text-xs bg-green-100 text-green-800">Official Statement</Badge>
+              </div>
+              
+              <div className="border-l-4 border-blue-500 pl-4 bg-blue-50 p-4 rounded-r-lg">
+                <div className="flex justify-between items-start mb-2">
+                  <h4 className="font-semibold">OpenAI Research Paper on Advanced Reasoning</h4>
+                  <Badge variant="outline" className="text-xs">December 20, 2024</Badge>
+                </div>
+                <p className="text-sm text-muted-foreground mb-2">
+                  OpenAI researchers published findings on breakthrough advances in AI reasoning capabilities, 
+                  hinting at technologies that will be integrated into GPT-5.
+                </p>
+                <Badge variant="outline" className="text-xs bg-blue-100 text-blue-800">Research Publication</Badge>
+              </div>
+              
+              <div className="border-l-4 border-orange-500 pl-4 bg-orange-50 p-4 rounded-r-lg">
+                <div className="flex justify-between items-start mb-2">
+                  <h4 className="font-semibold">Altman: \"GPT-5 Will Be Significant Step Forward\"</h4>
+                  <Badge variant="outline" className="text-xs">November 10, 2024</Badge>
+                </div>
+                <p className="text-sm text-muted-foreground mb-2">
+                  At a technology conference, Altman stated that GPT-5 represents a \"significant step forward\" 
+                  in AI capabilities, particularly in mathematical reasoning and multimodal understanding.
+                </p>
+                <Badge variant="outline" className="text-xs bg-orange-100 text-orange-800">Conference Statement</Badge>
+              </div>
+              
+              <div className="border-l-4 border-green-500 pl-4 bg-green-50 p-4 rounded-r-lg">
+                <div className="flex justify-between items-start mb-2">
+                  <h4 className="font-semibold">OpenAI DevDay: Next Generation Models</h4>
+                  <Badge variant="outline" className="text-xs">October 2024</Badge>
+                </div>
+                <p className="text-sm text-muted-foreground mb-2">
+                  During OpenAI DevDay, the company teased upcoming models with enhanced capabilities, 
+                  including better tool use and autonomous reasoning features.
+                </p>
+                <Badge variant="outline" className="text-xs bg-green-100 text-green-800">Official Event</Badge>
+              </div>
+              
+              <div className="border-l-4 border-purple-500 pl-4 bg-purple-50 p-4 rounded-r-lg">
+                <div className="flex justify-between items-start mb-2">
+                  <h4 className="font-semibold">Initial GPT-5 Development Confirmation</h4>
+                  <Badge variant="outline" className="text-xs">March 2024</Badge>
+                </div>
+                <p className="text-sm text-muted-foreground mb-2">
+                  OpenAI first acknowledged that work had begun on GPT-5, with focus on safety research 
+                  and capability improvements beyond GPT-4.
+                </p>
+                <Badge variant="outline" className="text-xs bg-purple-100 text-purple-800">Initial Announcement</Badge>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Latest News */}
         <Card className="max-w-4xl mx-auto mb-8">
           <CardHeader>
-            <CardTitle>Latest News & Rumors</CardTitle>
+            <CardTitle>Latest News & Industry Updates</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
@@ -270,7 +390,7 @@ const GPT5ReleaseTracker = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>  
   );
 };
 

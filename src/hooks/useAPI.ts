@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { toast } from '@/components/ui/use-toast';
 import { useAuthToken } from '@/lib/clerk';
+import { useCredits } from './useCredits';
 
 interface APIResponse<T> {
   data: T | null;
@@ -50,11 +51,17 @@ export function useWriter() {
   });
 
   const getToken = useAuthToken();
+  const { creditsData, useCredits: deductCredits, refetch: refetchCredits } = useCredits();
 
   const generateContent = async (request: WriterRequest) => {
     setState(prev => ({ ...prev, loading: true, error: null }));
     
     try {
+      // 检查credits是否足够
+      if (!creditsData || creditsData.currentCredits < 1) {
+        throw new Error('Insufficient credits. Please purchase more credits or subscribe to a plan.');
+      }
+
       // 暂时不使用认证token，直接调用API
       const response = await fetch('/api/write', {
         method: 'POST',
@@ -70,10 +77,16 @@ export function useWriter() {
         throw new Error(result.error || 'API call failed');
       }
 
+      // 扣除credits
+      await deductCredits(1);
+      
+      // 刷新credits数据
+      await refetchCredits();
+
       setState({ data: result, loading: false, error: null });
       toast({
         title: "Success!",
-        description: `Content generated successfully. Used ${result.creditsUsed} credits.`,
+        description: `Content generated successfully. Used 1 credit.`,
       });
       return result;
     } catch (error: any) {

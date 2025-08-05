@@ -220,7 +220,7 @@ const ImageGenerator = () => {
                     <div key={index} className="relative group">
                       <img
                         src={imageUrl}
-                        alt={`Generated image ${index + 1}`}
+                        alt={`AI-generated image showing "${prompt}" (image ${index + 1} of ${generatedImages.length})`}
                         className="w-full h-64 object-cover rounded-lg"
                       />
                       <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">

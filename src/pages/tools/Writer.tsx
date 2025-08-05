@@ -9,8 +9,8 @@ import { useWriter } from "@/hooks/useAPI";
 import { AuthStatus } from "@/components/AuthButton";
 import { useAuthState } from "@/lib/clerk";
 import { Header } from "@/components/Header";
-import { TestOpenAI } from "@/components/TestOpenAI";
 import { SEOHead } from "@/components/SEOHead";
+import { CreditsDisplay } from "@/components/CreditsDisplay";
 
 const Writer = () => {
   // SEO structured data for GPT-5 writing tool
@@ -108,9 +108,9 @@ const Writer = () => {
           <AuthStatus />
         </div>
 
-        {/* OpenAI 测试组件 */}
+        {/* Credits Display */}
         <div className="max-w-4xl mx-auto mb-6">
-          <TestOpenAI />
+          <CreditsDisplay />
         </div>
 
         <div className="max-w-4xl mx-auto space-y-6">

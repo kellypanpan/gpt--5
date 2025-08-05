@@ -18,23 +18,49 @@ interface CreateOrderResponse {
 
 // Creem支付计划配置
 const CREEM_PLANS = {
-  pro: {
-    name: 'Pro Plan',
-    price: 15.00,
-    credits: 500,
-    duration: 'monthly'
+  // 月费方案
+  starter_monthly: {
+    name: 'Starter Monthly',
+    price: 19.99,
+    credits: 100,
+    duration: 'monthly',
+    type: 'monthly'
   },
-  creator: {
-    name: 'Creator Plan', 
-    price: 39.00,
-    credits: 1000,
-    duration: 'monthly'
+  pro_monthly: {
+    name: 'Pro Monthly', 
+    price: 39.99,
+    credits: 300,
+    duration: 'monthly',
+    type: 'monthly'
   },
-  lifetime: {
-    name: 'Lifetime Plan',
-    price: 299.00,
-    credits: -1, // unlimited
-    duration: 'lifetime'
+  business_monthly: {
+    name: 'Business Monthly',
+    price: 79.99,
+    credits: 800,
+    duration: 'monthly',
+    type: 'monthly'
+  },
+  // 年费方案（优惠20%）
+  starter_yearly: {
+    name: 'Starter Yearly',
+    price: 191.88,
+    credits: 100,
+    duration: 'yearly',
+    type: 'yearly'
+  },
+  pro_yearly: {
+    name: 'Pro Yearly',
+    price: 383.88,
+    credits: 300,
+    duration: 'yearly',
+    type: 'yearly'
+  },
+  business_yearly: {
+    name: 'Business Yearly',
+    price: 767.88,
+    credits: 800,
+    duration: 'yearly',
+    type: 'yearly'
   }
 } as const;
 

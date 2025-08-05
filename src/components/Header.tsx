@@ -38,9 +38,17 @@ export const Header: React.FC = () => {
             <Link to="/tools" className="text-sm font-medium hover:text-primary transition-colors">
               {t('tools')}
             </Link>
+            <Link to="/pricing" className="text-sm font-medium hover:text-primary transition-colors">
+              Pricing
+            </Link>
             <Link to="/use-cases" className="text-sm font-medium hover:text-primary transition-colors">
               {t('useCases')}
             </Link>
+            {isSignedIn && (
+              <Link to="/dashboard" className="text-sm font-medium hover:text-primary transition-colors">
+                Dashboard
+              </Link>
+            )}
             
             {/* Blog Dropdown */}
             <DropdownMenu>
@@ -71,6 +79,27 @@ export const Header: React.FC = () => {
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link to="/blog/gpt-5-jobs-impact">GPT-5 Jobs Impact</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/blog/gpt-5-technical-deep-dive">Technical Deep Dive</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/blog/prompt-engineering-guide">Prompt Engineering Guide</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/blog/gpt-5-agent-building-tutorial">Agent Building Tutorial</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/blog/open-source-ai-models-comparison">GPT-5 vs Open Source Models</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/blog/gpt-5-industry-guides">Industry Implementation Guides</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/blog/gpt-5-ai-ethics-safety">AI Ethics & Safety</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/sitemap">All Articles (Sitemap)</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
