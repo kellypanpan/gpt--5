@@ -78,7 +78,7 @@ const OpenSourceAIModelsComparison = () => {
               Complete comparison of GPT-5 with leading open source AI models. Analyze performance benchmarks, 
               costs, deployment options, and find the best AI solution for your specific needs.
             </p>
-            <div className="flex items-center justify-center gap-4 mt-6 text-sm text-muted-foreground">
+            <div className="flex items-center justify-center gap-4 mt-6 text-base text-foreground/85">
               <div className="flex items-center gap-1">
                 <User className="h-3 w-3" />
                 <span>Written by {articleMetadata.author}</span>
@@ -176,25 +176,25 @@ const OpenSourceAIModelsComparison = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-blue-600 mb-2">Cutting-Edge Performance</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         State-of-the-art results across all benchmarks with 96.4% MMLU score
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-green-600 mb-2">Multimodal Excellence</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Native support for text, images, audio, and video processing
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-purple-600 mb-2">Zero Setup</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Ready-to-use API with global infrastructure and scaling
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-orange-600 mb-2">Latest Training Data</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Continuously updated knowledge with recent information
                       </div>
                     </div>
@@ -229,17 +229,17 @@ const OpenSourceAIModelsComparison = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="bg-white p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-green-600 mb-2">8B</div>
-                      <div className="text-sm text-muted-foreground mb-2">Lightweight</div>
+                      <div className="text-base text-foreground/85 mb-2">Lightweight</div>
                       <div className="text-xs text-muted-foreground">Perfect for edge deployment and mobile applications</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-blue-600 mb-2">70B</div>
-                      <div className="text-sm text-muted-foreground mb-2">Balanced</div>
+                      <div className="text-base text-foreground/85 mb-2">Balanced</div>
                       <div className="text-xs text-muted-foreground">Optimal performance-to-resource ratio</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-purple-600 mb-2">405B</div>
-                      <div className="text-sm text-muted-foreground mb-2">Flagship</div>
+                      <div className="text-base text-foreground/85 mb-2">Flagship</div>
                       <div className="text-xs text-muted-foreground">Maximum performance for complex tasks</div>
                     </div>
                   </div>
@@ -323,7 +323,7 @@ const OpenSourceAIModelsComparison = () => {
                         <Zap className="h-4 w-4 text-purple-600" />
                         Sparse Activation
                       </h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-base text-foreground/85">
                         Only 2 out of 8 experts are activated per token, dramatically reducing computational requirements 
                         while maintaining model capacity.
                       </p>
@@ -333,7 +333,7 @@ const OpenSourceAIModelsComparison = () => {
                         <Cpu className="h-4 w-4 text-blue-600" />
                         Memory Efficiency
                       </h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-base text-foreground/85">
                         Mixtral 8x22B uses only ~39B active parameters per forward pass, enabling deployment 
                         on smaller GPU configurations.
                       </p>
@@ -398,25 +398,25 @@ const OpenSourceAIModelsComparison = () => {
                         <Code className="h-4 w-4" />
                         Programming Languages
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Optimized for Python, C++, Java, PHP, TypeScript, C#, Bash, and more
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-green-600 mb-2">Code Understanding</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Excellent at code completion, debugging, and explaining complex algorithms
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-blue-600 mb-2">Context Length</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Up to 100k tokens for understanding large codebases
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-purple-600 mb-2">Instruction Following</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Fine-tuned variant for following coding instructions precisely
                       </div>
                     </div>
@@ -428,15 +428,15 @@ const OpenSourceAIModelsComparison = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="bg-background p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-indigo-600 mb-2">53.7%</div>
-                      <div className="text-sm text-muted-foreground">HumanEval Pass@1</div>
+                      <div className="text-base text-foreground/85">HumanEval Pass@1</div>
                     </div>
                     <div className="bg-background p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-green-600 mb-2">56.2%</div>
-                      <div className="text-sm text-muted-foreground">MBPP Pass@1</div>
+                      <div className="text-base text-foreground/85">MBPP Pass@1</div>
                     </div>
                     <div className="bg-background p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-blue-600 mb-2">25.1%</div>
-                      <div className="text-sm text-muted-foreground">MultiPL-E Average</div>
+                      <div className="text-base text-foreground/85">MultiPL-E Average</div>
                     </div>
                   </div>
                 </div>
@@ -475,7 +475,7 @@ const OpenSourceAIModelsComparison = () => {
                       <div className="text-xs text-muted-foreground">2x A100 + infrastructure</div>
                     </div>
                   </div>
-                  <p className="text-sm text-muted-foreground mt-4">
+                  <p className="text-base text-foreground/85 mt-4">
                     *Costs include GPU rentals, infrastructure, and operational expenses. Actual costs vary by usage patterns and provider.
                   </p>
                 </div>
@@ -485,7 +485,7 @@ const OpenSourceAIModelsComparison = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <h5 className="font-medium mb-2">GPT-5 (Pay-per-use)</h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• $5.00 per 1M input tokens</li>
                         <li>• $15.00 per 1M output tokens</li>
                         <li>• No infrastructure costs</li>
@@ -495,7 +495,7 @@ const OpenSourceAIModelsComparison = () => {
                     </div>
                     <div>
                       <h5 className="font-medium mb-2">Open Source (Self-hosted)</h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• GPU rental: $2-8/hour per GPU</li>
                         <li>• Infrastructure management costs</li>
                         <li>• DevOps and maintenance overhead</li>
@@ -580,32 +580,32 @@ const OpenSourceAIModelsComparison = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div className="bg-white p-4 rounded-lg">
                       <h4 className="font-semibold text-blue-600 mb-2">Content Creation</h4>
-                      <p className="text-sm text-muted-foreground mb-2">Best: GPT-5</p>
+                      <p className="text-base text-foreground/85 mb-2">Best: GPT-5</p>
                       <p className="text-xs text-muted-foreground">Superior creativity and multimodal capabilities for diverse content needs.</p>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <h4 className="font-semibold text-green-600 mb-2">Enterprise Chatbots</h4>
-                      <p className="text-sm text-muted-foreground mb-2">Best: Llama 3.1 70B</p>
+                      <p className="text-base text-foreground/85 mb-2">Best: Llama 3.1 70B</p>
                       <p className="text-xs text-muted-foreground">Excellent balance of performance, customization, and cost control.</p>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <h4 className="font-semibold text-indigo-600 mb-2">Code Generation</h4>
-                      <p className="text-sm text-muted-foreground mb-2">Best: CodeLlama 70B</p>
+                      <p className="text-base text-foreground/85 mb-2">Best: CodeLlama 70B</p>
                       <p className="text-xs text-muted-foreground">Specialized for programming tasks with excellent code understanding.</p>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <h4 className="font-semibold text-purple-600 mb-2">Multilingual Apps</h4>
-                      <p className="text-sm text-muted-foreground mb-2">Best: Mixtral 8x22B</p>
+                      <p className="text-base text-foreground/85 mb-2">Best: Mixtral 8x22B</p>
                       <p className="text-xs text-muted-foreground">Strong multilingual performance with efficient resource usage.</p>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <h4 className="font-semibold text-orange-600 mb-2">Research & Analysis</h4>
-                      <p className="text-sm text-muted-foreground mb-2">Best: GPT-5</p>
+                      <p className="text-base text-foreground/85 mb-2">Best: GPT-5</p>
                       <p className="text-xs text-muted-foreground">Superior reasoning capabilities and access to latest information.</p>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <h4 className="font-semibold text-red-600 mb-2">Edge Deployment</h4>
-                      <p className="text-sm text-muted-foreground mb-2">Best: Llama 3.1 8B</p>
+                      <p className="text-base text-foreground/85 mb-2">Best: Llama 3.1 8B</p>
                       <p className="text-xs text-muted-foreground">Lightweight model suitable for mobile and IoT applications.</p>
                     </div>
                   </div>
@@ -626,7 +626,7 @@ const OpenSourceAIModelsComparison = () => {
                         <Brain className="h-4 w-4 text-cyan-600" />
                         Open Source Advances
                       </h4>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• Llama 4 expected with multimodal capabilities</li>
                         <li>• Smaller models reaching GPT-4 level performance</li>
                         <li>• Better fine-tuning techniques and tools</li>
@@ -638,7 +638,7 @@ const OpenSourceAIModelsComparison = () => {
                         <Shield className="h-4 w-4 text-blue-600" />
                         Enterprise Adoption
                       </h4>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• Increased focus on data sovereignty</li>
                         <li>• Hybrid deployment models</li>
                         <li>• Industry-specific model variants</li>

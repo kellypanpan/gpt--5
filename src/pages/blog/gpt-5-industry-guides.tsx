@@ -81,7 +81,7 @@ const GPT5IndustryGuides = () => {
               Comprehensive guides for implementing GPT-5 across key industries. Learn industry-specific 
               use cases, best practices, compliance requirements, and proven ROI strategies.
             </p>
-            <div className="flex items-center justify-center gap-4 mt-6 text-sm text-muted-foreground">
+            <div className="flex items-center justify-center gap-4 mt-6 text-base text-foreground/85">
               <div className="flex items-center gap-1">
                 <User className="h-3 w-3" />
                 <span>Written by {articleMetadata.author}</span>
@@ -144,25 +144,25 @@ const GPT5IndustryGuides = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-blue-600 mb-2">Personalized Tutoring</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         AI tutors that adapt to individual learning styles and pace, providing 24/7 support
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-green-600 mb-2">Content Creation</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Automated generation of lesson plans, quizzes, and educational materials
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-purple-600 mb-2">Assessment & Grading</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Intelligent grading of essays and open-ended questions with detailed feedback
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-orange-600 mb-2">Language Learning</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Conversational practice with native-level fluency across 40+ languages
                       </div>
                     </div>
@@ -174,13 +174,13 @@ const GPT5IndustryGuides = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="bg-background p-4 rounded-lg">
                       <h5 className="font-medium mb-2">Challenge</h5>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-base text-foreground/85">
                         Large university needed to scale personalized support for 50,000 students across diverse programs.
                       </p>
                     </div>
                     <div className="bg-background p-4 rounded-lg">
                       <h5 className="font-medium mb-2">Solution</h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• GPT-5 powered virtual teaching assistants</li>
                         <li>• Automated essay grading system</li>
                         <li>• Personalized study plan generation</li>
@@ -189,7 +189,7 @@ const GPT5IndustryGuides = () => {
                     </div>
                     <div className="bg-background p-4 rounded-lg">
                       <h5 className="font-medium mb-2">Results</h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• 40% improvement in student engagement</li>
                         <li>• 60% reduction in grading time</li>
                         <li>• 25% increase in course completion rates</li>
@@ -251,7 +251,7 @@ const GPT5IndustryGuides = () => {
                         <Shield className="h-4 w-4" />
                         Risk Assessment
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Advanced fraud detection, credit scoring, and market risk analysis with real-time monitoring
                       </div>
                     </div>
@@ -260,7 +260,7 @@ const GPT5IndustryGuides = () => {
                         <Users className="h-4 w-4" />
                         Customer Support
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Intelligent chatbots for account inquiries, loan applications, and financial advice
                       </div>
                     </div>
@@ -269,7 +269,7 @@ const GPT5IndustryGuides = () => {
                         <BarChart3 className="h-4 w-4" />
                         Investment Analysis
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Market research, portfolio optimization, and automated investment recommendations
                       </div>
                     </div>
@@ -278,7 +278,7 @@ const GPT5IndustryGuides = () => {
                         <BookOpen className="h-4 w-4" />
                         Compliance
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Automated regulatory reporting, document analysis, and compliance monitoring
                       </div>
                     </div>
@@ -366,25 +366,25 @@ const GPT5IndustryGuides = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-red-600 mb-2">Clinical Documentation</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Automated medical note generation, coding assistance, and clinical decision support
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-blue-600 mb-2">Patient Education</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Personalized health information, treatment explanations, and medication guidance
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-green-600 mb-2">Research Assistance</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Literature review, protocol development, and data analysis for clinical trials
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-purple-600 mb-2">Administrative Tasks</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Insurance pre-authorization, appointment scheduling, and billing optimization
                       </div>
                     </div>
@@ -397,7 +397,7 @@ const GPT5IndustryGuides = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-background p-4 rounded-lg">
                         <h5 className="font-medium mb-2">Implementation Scope</h5>
-                        <ul className="text-sm text-muted-foreground space-y-1">
+                        <ul className="text-base text-foreground/85 space-y-1">
                           <li>• 15 hospitals, 200+ clinics</li>
                           <li>• 25,000 healthcare providers</li>
                           <li>• 2M+ patient encounters annually</li>
@@ -406,7 +406,7 @@ const GPT5IndustryGuides = () => {
                       </div>
                       <div className="bg-background p-4 rounded-lg">
                         <h5 className="font-medium mb-2">Measurable Outcomes</h5>
-                        <ul className="text-sm text-muted-foreground space-y-1">
+                        <ul className="text-base text-foreground/85 space-y-1">
                           <li>• 45% reduction in documentation time</li>
                           <li>• 30% improvement in coding accuracy</li>
                           <li>• 50% faster discharge summaries</li>
@@ -459,7 +459,7 @@ const GPT5IndustryGuides = () => {
                         <Lightbulb className="h-4 w-4" />
                         Content Creation
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Blog posts, social media content, email campaigns, and video scripts at scale
                       </div>
                     </div>
@@ -468,7 +468,7 @@ const GPT5IndustryGuides = () => {
                         <Users className="h-4 w-4" />
                         Customer Segmentation
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Advanced audience analysis and personalized messaging strategies
                       </div>
                     </div>
@@ -477,7 +477,7 @@ const GPT5IndustryGuides = () => {
                         <BarChart3 className="h-4 w-4" />
                         Performance Analytics
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Campaign optimization, A/B testing insights, and ROI analysis
                       </div>
                     </div>
@@ -486,7 +486,7 @@ const GPT5IndustryGuides = () => {
                         <Brain className="h-4 w-4" />
                         Predictive Insights
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Customer lifetime value, churn prediction, and trend forecasting
                       </div>
                     </div>
@@ -498,7 +498,7 @@ const GPT5IndustryGuides = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="bg-background p-4 rounded-lg">
                       <h5 className="font-medium mb-2">Before GPT-5</h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• 40 hours per campaign creation</li>
                         <li>• Limited A/B testing capability</li>
                         <li>• Manual audience research</li>
@@ -507,7 +507,7 @@ const GPT5IndustryGuides = () => {
                     </div>
                     <div className="bg-background p-4 rounded-lg">
                       <h5 className="font-medium mb-2">After GPT-5</h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• 8 hours per campaign creation</li>
                         <li>• Automated variant generation</li>
                         <li>• AI-powered audience insights</li>
@@ -516,7 +516,7 @@ const GPT5IndustryGuides = () => {
                     </div>
                     <div className="bg-background p-4 rounded-lg">
                       <h5 className="font-medium mb-2">Business Impact</h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• 400% increase in campaign volume</li>
                         <li>• 87% improvement in conversion rates</li>
                         <li>• 60% reduction in creative costs</li>

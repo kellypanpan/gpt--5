@@ -81,7 +81,7 @@ const GPT5AIEthicsSafety = () => {
               Comprehensive guide to responsible GPT-5 implementation. Learn about ethical AI practices, 
               bias mitigation, privacy protection, safety measures, and governance frameworks for trustworthy AI deployment.
             </p>
-            <div className="flex items-center justify-center gap-4 mt-6 text-sm text-muted-foreground">
+            <div className="flex items-center justify-center gap-4 mt-6 text-base text-foreground/85">
               <div className="flex items-center gap-1">
                 <User className="h-3 w-3" />
                 <span>Written by {articleMetadata.author}</span>
@@ -147,7 +147,7 @@ const GPT5AIEthicsSafety = () => {
                         <AlertTriangle className="h-4 w-4" />
                         Harm Prevention
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Proactive measures to prevent generation of harmful, dangerous, or misleading content
                       </div>
                     </div>
@@ -156,7 +156,7 @@ const GPT5AIEthicsSafety = () => {
                         <Cpu className="h-4 w-4" />
                         System Robustness
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Resilience against adversarial attacks, prompt injection, and edge case failures
                       </div>
                     </div>
@@ -165,7 +165,7 @@ const GPT5AIEthicsSafety = () => {
                         <Eye className="h-4 w-4" />
                         Output Monitoring
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Continuous monitoring of AI outputs for quality, safety, and alignment issues
                       </div>
                     </div>
@@ -174,7 +174,7 @@ const GPT5AIEthicsSafety = () => {
                         <Users className="h-4 w-4" />
                         Human Oversight
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Maintaining meaningful human control and intervention capabilities
                       </div>
                     </div>
@@ -189,7 +189,7 @@ const GPT5AIEthicsSafety = () => {
                         <Zap className="h-4 w-4 text-blue-600" />
                         Technical Safeguards
                       </h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• Content filtering systems</li>
                         <li>• Rate limiting and usage controls</li>
                         <li>• Input sanitization</li>
@@ -202,7 +202,7 @@ const GPT5AIEthicsSafety = () => {
                         <FileText className="h-4 w-4 text-green-600" />
                         Policy Measures
                       </h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• Clear usage policies</li>
                         <li>• Terms of service enforcement</li>
                         <li>• Incident response procedures</li>
@@ -215,7 +215,7 @@ const GPT5AIEthicsSafety = () => {
                         <Target className="h-4 w-4 text-purple-600" />
                         Operational Controls
                       </h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• User authentication systems</li>
                         <li>• Access control mechanisms</li>
                         <li>• Logging and monitoring</li>
@@ -267,25 +267,25 @@ const GPT5AIEthicsSafety = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-green-600 mb-2">Historical Bias</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Reflects past societal inequalities present in training data
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-blue-600 mb-2">Representation Bias</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Underrepresentation of certain groups in training datasets
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-purple-600 mb-2">Confirmation Bias</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Tendency to generate content that confirms existing stereotypes
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-orange-600 mb-2">Selection Bias</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Systematic exclusion of certain perspectives or demographics
                       </div>
                     </div>
@@ -298,7 +298,7 @@ const GPT5AIEthicsSafety = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-background p-4 rounded-lg">
                         <h5 className="font-medium mb-2">Detection Methods</h5>
-                        <ul className="text-sm text-muted-foreground space-y-1">
+                        <ul className="text-base text-foreground/85 space-y-1">
                           <li>• Demographic parity testing</li>
                           <li>• Equalized odds analysis</li>
                           <li>• Disparate impact assessment</li>
@@ -308,7 +308,7 @@ const GPT5AIEthicsSafety = () => {
                       </div>
                       <div className="bg-background p-4 rounded-lg">
                         <h5 className="font-medium mb-2">Mitigation Strategies</h5>
-                        <ul className="text-sm text-muted-foreground space-y-1">
+                        <ul className="text-base text-foreground/85 space-y-1">
                           <li>• Diverse training data curation</li>
                           <li>• Fine-tuning for fairness</li>
                           <li>• Post-processing corrections</li>
@@ -372,7 +372,7 @@ const GPT5AIEthicsSafety = () => {
                         <Lock className="h-4 w-4" />
                         Data Minimization
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Collect and process only necessary data for specific purposes
                       </div>
                     </div>
@@ -381,7 +381,7 @@ const GPT5AIEthicsSafety = () => {
                         <Shield className="h-4 w-4" />
                         Encryption & Security
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         End-to-end encryption for data in transit and at rest
                       </div>
                     </div>
@@ -390,7 +390,7 @@ const GPT5AIEthicsSafety = () => {
                         <Users className="h-4 w-4" />
                         User Consent
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Clear, informed consent mechanisms for data usage
                       </div>
                     </div>
@@ -399,7 +399,7 @@ const GPT5AIEthicsSafety = () => {
                         <Eye className="h-4 w-4" />
                         Data Anonymization
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Remove or obscure personally identifiable information
                       </div>
                     </div>
@@ -486,19 +486,19 @@ const GPT5AIEthicsSafety = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-orange-600 mb-2">Model Interpretability</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Understanding internal model mechanisms and decision pathways
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-blue-600 mb-2">Output Attribution</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Identifying which inputs influenced specific outputs
                       </div>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="font-semibold text-green-600 mb-2">Process Documentation</div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Clear documentation of AI system capabilities and limitations
                       </div>
                     </div>
@@ -510,7 +510,7 @@ const GPT5AIEthicsSafety = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-background p-4 rounded-lg">
                       <h5 className="font-medium mb-2">User-Facing Transparency</h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• Clear AI disclosure in interfaces</li>
                         <li>• Confidence scores for outputs</li>
                         <li>• Source attribution when possible</li>
@@ -520,7 +520,7 @@ const GPT5AIEthicsSafety = () => {
                     </div>
                     <div className="bg-background p-4 rounded-lg">
                       <h5 className="font-medium mb-2">Technical Documentation</h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• Model architecture descriptions</li>
                         <li>• Training data composition details</li>
                         <li>• Performance metrics and benchmarks</li>
@@ -549,7 +549,7 @@ const GPT5AIEthicsSafety = () => {
                         <Users className="h-4 w-4" />
                         AI Ethics Committee
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Cross-functional team overseeing AI ethics and safety decisions
                       </div>
                     </div>
@@ -558,7 +558,7 @@ const GPT5AIEthicsSafety = () => {
                         <FileText className="h-4 w-4" />
                         AI Policy Framework
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Comprehensive policies governing AI development and deployment
                       </div>
                     </div>
@@ -567,7 +567,7 @@ const GPT5AIEthicsSafety = () => {
                         <Target className="h-4 w-4" />
                         Risk Assessment
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Systematic evaluation of AI risks and mitigation strategies
                       </div>
                     </div>
@@ -576,7 +576,7 @@ const GPT5AIEthicsSafety = () => {
                         <BookOpen className="h-4 w-4" />
                         Training Programs
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-base text-foreground/85">
                         Employee education on responsible AI practices
                       </div>
                     </div>
@@ -663,7 +663,7 @@ const GPT5AIEthicsSafety = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="bg-white p-4 rounded-lg">
                       <div className="text-lg font-bold text-blue-600 mb-2">Days 1-30: Foundation</div>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• Establish AI ethics committee</li>
                         <li>• Conduct initial risk assessment</li>
                         <li>• Define ethical AI principles</li>
@@ -673,7 +673,7 @@ const GPT5AIEthicsSafety = () => {
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="text-lg font-bold text-green-600 mb-2">Days 31-60: Implementation</div>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• Deploy bias detection tools</li>
                         <li>• Implement privacy safeguards</li>
                         <li>• Establish monitoring systems</li>
@@ -683,7 +683,7 @@ const GPT5AIEthicsSafety = () => {
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <div className="text-lg font-bold text-purple-600 mb-2">Days 61-90: Optimization</div>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• Conduct comprehensive testing</li>
                         <li>• Refine governance processes</li>
                         <li>• Launch user feedback systems</li>

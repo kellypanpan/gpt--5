@@ -57,7 +57,7 @@ const GPT5VsClaude3 = () => {
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Comprehensive comparison of OpenAI's GPT-5 and Anthropic's Claude 3 Opus. Find out which AI model is best for your specific needs.
             </p>
-            <div className="flex items-center justify-center gap-4 mt-6 text-sm text-muted-foreground">
+            <div className="flex items-center justify-center gap-4 mt-6 text-base text-foreground/85">
               <div className="flex items-center gap-1">
                 <User className="h-3 w-3" />
                 <span>Written by {articleMetadata.author}</span>
@@ -82,7 +82,7 @@ const GPT5VsClaude3 = () => {
                     <Trophy className="h-5 w-5 text-yellow-500" />
                     <span className="font-medium">Best for: Creative Writing</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-base text-foreground/85">
                     Superior creative capabilities and multimodal features
                   </p>
                 </div>
@@ -92,7 +92,7 @@ const GPT5VsClaude3 = () => {
                     <Target className="h-5 w-5 text-blue-500" />
                     <span className="font-medium">Best for: Analysis & Research</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-base text-foreground/85">
                     Excellent reasoning and analytical capabilities
                   </p>
                 </div>

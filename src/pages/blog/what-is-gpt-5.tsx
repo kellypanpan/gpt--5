@@ -115,25 +115,25 @@ const WhatIsGPT5 = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <h4 className="font-medium mb-2">🏗️ Unified Architecture</h4>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-base text-foreground/85">
                       Combines reasoning and multimodal capabilities in a single, cohesive model architecture.
                     </p>
                   </div>
                   <div>
                     <h4 className="font-medium mb-2">🧠 Mixture-of-Experts (MoE)</h4>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-base text-foreground/85">
                       Distributes tasks among specialized sub-models for improved efficiency and performance.
                     </p>
                   </div>
                   <div>
                     <h4 className="font-medium mb-2">📏 Extended Context Window</h4>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-base text-foreground/85">
                       Supports up to 256k tokens, enabling analysis of entire documents and books.
                     </p>
                   </div>
                   <div>
                     <h4 className="font-medium mb-2">🔧 Enhanced Tool Integration</h4>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-base text-foreground/85">
                       Improved memory and autonomous tool usage for complex, multi-step tasks.
                     </p>
                   </div>

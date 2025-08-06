@@ -247,19 +247,19 @@ const GPT5VsGemini = () => {
             <div className="space-y-4">
               <div>
                 <h4 className="font-semibold mb-2">Which AI is better for writing?</h4>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-base text-foreground/85">
                   GPT-5 generally produces higher quality, more consistent writing with better flow and creativity. It's particularly strong in creative writing, copywriting, and technical documentation.
                 </p>
               </div>
               <div>
                 <h4 className="font-semibold mb-2">Which is more cost-effective?</h4>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-base text-foreground/85">
                   Gemini 1.5 is significantly more cost-effective, especially for processing large documents. However, GPT-5 may provide better value for high-quality content generation.
                 </p>
               </div>
               <div>
                 <h4 className="font-semibold mb-2">Can I use both?</h4>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-base text-foreground/85">
                   Absolutely! Many users choose to use both models for different tasks. Use GPT-5 for high-quality content creation and Gemini 1.5 for processing large documents or multimodal tasks.
                 </p>
               </div>

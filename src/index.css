@@ -10,7 +10,7 @@
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
 
-    --card: 240 10% 7%;
+    --card: 240 10% 12%;
     --card-foreground: 0 0% 98%;
 
     --popover: 240 10% 7%;
@@ -25,9 +25,9 @@
     --secondary: 213 27% 84%;
     --secondary-foreground: 240 10% 3.9%;
 
-    /* Muted - Subtle grays for less prominent elements */
+    /* Muted - Subtle grays for less prominent elements - Improved contrast */
     --muted: 240 4.8% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted-foreground: 240 5% 78%;
 
     /* Accent - Bright blue for highlights */
     --accent: 203 89% 53%;
@@ -81,7 +81,7 @@
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 222.2 84% 8%;
     --card-foreground: 210 40% 98%;
 
     --popover: 222.2 84% 4.9%;
@@ -94,7 +94,7 @@
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted-foreground: 215 20.2% 76%;
 
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;

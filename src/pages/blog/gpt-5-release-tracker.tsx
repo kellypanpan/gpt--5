@@ -117,7 +117,7 @@ const GPT5ReleaseTracker = () => {
                 <div className="w-3 h-3 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                 <div className="flex-1">
                   <h4 className="font-semibold">GPT-4 Release (March 2023)</h4>
-                  <p className="text-sm text-muted-foreground mb-2">
+                  <p className="text-base text-foreground/85 mb-2">
                     OpenAI released GPT-4, setting the foundation for future models.
                   </p>
                   <Badge variant="outline" className="text-xs">Completed</Badge>
@@ -128,7 +128,7 @@ const GPT5ReleaseTracker = () => {
                 <div className="w-3 h-3 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                 <div className="flex-1">
                   <h4 className="font-semibold">GPT-4 Turbo (November 2023)</h4>
-                  <p className="text-sm text-muted-foreground mb-2">
+                  <p className="text-base text-foreground/85 mb-2">
                     Enhanced version with improved performance and lower costs.
                   </p>
                   <Badge variant="outline" className="text-xs">Completed</Badge>
@@ -139,7 +139,7 @@ const GPT5ReleaseTracker = () => {
                 <div className="w-3 h-3 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                 <div className="flex-1">
                   <h4 className="font-semibold">GPT-5 Development (2024-2025)</h4>
-                  <p className="text-sm text-muted-foreground mb-2">
+                  <p className="text-base text-foreground/85 mb-2">
                     Active development phase with significant improvements in reasoning, safety, and capabilities.
                   </p>
                   <Badge variant="outline" className="text-xs bg-blue-100">In Progress</Badge>
@@ -150,7 +150,7 @@ const GPT5ReleaseTracker = () => {
                 <div className="w-3 h-3 bg-gray-300 rounded-full mt-2 flex-shrink-0"></div>
                 <div className="flex-1">
                   <h4 className="font-semibold">Beta Testing (Expected: Q2 2025)</h4>
-                  <p className="text-sm text-muted-foreground mb-2">
+                  <p className="text-base text-foreground/85 mb-2">
                     Limited beta release for select users and partners.
                   </p>
                   <Badge variant="outline" className="text-xs bg-gray-100">Pending</Badge>
@@ -161,7 +161,7 @@ const GPT5ReleaseTracker = () => {
                 <div className="w-3 h-3 bg-gray-300 rounded-full mt-2 flex-shrink-0"></div>
                 <div className="flex-1">
                   <h4 className="font-semibold">Public Release (Expected: Q3 2025)</h4>
-                  <p className="text-sm text-muted-foreground mb-2">
+                  <p className="text-base text-foreground/85 mb-2">
                     Full public release with API access and ChatGPT integration.
                   </p>
                   <Badge variant="outline" className="text-xs bg-gray-100">Pending</Badge>
@@ -231,7 +231,7 @@ const GPT5ReleaseTracker = () => {
               <Calendar className="h-5 w-5 text-primary" />
               Official Announcements Timeline
             </CardTitle>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-foreground/85">
               Chronological list of verified statements and announcements about GPT-5 from OpenAI officials
             </p>
           </CardHeader>
@@ -242,7 +242,7 @@ const GPT5ReleaseTracker = () => {
                   <h4 className="font-semibold">Sam Altman Confirms GPT-5 Development</h4>
                   <Badge variant="outline" className="text-xs">January 15, 2025</Badge>
                 </div>
-                <p className="text-sm text-muted-foreground mb-2">
+                <p className="text-base text-foreground/85 mb-2">
                   OpenAI CEO Sam Altman confirmed in a recent interview that GPT-5 is actively being developed, 
                   with significant improvements in reasoning capabilities and safety measures.
                 </p>
@@ -254,7 +254,7 @@ const GPT5ReleaseTracker = () => {
                   <h4 className="font-semibold">OpenAI Research Paper on Advanced Reasoning</h4>
                   <Badge variant="outline" className="text-xs">December 20, 2024</Badge>
                 </div>
-                <p className="text-sm text-muted-foreground mb-2">
+                <p className="text-base text-foreground/85 mb-2">
                   OpenAI researchers published findings on breakthrough advances in AI reasoning capabilities, 
                   hinting at technologies that will be integrated into GPT-5.
                 </p>
@@ -266,7 +266,7 @@ const GPT5ReleaseTracker = () => {
                   <h4 className="font-semibold">Altman: \"GPT-5 Will Be Significant Step Forward\"</h4>
                   <Badge variant="outline" className="text-xs">November 10, 2024</Badge>
                 </div>
-                <p className="text-sm text-muted-foreground mb-2">
+                <p className="text-base text-foreground/85 mb-2">
                   At a technology conference, Altman stated that GPT-5 represents a \"significant step forward\" 
                   in AI capabilities, particularly in mathematical reasoning and multimodal understanding.
                 </p>
@@ -278,7 +278,7 @@ const GPT5ReleaseTracker = () => {
                   <h4 className="font-semibold">OpenAI DevDay: Next Generation Models</h4>
                   <Badge variant="outline" className="text-xs">October 2024</Badge>
                 </div>
-                <p className="text-sm text-muted-foreground mb-2">
+                <p className="text-base text-foreground/85 mb-2">
                   During OpenAI DevDay, the company teased upcoming models with enhanced capabilities, 
                   including better tool use and autonomous reasoning features.
                 </p>
@@ -290,7 +290,7 @@ const GPT5ReleaseTracker = () => {
                   <h4 className="font-semibold">Initial GPT-5 Development Confirmation</h4>
                   <Badge variant="outline" className="text-xs">March 2024</Badge>
                 </div>
-                <p className="text-sm text-muted-foreground mb-2">
+                <p className="text-base text-foreground/85 mb-2">
                   OpenAI first acknowledged that work had begun on GPT-5, with focus on safety research 
                   and capability improvements beyond GPT-4.
                 </p>
@@ -309,7 +309,7 @@ const GPT5ReleaseTracker = () => {
             <div className="space-y-6">
               <div className="border-l-4 border-primary pl-4">
                 <h4 className="font-semibold mb-2">OpenAI CEO Sam Altman Hints at GPT-5 Progress</h4>
-                <p className="text-sm text-muted-foreground mb-2">
+                <p className="text-base text-foreground/85 mb-2">
                   In recent interviews, Altman has mentioned significant progress on the next generation model, 
                   emphasizing improvements in reasoning and safety.
                 </p>
@@ -318,7 +318,7 @@ const GPT5ReleaseTracker = () => {
               
               <div className="border-l-4 border-blue-500 pl-4">
                 <h4 className="font-semibold mb-2">Research Papers Suggest Major Breakthroughs</h4>
-                <p className="text-sm text-muted-foreground mb-2">
+                <p className="text-base text-foreground/85 mb-2">
                   Recent publications from OpenAI researchers indicate substantial improvements in 
                   mathematical reasoning and logical consistency.
                 </p>
@@ -327,7 +327,7 @@ const GPT5ReleaseTracker = () => {
               
               <div className="border-l-4 border-green-500 pl-4">
                 <h4 className="font-semibold mb-2">Competition from Google and Anthropic</h4>
-                <p className="text-sm text-muted-foreground mb-2">
+                <p className="text-base text-foreground/85 mb-2">
                   The release of Gemini 1.5 and Claude 3 Opus has increased pressure on OpenAI 
                   to deliver GPT-5 with significant improvements.
                 </p>
@@ -347,21 +347,21 @@ const GPT5ReleaseTracker = () => {
               <div className="text-center p-4 border rounded-lg">
                 <TrendingUp className="h-8 w-8 text-primary mx-auto mb-2" />
                 <h4 className="font-semibold mb-2">Follow Official Channels</h4>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-base text-foreground/85">
                   OpenAI's blog, Twitter, and official announcements
                 </p>
               </div>
               <div className="text-center p-4 border rounded-lg">
                 <Users className="h-8 w-8 text-primary mx-auto mb-2" />
                 <h4 className="font-semibold mb-2">Join Waitlists</h4>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-base text-foreground/85">
                   Sign up for early access and beta testing opportunities
                 </p>
               </div>
               <div className="text-center p-4 border rounded-lg">
                 <Sparkles className="h-8 w-8 text-primary mx-auto mb-2" />
                 <h4 className="font-semibold mb-2">Try Current Tools</h4>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-base text-foreground/85">
                   Experience GPT-4 capabilities while waiting for GPT-5
                 </p>
               </div>

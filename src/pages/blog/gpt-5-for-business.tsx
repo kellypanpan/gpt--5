@@ -86,21 +86,21 @@ const GPT5ForBusiness = () => {
               <div className="text-center p-4 border rounded-lg">
                 <Target className="h-8 w-8 text-primary mx-auto mb-3" />
                 <h3 className="font-semibold mb-2">80% Time Savings</h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-base text-foreground/85">
                   Automate repetitive tasks and focus on strategic decisions
                 </p>
               </div>
               <div className="text-center p-4 border rounded-lg">
                 <BarChart3 className="h-8 w-8 text-primary mx-auto mb-3" />
                 <h3 className="font-semibold mb-2">3x Productivity</h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-base text-foreground/85">
                   Generate content, analyze data, and solve problems faster
                 </p>
               </div>
               <div className="text-center p-4 border rounded-lg">
                 <DollarSign className="h-8 w-8 text-primary mx-auto mb-3" />
                 <h3 className="font-semibold mb-2">60% Cost Reduction</h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-base text-foreground/85">
                   Reduce operational costs while improving quality
                 </p>
               </div>
@@ -207,10 +207,10 @@ const GPT5ForBusiness = () => {
                 <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
                 <div className="flex-1">
                   <h4 className="font-semibold mb-2">Assessment & Planning (Week 1-2)</h4>
-                  <p className="text-sm text-muted-foreground mb-3">
+                  <p className="text-base text-foreground/85 mb-3">
                     Identify high-impact use cases, assess current processes, and create implementation timeline.
                   </p>
-                  <ul className="text-sm text-muted-foreground space-y-1">
+                  <ul className="text-base text-foreground/85 space-y-1">
                     <li>• Audit current workflows and pain points</li>
                     <li>• Define success metrics and KPIs</li>
                     <li>• Select pilot departments or processes</li>
@@ -222,10 +222,10 @@ const GPT5ForBusiness = () => {
                 <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
                 <div className="flex-1">
                   <h4 className="font-semibold mb-2">Pilot Program (Week 3-6)</h4>
-                  <p className="text-sm text-muted-foreground mb-3">
+                  <p className="text-base text-foreground/85 mb-3">
                     Start with small-scale implementations in selected departments.
                   </p>
-                  <ul className="text-sm text-muted-foreground space-y-1">
+                  <ul className="text-base text-foreground/85 space-y-1">
                     <li>• Train team members on GPT-5 tools</li>
                     <li>• Implement basic automation workflows</li>
                     <li>• Collect feedback and measure results</li>
@@ -237,10 +237,10 @@ const GPT5ForBusiness = () => {
                 <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm">3</div>
                 <div className="flex-1">
                   <h4 className="font-semibold mb-2">Scale & Optimize (Week 7-12)</h4>
-                  <p className="text-sm text-muted-foreground mb-3">
+                  <p className="text-base text-foreground/85 mb-3">
                     Expand successful implementations across the organization.
                   </p>
-                  <ul className="text-sm text-muted-foreground space-y-1">
+                  <ul className="text-base text-foreground/85 space-y-1">
                     <li>• Roll out to additional departments</li>
                     <li>• Integrate with existing systems</li>
                     <li>• Optimize workflows based on learnings</li>
@@ -252,10 +252,10 @@ const GPT5ForBusiness = () => {
                 <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm">4</div>
                 <div className="flex-1">
                   <h4 className="font-semibold mb-2">Continuous Improvement (Ongoing)</h4>
-                  <p className="text-sm text-muted-foreground mb-3">
+                  <p className="text-base text-foreground/85 mb-3">
                     Monitor performance, gather feedback, and continuously enhance AI integration.
                   </p>
-                  <ul className="text-sm text-muted-foreground space-y-1">
+                  <ul className="text-base text-foreground/85 space-y-1">
                     <li>• Regular performance reviews</li>
                     <li>• Update processes and workflows</li>
                     <li>• Explore new use cases and opportunities</li>
@@ -330,7 +330,7 @@ const GPT5ForBusiness = () => {
               <BarChart3 className="h-5 w-5 text-primary" />
               Detailed Case Studies
             </CardTitle>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-foreground/85">
               Real-world implementations with quantified results and lessons learned
             </p>
           </CardHeader>
@@ -345,22 +345,22 @@ const GPT5ForBusiness = () => {
                   </div>
                   <div className="text-right">
                     <div className="text-2xl font-bold text-green-600">$2.4M</div>
-                    <div className="text-sm text-muted-foreground">Annual Savings</div>
+                    <div className="text-base text-foreground/85">Annual Savings</div>
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                   <div className="bg-white p-4 rounded-lg">
                     <div className="text-lg font-semibold text-blue-600">75%</div>
-                    <div className="text-sm text-muted-foreground">Faster Product Descriptions</div>
+                    <div className="text-base text-foreground/85">Faster Product Descriptions</div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="text-lg font-semibold text-green-600">60%</div>
-                    <div className="text-sm text-muted-foreground">Reduction in Support Tickets</div>
+                    <div className="text-base text-foreground/85">Reduction in Support Tickets</div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="text-lg font-semibold text-purple-600">4.2x</div>
-                    <div className="text-sm text-muted-foreground">Email Campaign Performance</div>
+                    <div className="text-base text-foreground/85">Email Campaign Performance</div>
                   </div>
                 </div>
                 
@@ -386,22 +386,22 @@ const GPT5ForBusiness = () => {
                   </div>
                   <div className="text-right">
                     <div className="text-2xl font-bold text-green-600">450%</div>
-                    <div className="text-sm text-muted-foreground">ROI Increase</div>
+                    <div className="text-base text-foreground/85">ROI Increase</div>
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                   <div className="bg-white p-4 rounded-lg">
                     <div className="text-lg font-semibold text-purple-600">12x</div>
-                    <div className="text-sm text-muted-foreground">Content Output Volume</div>
+                    <div className="text-base text-foreground/85">Content Output Volume</div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="text-lg font-semibold text-green-600">85%</div>
-                    <div className="text-sm text-muted-foreground">Time Savings on Copywriting</div>
+                    <div className="text-base text-foreground/85">Time Savings on Copywriting</div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="text-lg font-semibold text-blue-600">40%</div>
-                    <div className="text-sm text-muted-foreground">Client Acquisition Increase</div>
+                    <div className="text-base text-foreground/85">Client Acquisition Increase</div>
                   </div>
                 </div>
                 
@@ -427,22 +427,22 @@ const GPT5ForBusiness = () => {
                   </div>
                   <div className="text-right">
                     <div className="text-2xl font-bold text-green-600">$890K</div>
-                    <div className="text-sm text-muted-foreground">Annual Cost Reduction</div>
+                    <div className="text-base text-foreground/85">Annual Cost Reduction</div>
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                   <div className="bg-white p-4 rounded-lg">
                     <div className="text-lg font-semibold text-green-600">90%</div>
-                    <div className="text-sm text-muted-foreground">Document Processing Speed</div>
+                    <div className="text-base text-foreground/85">Document Processing Speed</div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="text-lg font-semibold text-blue-600">99.2%</div>
-                    <div className="text-sm text-muted-foreground">Data Extraction Accuracy</div>
+                    <div className="text-base text-foreground/85">Data Extraction Accuracy</div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="text-lg font-semibold text-purple-600">15 FTE</div>
-                    <div className="text-sm text-muted-foreground">Resources Reallocated</div>
+                    <div className="text-base text-foreground/85">Resources Reallocated</div>
                   </div>
                 </div>
                 
@@ -469,7 +469,7 @@ const GPT5ForBusiness = () => {
               <TrendingUp className="h-5 w-5 text-primary" />
               Industry Impact Statistics
             </CardTitle>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-foreground/85">
               Data from companies successfully implementing GPT-5 business solutions
             </p>
           </CardHeader>
@@ -477,19 +477,19 @@ const GPT5ForBusiness = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="text-center p-4 border rounded-lg">
                 <div className="text-3xl font-bold text-primary mb-2">73%</div>
-                <div className="text-sm text-muted-foreground">Average productivity increase across all departments</div>
+                <div className="text-base text-foreground/85">Average productivity increase across all departments</div>
               </div>
               <div className="text-center p-4 border rounded-lg">
                 <div className="text-3xl font-bold text-green-600 mb-2">$1.2M</div>
-                <div className="text-sm text-muted-foreground">Average annual cost savings for mid-size companies</div>
+                <div className="text-base text-foreground/85">Average annual cost savings for mid-size companies</div>
               </div>
               <div className="text-center p-4 border rounded-lg">
                 <div className="text-3xl font-bold text-blue-600 mb-2">6.8x</div>
-                <div className="text-sm text-muted-foreground">ROI within first year of implementation</div>
+                <div className="text-base text-foreground/85">ROI within first year of implementation</div>
               </div>
               <div className="text-center p-4 border rounded-lg">
                 <div className="text-3xl font-bold text-purple-600 mb-2">89%</div>
-                <div className="text-sm text-muted-foreground">Employee satisfaction with AI-assisted workflows</div>
+                <div className="text-base text-foreground/85">Employee satisfaction with AI-assisted workflows</div>
               </div>
             </div>
             
@@ -520,7 +520,7 @@ const GPT5ForBusiness = () => {
             <div className="space-y-6">
               <div className="border-l-4 border-primary pl-4">
                 <h4 className="font-semibold mb-2">Marketing Agency - 300% Increase in Content Output</h4>
-                <p className="text-sm text-muted-foreground mb-2">
+                <p className="text-base text-foreground/85 mb-2">
                   "We've increased our content production by 300% while maintaining quality. GPT-5 helps us create 
                   compelling copy for multiple clients simultaneously."
                 </p>
@@ -529,7 +529,7 @@ const GPT5ForBusiness = () => {
               
               <div className="border-l-4 border-green-500 pl-4">
                 <h4 className="font-semibold mb-2">E-commerce Company - 50% Reduction in Support Tickets</h4>
-                <p className="text-sm text-muted-foreground mb-2">
+                <p className="text-base text-foreground/85 mb-2">
                   "By using GPT-5 to generate FAQ content and support responses, we've reduced customer support 
                   tickets by 50% and improved customer satisfaction scores."
                 </p>
@@ -538,7 +538,7 @@ const GPT5ForBusiness = () => {
               
               <div className="border-l-4 border-blue-500 pl-4">
                 <h4 className="font-semibold mb-2">Tech Startup - 80% Faster Product Documentation</h4>
-                <p className="text-sm text-muted-foreground mb-2">
+                <p className="text-base text-foreground/85 mb-2">
                   "GPT-5 has revolutionized our documentation process. What used to take weeks now takes days, 
                   and the quality is consistently high."
                 </p>
