@@ -51,7 +51,7 @@ const GPT5JobsImpact = () => {
               GPT-5 isn't just smarter — it's more capable, more autonomous, and more human-like than any model before it. Here's how that might impact your job, and what you can do about it.
             </p>
 
-            <div className="flex items-center gap-6 text-sm text-muted-foreground mb-8">
+            <div className="flex items-center gap-6 text-base text-foreground/85 mb-8">
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
                 <span>GPT5AI Editorial</span>
@@ -260,7 +260,7 @@ const GPT5JobsImpact = () => {
                     What is GPT-5? Complete Guide
                   </Link>
                 </h4>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-base text-foreground/85">
                   Everything you need to know about GPT-5's capabilities and features.
                 </p>
               </CardContent>
@@ -273,7 +273,7 @@ const GPT5JobsImpact = () => {
                     GPT-5 Business Use Cases
                   </Link>
                 </h4>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-base text-foreground/85">
                   How businesses are leveraging GPT-5 for competitive advantage.
                 </p>
               </CardContent>

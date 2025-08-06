@@ -73,7 +73,7 @@ const PromptEngineeringGuide = () => {
               Master the art of communicating with GPT-5. Learn advanced techniques, proven frameworks, 
               and best practices to maximize AI performance and achieve exceptional results.
             </p>
-            <div className="flex items-center justify-center gap-4 mt-6 text-sm text-muted-foreground">
+            <div className="flex items-center justify-center gap-4 mt-6 text-base text-foreground/85">
               <div className="flex items-center gap-1">
                 <User className="h-3 w-3" />
                 <span>Written by {articleMetadata.author}</span>
@@ -127,7 +127,7 @@ const PromptEngineeringGuide = () => {
                         <Target className="h-4 w-4 text-blue-600" />
                         Clarity & Specificity
                       </h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-base text-foreground/85">
                         Be precise about what you want. Vague prompts lead to inconsistent results.
                       </p>
                     </div>
@@ -136,7 +136,7 @@ const PromptEngineeringGuide = () => {
                         <Brain className="h-4 w-4 text-green-600" />
                         Context Provision
                       </h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-base text-foreground/85">
                         Provide relevant background information and constraints to guide responses.
                       </p>
                     </div>
@@ -145,7 +145,7 @@ const PromptEngineeringGuide = () => {
                         <Lightbulb className="h-4 w-4 text-yellow-600" />
                         Structure & Format
                       </h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-base text-foreground/85">
                         Organize prompts logically and specify desired output formats.
                       </p>
                     </div>
@@ -154,7 +154,7 @@ const PromptEngineeringGuide = () => {
                         <Zap className="h-4 w-4 text-purple-600" />
                         Iterative Refinement
                       </h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-base text-foreground/85">
                         Test and refine prompts based on output quality and consistency.
                       </p>
                     </div>
@@ -166,7 +166,7 @@ const PromptEngineeringGuide = () => {
                   <div className="space-y-4">
                     <div className="border-l-4 border-primary pl-4">
                       <h4 className="font-medium mb-2">1. Context Setting</h4>
-                      <p className="text-sm text-muted-foreground mb-2">
+                      <p className="text-base text-foreground/85 mb-2">
                         Establish the scenario, role, or background information.
                       </p>
                       <div className="bg-gray-100 p-3 rounded text-sm font-mono">
@@ -175,7 +175,7 @@ const PromptEngineeringGuide = () => {
                     </div>
                     <div className="border-l-4 border-blue-500 pl-4">
                       <h4 className="font-medium mb-2">2. Task Definition</h4>
-                      <p className="text-sm text-muted-foreground mb-2">
+                      <p className="text-base text-foreground/85 mb-2">
                         Clearly state what you want the AI to do.
                       </p>
                       <div className="bg-gray-100 p-3 rounded text-sm font-mono">
@@ -184,7 +184,7 @@ const PromptEngineeringGuide = () => {
                     </div>
                     <div className="border-l-4 border-green-500 pl-4">
                       <h4 className="font-medium mb-2">3. Constraints & Requirements</h4>
-                      <p className="text-sm text-muted-foreground mb-2">
+                      <p className="text-base text-foreground/85 mb-2">
                         Specify limitations, format, length, or style requirements.
                       </p>
                       <div className="bg-gray-100 p-3 rounded text-sm font-mono">
@@ -193,7 +193,7 @@ const PromptEngineeringGuide = () => {
                     </div>
                     <div className="border-l-4 border-orange-500 pl-4">
                       <h4 className="font-medium mb-2">4. Examples (Optional)</h4>
-                      <p className="text-sm text-muted-foreground mb-2">
+                      <p className="text-base text-foreground/85 mb-2">
                         Provide examples of desired output format or style.
                       </p>
                       <div className="bg-gray-100 p-3 rounded text-sm font-mono">
@@ -471,7 +471,7 @@ Provide:
                       <AlertTriangle className="h-5 w-5 text-yellow-500 mt-1 flex-shrink-0" />
                       <div>
                         <h4 className="font-medium mb-2">Issue: Inconsistent Outputs</h4>
-                        <p className="text-sm text-muted-foreground mb-2">
+                        <p className="text-base text-foreground/85 mb-2">
                           GPT-5 provides different responses for the same prompt.
                         </p>
                         <div className="bg-green-50 p-3 rounded-lg">
@@ -490,7 +490,7 @@ Provide:
                       <AlertTriangle className="h-5 w-5 text-yellow-500 mt-1 flex-shrink-0" />
                       <div>
                         <h4 className="font-medium mb-2">Issue: Verbose or Unfocused Responses</h4>
-                        <p className="text-sm text-muted-foreground mb-2">
+                        <p className="text-base text-foreground/85 mb-2">
                           AI provides too much information or goes off-topic.
                         </p>
                         <div className="bg-blue-50 p-3 rounded-lg">

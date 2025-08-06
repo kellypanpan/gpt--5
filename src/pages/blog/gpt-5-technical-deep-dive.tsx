@@ -74,7 +74,7 @@ const GPT5TechnicalDeepDive = () => {
               Comprehensive technical analysis of GPT-5's revolutionary unified architecture, 
               multimodal capabilities, and breakthrough performance innovations.
             </p>
-            <div className="flex items-center justify-center gap-4 mt-6 text-sm text-muted-foreground">
+            <div className="flex items-center justify-center gap-4 mt-6 text-base text-foreground/85">
               <div className="flex items-center gap-1">
                 <User className="h-3 w-3" />
                 <span>Written by {articleMetadata.author}</span>
@@ -127,19 +127,19 @@ const GPT5TechnicalDeepDive = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="bg-white p-4 rounded-lg">
                     <div className="text-lg font-semibold text-blue-600 mb-2">Single Backbone</div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-base text-foreground/85">
                       One transformer architecture handles all modalities
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="text-lg font-semibold text-green-600 mb-2">Cross-Modal</div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-base text-foreground/85">
                       Native understanding between different input types
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="text-lg font-semibold text-purple-600 mb-2">Efficient</div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-base text-foreground/85">
                       40% reduction in computational requirements
                     </div>
                   </div>
@@ -155,7 +155,7 @@ const GPT5TechnicalDeepDive = () => {
                         <Layers className="h-4 w-4 text-primary" />
                         Attention Mechanisms
                       </h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• Grouped Query Attention (GQA) for efficiency</li>
                         <li>• Multi-head attention with 128 heads</li>
                         <li>• Sliding window attention for long sequences</li>
@@ -167,7 +167,7 @@ const GPT5TechnicalDeepDive = () => {
                         <Cpu className="h-4 w-4 text-primary" />
                         Processing Units
                       </h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• 220B total parameters</li>
                         <li>• 32-layer transformer depth</li>
                         <li>• 16,384 hidden dimension</li>
@@ -195,19 +195,19 @@ const GPT5TechnicalDeepDive = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div className="bg-white p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-purple-600 mb-2">16</div>
-                      <div className="text-sm text-muted-foreground">Language Experts</div>
+                      <div className="text-base text-foreground/85">Language Experts</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-blue-600 mb-2">12</div>
-                      <div className="text-sm text-muted-foreground">Vision Experts</div>
+                      <div className="text-base text-foreground/85">Vision Experts</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-green-600 mb-2">8</div>
-                      <div className="text-sm text-muted-foreground">Audio Experts</div>
+                      <div className="text-base text-foreground/85">Audio Experts</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-orange-600 mb-2">28</div>
-                      <div className="text-sm text-muted-foreground">Cross-Modal Experts</div>
+                      <div className="text-base text-foreground/85">Cross-Modal Experts</div>
                     </div>
                   </div>
                 </div>
@@ -217,21 +217,21 @@ const GPT5TechnicalDeepDive = () => {
                   <div className="space-y-4">
                     <div className="border-l-4 border-primary pl-4">
                       <h5 className="font-medium mb-2">Top-K Routing with Load Balancing</h5>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-base text-foreground/85">
                         Advanced routing selects top-2 experts per token while maintaining balanced load distribution 
                         across all experts to prevent bottlenecks.
                       </p>
                     </div>
                     <div className="border-l-4 border-blue-500 pl-4">
                       <h5 className="font-medium mb-2">Adaptive Expert Selection</h5>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-base text-foreground/85">
                         Dynamic routing adapts based on input complexity and modality, with learned gating networks 
                         that improve over time through reinforcement learning.
                       </p>
                     </div>
                     <div className="border-l-4 border-green-500 pl-4">
                       <h5 className="font-medium mb-2">Efficiency Optimization</h5>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-base text-foreground/85">
                         Only 12.5% of model parameters are active per forward pass, achieving 8x efficiency improvement 
                         over dense models while maintaining superior performance.
                       </p>
@@ -309,19 +309,19 @@ const GPT5TechnicalDeepDive = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="bg-white p-4 rounded-lg">
                       <h4 className="font-medium mb-2">Visual-Linguistic</h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-base text-foreground/85">
                         Generate detailed descriptions of images and create images from text descriptions with high fidelity.
                       </p>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <h4 className="font-medium mb-2">Audio-Visual</h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-base text-foreground/85">
                         Synchronize audio with video content and understand relationships between sound and visual elements.
                       </p>
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <h4 className="font-medium mb-2">Multi-Modal Fusion</h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-base text-foreground/85">
                         Combine information from text, images, and audio to provide comprehensive understanding and responses.
                       </p>
                     </div>
@@ -345,19 +345,19 @@ const GPT5TechnicalDeepDive = () => {
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div className="bg-white p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-orange-600 mb-2">500+</div>
-                      <div className="text-sm text-muted-foreground">Pages of text</div>
+                      <div className="text-base text-foreground/85">Pages of text</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-blue-600 mb-2">8hr</div>
-                      <div className="text-sm text-muted-foreground">Audio content</div>
+                      <div className="text-base text-foreground/85">Audio content</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-green-600 mb-2">10min</div>
-                      <div className="text-sm text-muted-foreground">Video analysis</div>
+                      <div className="text-base text-foreground/85">Video analysis</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-purple-600 mb-2">1000+</div>
-                      <div className="text-sm text-muted-foreground">Images batch</div>
+                      <div className="text-base text-foreground/85">Images batch</div>
                     </div>
                   </div>
                 </div>
@@ -367,7 +367,7 @@ const GPT5TechnicalDeepDive = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <h5 className="font-medium mb-2">Attention Optimization</h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• Sparse attention patterns for efficiency</li>
                         <li>• KV-cache compression with 90% reduction</li>
                         <li>• Dynamic attention head pruning</li>
@@ -376,7 +376,7 @@ const GPT5TechnicalDeepDive = () => {
                     </div>
                     <div>
                       <h5 className="font-medium mb-2">Storage Strategies</h5>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• Hierarchical memory architecture</li>
                         <li>• Intelligent context compression</li>
                         <li>• Selective information retention</li>
@@ -398,19 +398,19 @@ const GPT5TechnicalDeepDive = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div className="bg-white p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-green-600 mb-2">96.4%</div>
-                      <div className="text-sm text-muted-foreground">MMLU Score</div>
+                      <div className="text-base text-foreground/85">MMLU Score</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-blue-600 mb-2">89.2%</div>
-                      <div className="text-sm text-muted-foreground">HumanEval</div>
+                      <div className="text-base text-foreground/85">HumanEval</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-purple-600 mb-2">94.7%</div>
-                      <div className="text-sm text-muted-foreground">HellaSwag</div>
+                      <div className="text-base text-foreground/85">HellaSwag</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg text-center">
                       <div className="text-2xl font-bold text-orange-600 mb-2">92.3%</div>
-                      <div className="text-sm text-muted-foreground">MATH Dataset</div>
+                      <div className="text-base text-foreground/85">MATH Dataset</div>
                     </div>
                   </div>
                 </div>
@@ -481,7 +481,7 @@ const GPT5TechnicalDeepDive = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="bg-background p-4 rounded-lg">
                       <h4 className="font-medium mb-2">Training Infrastructure</h4>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• 25,000 A100 GPUs</li>
                         <li>• 10 PB training dataset</li>
                         <li>• 6 months training time</li>
@@ -490,7 +490,7 @@ const GPT5TechnicalDeepDive = () => {
                     </div>
                     <div className="bg-background p-4 rounded-lg">
                       <h4 className="font-medium mb-2">Inference Setup</h4>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• 8x A100/H100 per instance</li>
                         <li>• 1TB system memory</li>
                         <li>• NVLink interconnect</li>
@@ -499,7 +499,7 @@ const GPT5TechnicalDeepDive = () => {
                     </div>
                     <div className="bg-background p-4 rounded-lg">
                       <h4 className="font-medium mb-2">Scaling Strategy</h4>
-                      <ul className="text-sm text-muted-foreground space-y-1">
+                      <ul className="text-base text-foreground/85 space-y-1">
                         <li>• Model parallelism</li>
                         <li>• Pipeline parallelism</li>
                         <li>• Data parallelism</li>

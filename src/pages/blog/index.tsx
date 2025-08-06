@@ -203,7 +203,7 @@ const BlogIndex = () => {
               <p className="text-muted-foreground mb-4 text-lg">
                 {post.description}
               </p>
-              <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+              <div className="flex items-center gap-4 text-base text-foreground/85 mb-4">
                 <div className="flex items-center gap-1">
                   <Clock className="h-4 w-4" />
                   {post.readTime}
