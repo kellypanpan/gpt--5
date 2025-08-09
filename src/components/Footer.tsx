@@ -53,8 +53,16 @@ const Footer = () => {
 
         <div className="border-t border-border/20 mt-8 pt-8 text-center">
           <p className="text-muted-foreground text-sm">
-            © 2025 GPT-5 AI. All rights reserved. Best GPT-5 AI platform for content creators and professionals worldwide.
+            © 2025 AI Tools Hub. All rights reserved. Professional AI tools platform for creators and businesses.
           </p>
+          
+          {/* Legal Disclaimer */}
+          <div className="mt-6 text-xs text-muted-foreground/70 max-w-4xl mx-auto">
+            <strong className="text-muted-foreground">Legal Disclaimer:</strong> This platform is an independent AI tools service and is not affiliated with, endorsed, or sponsored by OpenAI, Google, Anthropic, or any AI model provider. 
+            All tools provided here are for lawful, educational, and productivity purposes only. 
+            We do not request, collect, or store any sensitive personal information such as banking credentials or official account passwords. 
+            Users are solely responsible for how they use the tools and content generated on this website. All trademarks belong to their respective owners.
+          </div>
         </div>
       </div>
     </footer>

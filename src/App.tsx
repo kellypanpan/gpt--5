@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "@/components/Header";
+import { CookieConsent } from "@/components/CookieConsent";
 import { config } from "@/lib/config";
 import { I18nProvider } from "@/components/I18nProvider";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -39,7 +40,11 @@ import Sitemap from "./pages/Sitemap";
 import CanGPT5GenerateVideos from "./pages/blog/can-gpt-5-generate-videos";
 import AuthCallback from "./pages/AuthCallback";
 import ErrorPage from "./pages/ErrorPage";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Cookies from "./pages/Cookies";
 import GPT5UseCases from "./pages/blog/gpt-5-use-cases";
+import About from "./pages/About";
 
 // Use cases pages
 import UseCases from "./pages/use-cases/index";
@@ -76,9 +81,13 @@ const App = () => (
             
             {/* Keep pricing and other essential pages */}
             <Route path="/pricing" element={<Pricing />} />
+            <Route path="/about" element={<About />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/auth/callback" element={<AuthCallback />} />
             <Route path="/error" element={<ErrorPage />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/cookies" element={<Cookies />} />
             
             {/* Blog Routes - keep for SEO */}
             <Route path="/blog" element={<BlogIndex />} />
@@ -106,6 +115,9 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          
+          {/* Cookie Consent Banner */}
+          <CookieConsent />
         </div>
         </BrowserRouter>
       </TooltipProvider>

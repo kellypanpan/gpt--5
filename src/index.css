@@ -169,4 +169,373 @@
     background-color: hsl(var(--muted));
     color: hsl(var(--foreground));
   }
+  
+  /* Additional text color fixes for all content */
+  .text-muted-foreground {
+    color: hsl(var(--muted-foreground)) !important;
+  }
+  
+  /* Ensure all text in cards and content areas is visible - scope to blog prose only */
+  .prose .text-foreground\/85 {
+    color: hsl(var(--foreground) / 0.85) !important;
+  }
+  
+  .prose .text-foreground\/70 {
+    color: hsl(var(--foreground) / 0.7) !important;
+  }
+  
+  .prose .text-foreground\/60 {
+    color: hsl(var(--foreground) / 0.6) !important;
+  }
+  
+  /* Fix for any remaining white text issues - scope to blog prose only */
+  .prose .text-white {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Ensure proper contrast for all text elements - scoped to blog prose only */
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    color: hsl(var(--foreground));
+  }
+  
+  .prose p, .prose span, .prose div {
+    color: hsl(var(--foreground) / 0.9);
+  }
+  
+  /* Fix for list items */
+  .prose ul li, .prose ol li {
+    color: hsl(var(--foreground) / 0.9);
+  }
+  
+  /* Fix for hardcoded color classes that cause white text issues - ONLY in blog articles */
+  .prose .bg-blue-50, .prose .bg-green-50, .prose .bg-purple-50, .prose .bg-orange-50, .prose .bg-red-50, .prose .bg-yellow-50 {
+    background-color: hsl(var(--muted)) !important;
+  }
+  
+  .prose .text-blue-800, .prose .text-green-800, .prose .text-purple-800, .prose .text-orange-800, .prose .text-red-800, .prose .text-yellow-800 {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .prose .text-blue-600, .prose .text-green-600, .prose .text-purple-600, .prose .text-orange-600, .prose .text-red-600, .prose .text-yellow-600 {
+    color: hsl(var(--primary)) !important;
+  }
+  
+  .prose .bg-white {
+    background-color: hsl(var(--card)) !important;
+  }
+  
+  .prose .bg-gradient-to-r.from-blue-50.to-blue-100 {
+    background: linear-gradient(to right, hsl(var(--muted)), hsl(var(--muted) / 0.8)) !important;
+  }
+  
+  /* Fix for blog article specific hardcoded colors */
+  .prose [class*="text-blue-"], .prose [class*="text-green-"], .prose [class*="text-purple-"], 
+  .prose [class*="text-orange-"], .prose [class*="text-red-"], .prose [class*="text-yellow-"] {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Ensure all text in blog article cards and sections is visible */
+  .prose .bg-white * {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .prose .bg-white p, .prose .bg-white div, .prose .bg-white span {
+    color: hsl(var(--foreground) / 0.9) !important;
+  }
+  
+  /* Fix for blog articles that don't use prose class - more specific selectors */
+  .min-h-screen.bg-background .container .bg-blue-50, 
+  .min-h-screen.bg-background .container .bg-green-50, 
+  .min-h-screen.bg-background .container .bg-purple-50, 
+  .min-h-screen.bg-background .container .bg-orange-50, 
+  .min-h-screen.bg-background .container .bg-red-50, 
+  .min-h-screen.bg-background .container .bg-yellow-50 {
+    background-color: hsl(var(--muted)) !important;
+  }
+  
+  .min-h-screen.bg-background .container .text-blue-800, 
+  .min-h-screen.bg-background .container .text-green-800, 
+  .min-h-screen.bg-background .container .text-purple-800, 
+  .min-h-screen.bg-background .container .text-orange-800, 
+  .min-h-screen.bg-background .container .text-red-800, 
+  .min-h-screen.bg-background .container .text-yellow-800 {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .min-h-screen.bg-background .container .text-blue-600, 
+  .min-h-screen.bg-background .container .text-green-600, 
+  .min-h-screen.bg-background .container .text-purple-600, 
+  .min-h-screen.bg-background .container .text-orange-600, 
+  .min-h-screen.bg-background .container .text-red-600, 
+  .min-h-screen.bg-background .container .text-yellow-600 {
+    color: hsl(var(--primary)) !important;
+  }
+  
+  .min-h-screen.bg-background .container .bg-white {
+    background-color: hsl(var(--card)) !important;
+  }
+  
+  /* Fix for specific blog article elements */
+  .min-h-screen.bg-background .container .bg-white * {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  .min-h-screen.bg-background .container .bg-white p, 
+  .min-h-screen.bg-background .container .bg-white div, 
+  .min-h-screen.bg-background .container .bg-white span {
+    color: hsl(var(--foreground) / 0.9) !important;
+  }
+  
+  /* Fix for all hardcoded white and gray backgrounds in blog articles - more specific */
+  .min-h-screen.bg-background .container .bg-white,
+  .min-h-screen.bg-background .container .bg-gray-50,
+  .min-h-screen.bg-background .container .bg-gray-100,
+  .min-h-screen.bg-background .container .bg-slate-50,
+  .min-h-screen.bg-background .container .bg-slate-100 {
+    background-color: hsl(var(--card)) !important;
+  }
+  
+  /* Fix for prose class white backgrounds */
+  .prose .bg-white,
+  .prose .bg-gray-50,
+  .prose .bg-gray-100,
+  .prose .bg-slate-50,
+  .prose .bg-slate-100 {
+    background-color: hsl(var(--card)) !important;
+  }
+  
+  /* Ensure text in all white/gray backgrounds is visible - more specific */
+  .min-h-screen.bg-background .container .bg-white *,
+  .min-h-screen.bg-background .container .bg-gray-50 *,
+  .min-h-screen.bg-background .container .bg-gray-100 *,
+  .min-h-screen.bg-background .container .bg-slate-50 *,
+  .min-h-screen.bg-background .container .bg-slate-100 *,
+  .prose .bg-white *,
+  .prose .bg-gray-50 *,
+  .prose .bg-gray-100 *,
+  .prose .bg-slate-50 *,
+  .prose .bg-slate-100 * {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Fix for specific text elements in white backgrounds - more specific */
+  .min-h-screen.bg-background .container .bg-white p,
+  .min-h-screen.bg-background .container .bg-gray-50 p,
+  .min-h-screen.bg-background .container .bg-gray-100 p,
+  .min-h-screen.bg-background .container .bg-slate-50 p,
+  .min-h-screen.bg-background .container .bg-slate-100 p,
+  .prose .bg-white p,
+  .prose .bg-gray-50 p,
+  .prose .bg-gray-100 p,
+  .prose .bg-slate-50 p,
+  .prose .bg-slate-100 p {
+    color: hsl(var(--foreground) / 0.9) !important;
+  }
+  
+  /* Fix for code blocks in gray backgrounds - more specific */
+  .min-h-screen.bg-background .container .bg-gray-100.font-mono,
+  .prose .bg-gray-100.font-mono {
+    background-color: hsl(var(--muted)) !important;
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Comprehensive fix for ALL light colored backgrounds in blog articles */
+  .min-h-screen.bg-background .container .bg-red-50,
+  .min-h-screen.bg-background .container .bg-green-50,
+  .min-h-screen.bg-background .container .bg-blue-50,
+  .min-h-screen.bg-background .container .bg-purple-50,
+  .min-h-screen.bg-background .container .bg-orange-50,
+  .min-h-screen.bg-background .container .bg-yellow-50,
+  .min-h-screen.bg-background .container .bg-pink-50,
+  .min-h-screen.bg-background .container .bg-indigo-50,
+  .min-h-screen.bg-background .container .bg-cyan-50,
+  .min-h-screen.bg-background .container .bg-teal-50,
+  .min-h-screen.bg-background .container .bg-emerald-50,
+  .min-h-screen.bg-background .container .bg-lime-50,
+  .min-h-screen.bg-background .container .bg-amber-50,
+  .min-h-screen.bg-background .container .bg-rose-50,
+  .min-h-screen.bg-background .container .bg-fuchsia-50,
+  .min-h-screen.bg-background .container .bg-violet-50,
+  .min-h-screen.bg-background .container .bg-red-100,
+  .min-h-screen.bg-background .container .bg-green-100,
+  .min-h-screen.bg-background .container .bg-blue-100,
+  .min-h-screen.bg-background .container .bg-purple-100,
+  .min-h-screen.bg-background .container .bg-orange-100,
+  .min-h-screen.bg-background .container .bg-yellow-100,
+  .min-h-screen.bg-background .container .bg-pink-100,
+  .min-h-screen.bg-background .container .bg-indigo-100,
+  .min-h-screen.bg-background .container .bg-cyan-100,
+  .min-h-screen.bg-background .container .bg-teal-100,
+  .min-h-screen.bg-background .container .bg-emerald-100,
+  .min-h-screen.bg-background .container .bg-lime-100,
+  .min-h-screen.bg-background .container .bg-amber-100,
+  .min-h-screen.bg-background .container .bg-rose-100,
+  .min-h-screen.bg-background .container .bg-fuchsia-100,
+  .min-h-screen.bg-background .container .bg-violet-100,
+  .prose .bg-red-50,
+  .prose .bg-green-50,
+  .prose .bg-blue-50,
+  .prose .bg-purple-50,
+  .prose .bg-orange-50,
+  .prose .bg-yellow-50,
+  .prose .bg-pink-50,
+  .prose .bg-indigo-50,
+  .prose .bg-cyan-50,
+  .prose .bg-teal-50,
+  .prose .bg-emerald-50,
+  .prose .bg-lime-50,
+  .prose .bg-amber-50,
+  .prose .bg-rose-50,
+  .prose .bg-fuchsia-50,
+  .prose .bg-violet-50,
+  .prose .bg-red-100,
+  .prose .bg-green-100,
+  .prose .bg-blue-100,
+  .prose .bg-purple-100,
+  .prose .bg-orange-100,
+  .prose .bg-yellow-100,
+  .prose .bg-pink-100,
+  .prose .bg-indigo-100,
+  .prose .bg-cyan-100,
+  .prose .bg-teal-100,
+  .prose .bg-emerald-100,
+  .prose .bg-lime-100,
+  .prose .bg-amber-100,
+  .prose .bg-rose-100,
+  .prose .bg-fuchsia-100,
+  .prose .bg-violet-100 {
+    background-color: hsl(var(--card)) !important;
+  }
+  
+  /* Fix for gradient backgrounds */
+  .prose .bg-gradient-to-r {
+    background: linear-gradient(to right, hsl(var(--muted)), hsl(var(--muted) / 0.8)) !important;
+  }
+  
+  /* Fix for dark mode specific backgrounds */
+  .min-h-screen.bg-background .container .dark\:bg-red-900\/20,
+  .min-h-screen.bg-background .container .dark\:bg-green-900\/20,
+  .prose .dark\:bg-red-900\/20,
+  .prose .dark\:bg-green-900\/20 {
+    background-color: hsl(var(--muted) / 0.8) !important;
+  }
+  
+  /* Ensure all text in colored backgrounds is visible */
+  .min-h-screen.bg-background .container .bg-red-50 *,
+  .min-h-screen.bg-background .container .bg-green-50 *,
+  .min-h-screen.bg-background .container .bg-blue-50 *,
+  .min-h-screen.bg-background .container .bg-purple-50 *,
+  .min-h-screen.bg-background .container .bg-orange-50 *,
+  .min-h-screen.bg-background .container .bg-yellow-50 *,
+  .min-h-screen.bg-background .container .bg-pink-50 *,
+  .min-h-screen.bg-background .container .bg-indigo-50 *,
+  .min-h-screen.bg-background .container .bg-cyan-50 *,
+  .min-h-screen.bg-background .container .bg-teal-50 *,
+  .min-h-screen.bg-background .container .bg-emerald-50 *,
+  .min-h-screen.bg-background .container .bg-lime-50 *,
+  .min-h-screen.bg-background .container .bg-amber-50 *,
+  .min-h-screen.bg-background .container .bg-rose-50 *,
+  .min-h-screen.bg-background .container .bg-fuchsia-50 *,
+  .min-h-screen.bg-background .container .bg-violet-50 *,
+  .prose .bg-red-50 *,
+  .prose .bg-green-50 *,
+  .prose .bg-blue-50 *,
+  .prose .bg-purple-50 *,
+  .prose .bg-orange-50 *,
+  .prose .bg-yellow-50 *,
+  .prose .bg-pink-50 *,
+  .prose .bg-indigo-50 *,
+  .prose .bg-cyan-50 *,
+  .prose .bg-teal-50 *,
+  .prose .bg-emerald-50 *,
+  .prose .bg-lime-50 *,
+  .prose .bg-amber-50 *,
+  .prose .bg-rose-50 *,
+  .prose .bg-fuchsia-50 *,
+  .prose .bg-violet-50 * {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Fix for borders in colored backgrounds */
+  .min-h-screen.bg-background .container .border-red-200,
+  .min-h-screen.bg-background .container .border-green-200,
+  .min-h-screen.bg-background .container .border-blue-200,
+  .min-h-screen.bg-background .container .border-purple-200,
+  .min-h-screen.bg-background .container .border-orange-200,
+  .min-h-screen.bg-background .container .border-yellow-200,
+  .prose .border-red-200,
+  .prose .border-green-200,
+  .prose .border-blue-200,
+  .prose .border-purple-200,
+  .prose .border-orange-200,
+  .prose .border-yellow-200 {
+    border-color: hsl(var(--border)) !important;
+  }
+
+  /* Blog article: neutralize light color backgrounds */
+  .blog-article .bg-white,
+  .blog-article .bg-gray-50,
+  .blog-article .bg-gray-100,
+  .blog-article .bg-slate-50,
+  .blog-article .bg-slate-100 {
+    background-color: hsl(var(--card)) !important;
+  }
+
+  .blog-article .bg-red-50, .blog-article .bg-red-100,
+  .blog-article .bg-green-50, .blog-article .bg-green-100,
+  .blog-article .bg-blue-50, .blog-article .bg-blue-100,
+  .blog-article .bg-purple-50, .blog-article .bg-purple-100,
+  .blog-article .bg-orange-50, .blog-article .bg-orange-100,
+  .blog-article .bg-yellow-50, .blog-article .bg-yellow-100,
+  .blog-article .bg-pink-50, .blog-article .bg-pink-100,
+  .blog-article .bg-indigo-50, .blog-article .bg-indigo-100,
+  .blog-article .bg-cyan-50, .blog-article .bg-cyan-100,
+  .blog-article .bg-teal-50, .blog-article .bg-teal-100,
+  .blog-article .bg-emerald-50, .blog-article .bg-emerald-100,
+  .blog-article .bg-lime-50, .blog-article .bg-lime-100,
+  .blog-article .bg-amber-50, .blog-article .bg-amber-100,
+  .blog-article .bg-rose-50, .blog-article .bg-rose-100,
+  .blog-article .bg-fuchsia-50, .blog-article .bg-fuchsia-100,
+  .blog-article .bg-violet-50, .blog-article .bg-violet-100 {
+    background-color: hsl(var(--card)) !important;
+  }
+
+  /* Blog article: neutralize light gradients only (does not touch primary text gradients) */
+  .blog-article .bg-gradient-to-r.from-blue-50.to-blue-100,
+  .blog-article .bg-gradient-to-r.from-green-50.to-green-100,
+  .blog-article .bg-gradient-to-r.from-purple-50.to-purple-100,
+  .blog-article .bg-gradient-to-r.from-orange-50.to-orange-100,
+  .blog-article .bg-gradient-to-r.from-indigo-50.to-indigo-100,
+  .blog-article .bg-gradient-to-r.from-yellow-50.to-yellow-100,
+  .blog-article .bg-gradient-to-r.from-gray-50.to-gray-100,
+  .blog-article .bg-gradient-to-r.from-cyan-50.to-cyan-100,
+  .blog-article .bg-gradient-to-r.from-pink-50.to-pink-100,
+  .blog-article .bg-gradient-to-r.from-red-50.to-red-100 {
+    background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card))) !important;
+  }
+
+  /* Blog article: ensure text readable inside neutralized panels */
+  .blog-article .bg-white *,
+  .blog-article .bg-gray-50 *,
+  .blog-article .bg-gray-100 *,
+  .blog-article .bg-slate-50 *,
+  .blog-article .bg-slate-100 *,
+  .blog-article .bg-red-50 *, .blog-article .bg-red-100 *,
+  .blog-article .bg-green-50 *, .blog-article .bg-green-100 *,
+  .blog-article .bg-blue-50 *, .blog-article .bg-blue-100 *,
+  .blog-article .bg-purple-50 *, .blog-article .bg-purple-100 *,
+  .blog-article .bg-orange-50 *, .blog-article .bg-orange-100 *,
+  .blog-article .bg-yellow-50 *, .blog-article .bg-yellow-100 *,
+  .blog-article .bg-pink-50 *, .blog-article .bg-pink-100 *,
+  .blog-article .bg-indigo-50 *, .blog-article .bg-indigo-100 *,
+  .blog-article .bg-cyan-50 *, .blog-article .bg-cyan-100 *,
+  .blog-article .bg-teal-50 *, .blog-article .bg-teal-100 *,
+  .blog-article .bg-emerald-50 *, .blog-article .bg-emerald-100 *,
+  .blog-article .bg-lime-50 *, .blog-article .bg-lime-100 *,
+  .blog-article .bg-amber-50 *, .blog-article .bg-amber-100 *,
+  .blog-article .bg-rose-50 *, .blog-article .bg-rose-100 *,
+  .blog-article .bg-fuchsia-50 *, .blog-article .bg-fuchsia-100 *,
+  .blog-article .bg-violet-50 *, .blog-article .bg-violet-100 * {
+    color: hsl(var(--foreground)) !important;
+  }
 }

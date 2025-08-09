@@ -65,7 +65,7 @@ const GPT5ReleaseTracker = () => {
           }),
         }}
       />
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background blog-article">
         <Header />
       <div className="container mx-auto px-4 py-8 pt-20">
         {/* Hero Section */}

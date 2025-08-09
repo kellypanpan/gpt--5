@@ -17,21 +17,21 @@ const Hero = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 backdrop-blur-sm border border-blue-500/30 rounded-full px-6 py-3 mb-8 animate-slide-up">
             <MessageSquare className="h-4 w-4 text-blue-400 animate-glow-pulse" />
-            <span className="text-sm text-blue-200 font-medium">🚀 Trusted by 50,000+ professionals worldwide</span>
+            <span className="text-sm text-blue-200 font-medium">🚀 Advanced AI Tools Platform</span>
           </div>
 
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Experience True</span>
+            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Advanced AI</span>
             <br />
-            <span className="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">GPT-5 Conversation</span>
+            <span className="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">Tools & Chat</span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl leading-relaxed animate-slide-up" style={{ animationDelay: '0.2s' }}>
             Professional AI tools + intelligent conversation, all in one platform. 
             <br className="hidden md:block" />
-            Chat with GPT-5, create content, analyze documents – everything you need to succeed.
+            Advanced AI chat, content creation, and document analysis – everything you need to succeed.
           </p>
 
           {/* CTA Buttons */}
@@ -55,8 +55,8 @@ const Hero = () => {
               <div className="bg-gradient-primary rounded-lg w-12 h-12 flex items-center justify-center mb-4 shadow-glow-sm">
                 <Brain className="h-6 w-6 text-primary-foreground" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">GPT-5 Writing Tool</h3>
-              <p className="text-muted-foreground">Advanced GPT-5 writing capabilities for content creators, blogs, and business communications.</p>
+              <h3 className="text-lg font-semibold mb-2">AI Writing Assistant</h3>
+              <p className="text-muted-foreground">Advanced AI writing capabilities for content creators, blogs, and business communications.</p>
             </div>
 
             <div className="bg-card/10 backdrop-blur-sm border border-border/20 rounded-lg p-6 hover:bg-card/20 transition-smooth">
@@ -78,16 +78,18 @@ const Hero = () => {
 
           {/* Trust Indicator */}
           <div className="mt-16 text-center animate-slide-up" style={{ animationDelay: '0.5s' }}>
-            <div className="flex items-center justify-center space-x-1 text-yellow-400 mb-3">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-current" />
-              ))}
-            </div>
-            <p className="text-lg text-gray-300 font-semibold mb-2">⭐ 4.9/5 from 2,847+ reviews</p>
-            <div className="flex items-center justify-center space-x-8 text-sm text-gray-400">
+            <div className="flex items-center justify-center space-x-8 text-sm text-gray-400 mb-4">
               <div>💳 No credit card required</div>
-              <div>🔒 30-day money-back guarantee</div>
+              <div>🔒 7-day money-back guarantee</div>
               <div>⚡ Instant access</div>
+            </div>
+            
+            {/* Important Disclaimer */}
+            <div className="border-t border-gray-700 pt-6 mt-8">
+              <p className="text-xs text-gray-500 max-w-2xl mx-auto">
+                <strong className="text-gray-400">Important:</strong> This platform is independently operated and not affiliated with OpenAI, Google, Anthropic, or any AI model provider. 
+                All AI technologies are integrated for educational and professional use. All trademarks belong to their respective owners.
+              </p>
             </div>
           </div>
         </div>

@@ -1,65 +1,45 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, Crown, Zap, Star } from "lucide-react";
+import { Check, Crown, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+import { UNIFIED_PRICING_PLANS, PRO_FEATURES } from "@/config/pricing";
 
 const PricingSection = () => {
+  // Free plan features
+  const FREE_FEATURES = [
+    "Limited daily conversations",
+    "Basic GPT-5 access", 
+    "Community support"
+  ];
+
   const plans = [
     {
-      name: "Pro",
-      price: "$15",
-      period: "/month",
-      description: "Perfect for GPT-5 content creators and professionals",
-      credits: "500 credits/month",
-      icon: Zap,
-      features: [
-        "500 credits monthly",
-        "All tools access",
-        "Standard support",
-        "Export capabilities",
-        "Basic analytics",
-      ],
-      cta: "Start Pro Plan",
+      name: "Free",
+      price: "$0",
+      period: "/forever",
+      description: "Perfect for trying out GPT-5 AI",
+      dailyCost: "Free forever",
+      icon: Sparkles,
+      features: FREE_FEATURES,
+      cta: "Get Started Free",
       variant: "outline" as const,
+      href: "/chat"
     },
     {
-      name: "Creator",
-      price: "$39",
-      period: "/month",
-      description: "Best GPT-5 AI platform for content creators and businesses",
-      credits: "Unlimited usage",
+      name: "Pro",
+      price: `$${UNIFIED_PRICING_PLANS.yearly.price}`,
+      period: "/year",
+      description: "Unlimited access to all GPT-5 AI features",
+      dailyCost: `Only $${UNIFIED_PRICING_PLANS.yearly.dailyCost}/day`,
       icon: Crown,
-      features: [
-        "Unlimited credits",
-        "All tools + priority",
-        "Batch processing",
-        "Premium image generation",
-        "Advanced analytics",
-        "Priority support",
-        "API access",
-      ],
-      cta: "Go Creator",
+      features: PRO_FEATURES,
+      cta: "Upgrade to Pro",
       variant: "hero" as const,
       popular: true,
-    },
-    {
-      name: "Lifetime",
-      price: "$299",
-      period: "one-time",
-      description: "Lifetime access to GPT-5 AI - Buy once, use forever",
-      credits: "Lifetime access",
-      icon: Star,
-      features: [
-        "Lifetime unlimited access",
-        "All current & future tools",
-        "No monthly fees",
-        "VIP support",
-        "Beta feature access",
-        "Commercial license",
-      ],
-      cta: "Get Lifetime",
-      variant: "premium" as const,
-    },
+      savings: "Save 70%",
+      href: "/pricing"
+    }
   ];
 
   return (
@@ -67,14 +47,14 @@ const PricingSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-primary bg-clip-text text-transparent">GPT-5 AI Pricing</span>
+            <span className="bg-gradient-primary bg-clip-text text-transparent">Simple, Transparent Pricing</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Choose the perfect plan for your GPT-5 AI needs. All plans include full access to our comprehensive GPT-5 AI suite.
+            Start free, then upgrade to Pro for unlimited access to GPT-5's full potential
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {plans.map((plan, index) => {
             const IconComponent = plan.icon;
             return (
@@ -103,8 +83,13 @@ const PricingSection = () => {
                     <span className="text-muted-foreground">{plan.period}</span>
                   </div>
                   <Badge variant="outline" className="mt-2">
-                    {plan.credits}
+                    {plan.dailyCost}
                   </Badge>
+                  {plan.savings && (
+                    <Badge className="mt-1 bg-green-500 text-white">
+                      {plan.savings}
+                    </Badge>
+                  )}
                 </CardHeader>
 
                 <CardContent>
@@ -117,9 +102,11 @@ const PricingSection = () => {
                     ))}
                   </ul>
 
-                  <Button variant={plan.variant} size="lg" className="w-full">
-                    {plan.cta}
-                  </Button>
+                  <Link to={plan.href}>
+                    <Button variant={plan.variant} size="lg" className="w-full">
+                      {plan.cta}
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             );
@@ -128,11 +115,14 @@ const PricingSection = () => {
 
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-4">
-            All plans include 30-day money-back guarantee
+            🔒 7-day money-back guarantee • Cancel anytime • No hidden fees
           </p>
-          <div className="text-sm text-muted-foreground/60">
-            No free tiers. Professional tools for serious users only.
-          </div>
+          <Link 
+            to="/pricing" 
+            className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+          >
+            View all pricing options (Monthly, Quarterly, Yearly) →
+          </Link>
         </div>
       </div>
     </section>
