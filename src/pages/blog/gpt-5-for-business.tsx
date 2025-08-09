@@ -6,12 +6,13 @@ import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { Sparkles, TrendingUp, DollarSign, Users, Zap, Target, BarChart3, Lightbulb, User, Calendar, ArrowRight } from 'lucide-react';
 import { SEOHead } from '@/components/SEOHead';
+import { PrevNext } from '@/components/PrevNext';
 
 const GPT5ForBusiness = () => {
   const articleMetadata = {
     title: "GPT-5 for Business: Transform Your Operations | Complete Implementation Guide",
     description: "Discover how GPT-5 revolutionizes business operations with 80% time savings, detailed case studies, ROI calculator, and step-by-step implementation guide.",
-    author: "GPT-5 Tools Team",
+    author: "GPT-5 AI Team",
     datePublished: "2025-01-15",
     dateModified: "2025-01-15",
     coverImage: "/images/gpt5-business-cover.jpg",
@@ -23,6 +24,19 @@ const GPT5ForBusiness = () => {
       <SEOHead 
         title={articleMetadata.title}
         description={articleMetadata.description}
+        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog/gpt-5-for-business' : 'https://gpt-5ai.com/blog/gpt-5-for-business'}
+        ogTitle={articleMetadata.title}
+        ogDescription={articleMetadata.description}
+        ogImage={articleMetadata.coverImage}
+        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog/gpt-5-for-business'}
+        ogType="article"
+        twitterTitle={articleMetadata.title}
+        twitterDescription={articleMetadata.description}
+        twitterImage={articleMetadata.coverImage}
+        articlePublishedTime={articleMetadata.datePublished}
+        articleModifiedTime={articleMetadata.dateModified}
+        articleSection="Business Guide"
+        articleTags={["GPT-5", "Business", "Implementation", "ROI"]}
       />
       <script
         type="application/ld+json"
@@ -36,7 +50,7 @@ const GPT5ForBusiness = () => {
             author: { "@type": "Person", name: articleMetadata.author },
             publisher: {
               "@type": "Organization",
-              name: "GPT-5 Tools",
+              name: "GPT-5 AI",
               logo: {
                 "@type": "ImageObject",
                 url: "https://gpt-5ai.com/g5-logo.png",
@@ -44,6 +58,10 @@ const GPT5ForBusiness = () => {
             },
             image: articleMetadata.coverImage,
             description: articleMetadata.description,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": "https://gpt-5ai.com/blog/gpt-5-for-business"
+            }
           }),
         }}
       />
@@ -226,7 +244,7 @@ const GPT5ForBusiness = () => {
                     Start with small-scale implementations in selected departments.
                   </p>
                   <ul className="text-base text-foreground/85 space-y-1">
-                    <li>• Train team members on GPT-5 tools</li>
+                    <li>• Train team members on GPT-5 AI tools</li>
                     <li>• Implement basic automation workflows</li>
                     <li>• Collect feedback and measure results</li>
                   </ul>
@@ -644,6 +662,7 @@ const GPT5ForBusiness = () => {
             </Link>
           </div>
         </div>
+        <PrevNext currentId="gpt-5-for-business" />
       </div>
       </div>
     </>

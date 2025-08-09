@@ -4,23 +4,42 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Sparkles, Trophy, Target, CheckCircle, XCircle, User, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SEOHead } from "@/components/SEOHead";
+import { PrevNext } from "@/components/PrevNext";
+import { getPrevNext } from "@/data/blogPosts";
 
 const GPT5VsClaude3 = () => {
   const articleMetadata = {
     title: "GPT-5 vs Claude 3 Opus: Which AI is Better in 2025? | Complete Comparison",
     description: "Comprehensive comparison of GPT-5 and Claude 3 Opus performance, features, and pricing. Find out which AI model is best for your specific needs in 2025.",
-    author: "GPT-5 Tools Team",
+    author: "GPT-5 AI Team",
     datePublished: "2025-01-15",
     dateModified: "2025-01-15",
     coverImage: "/images/gpt5-vs-claude3-cover.jpg",
     excerpt: "Comprehensive comparison of OpenAI's GPT-5 and Anthropic's Claude 3 Opus. Find out which AI model is best for your specific needs.",
     readTime: "10 min read"
   };
+  const { prev, next } = getPrevNext('gpt-5-vs-claude-3');
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://gpt-5ai.com';
   return (
     <>
       <SEOHead 
         title={articleMetadata.title}
         description={articleMetadata.description}
+        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog/gpt-5-vs-claude-3' : 'https://gpt-5ai.com/blog/gpt-5-vs-claude-3'}
+        ogTitle={articleMetadata.title}
+        ogDescription={articleMetadata.description}
+        ogImage={articleMetadata.coverImage}
+        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog/gpt-5-vs-claude-3'}
+        ogType="article"
+        twitterTitle={articleMetadata.title}
+        twitterDescription={articleMetadata.description}
+        twitterImage={articleMetadata.coverImage}
+        articlePublishedTime={articleMetadata.datePublished}
+        articleModifiedTime={articleMetadata.dateModified}
+        articleSection="Comparison"
+        articleTags={["GPT-5", "Claude 3", "AI models", "Comparison"]}
+        prevUrl={prev ? `${origin}${prev.path}` : undefined}
+        nextUrl={next ? `${origin}${next.path}` : undefined}
       />
       <script
         type="application/ld+json"
@@ -34,7 +53,7 @@ const GPT5VsClaude3 = () => {
             author: { "@type": "Person", name: articleMetadata.author },
             publisher: {
               "@type": "Organization",
-              name: "GPT-5 Tools",
+              name: "GPT-5 AI",
               logo: {
                 "@type": "ImageObject",
                 url: "https://gpt-5ai.com/g5-logo.png",
@@ -42,6 +61,10 @@ const GPT5VsClaude3 = () => {
             },
             image: articleMetadata.coverImage,
             description: articleMetadata.description,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": "https://gpt-5ai.com/blog/gpt-5-vs-claude-3"
+            }
           }),
         }}
       />
@@ -367,7 +390,7 @@ const GPT5VsClaude3 = () => {
                     </Link>
                     <Link to="/tools">
                       <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                        Explore All GPT-5 Tools
+                        Explore All GPT-5 AI
                         <ArrowRight className="h-5 w-5 ml-2" />
                       </Button>
                     </Link>
@@ -473,6 +496,7 @@ const GPT5VsClaude3 = () => {
               </div>
             </section>
           </article>
+          <PrevNext currentId="gpt-5-vs-claude-3" />
         </div>
       </div>
       </div>

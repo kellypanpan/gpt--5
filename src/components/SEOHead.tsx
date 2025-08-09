@@ -8,9 +8,23 @@ interface SEOHeadProps {
   canonical?: string;
   robots?: string; // e.g., "index, follow" or "noindex, nofollow"
   googleSiteVerification?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogUrl?: string;
+  ogType?: 'website' | 'article';
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterImage?: string;
+  articlePublishedTime?: string; // ISO
+  articleModifiedTime?: string; // ISO
+  articleSection?: string;
+  articleTags?: string[];
+  prevUrl?: string;
+  nextUrl?: string;
 }
 
-export const SEOHead = ({ title, description, keywords, structuredData, canonical, robots, googleSiteVerification }: SEOHeadProps) => {
+export const SEOHead = ({ title, description, keywords, structuredData, canonical, robots, googleSiteVerification, ogTitle, ogDescription, ogImage, ogUrl, ogType = 'website', twitterTitle, twitterDescription, twitterImage, articlePublishedTime, articleModifiedTime, articleSection, articleTags, prevUrl, nextUrl }: SEOHeadProps) => {
   useEffect(() => {
     if (typeof document === 'undefined') return;
 
@@ -71,6 +85,74 @@ export const SEOHead = ({ title, description, keywords, structuredData, canonica
       }
     }
 
+    // Prev/Next links
+    const setLinkRel = (rel: 'prev' | 'next', href?: string) => {
+      const selector = `link[rel="${rel}"]`;
+      let el = document.querySelector(selector) as HTMLLinkElement | null;
+      if (href) {
+        if (el) {
+          el.setAttribute('href', href);
+        } else {
+          el = document.createElement('link');
+          el.setAttribute('rel', rel);
+          el.setAttribute('href', href);
+          document.head.appendChild(el);
+        }
+      } else if (el) {
+        document.head.removeChild(el);
+      }
+    };
+    setLinkRel('prev', prevUrl);
+    setLinkRel('next', nextUrl);
+
+    // OpenGraph
+    const setOG = (property: string, content?: string) => {
+      if (!content) return;
+      let tag = document.querySelector(`meta[property="${property}"]`);
+      if (tag) {
+        tag.setAttribute('content', content);
+      } else {
+        tag = document.createElement('meta');
+        tag.setAttribute('property', property);
+        tag.setAttribute('content', content);
+        document.head.appendChild(tag);
+      }
+    };
+    setOG('og:title', ogTitle || title || undefined);
+    setOG('og:description', ogDescription || description || undefined);
+    setOG('og:image', ogImage);
+    setOG('og:url', ogUrl || canonical);
+    setOG('og:type', ogType);
+
+    // Article-specific OG
+    if (ogType === 'article') {
+      setOG('article:published_time', articlePublishedTime);
+      setOG('article:modified_time', articleModifiedTime || articlePublishedTime);
+      if (articleSection) setOG('article:section', articleSection);
+      if (articleTags && articleTags.length) {
+        document.querySelectorAll('meta[property="article:tag"]').forEach((el) => el.parentElement?.removeChild(el));
+        articleTags.forEach((tag) => setOG('article:tag', tag));
+      }
+    }
+
+    // Twitter
+    const setTwitter = (name: string, content?: string) => {
+      if (!content) return;
+      let tag = document.querySelector(`meta[name="${name}"]`);
+      if (tag) {
+        tag.setAttribute('content', content);
+      } else {
+        tag = document.createElement('meta');
+        tag.setAttribute('name', name);
+        tag.setAttribute('content', content);
+        document.head.appendChild(tag);
+      }
+    };
+    setTwitter('twitter:card', 'summary_large_image');
+    setTwitter('twitter:title', twitterTitle || ogTitle || title || undefined);
+    setTwitter('twitter:description', twitterDescription || ogDescription || description || undefined);
+    setTwitter('twitter:image', twitterImage || ogImage);
+
     // Optional Google Search Console verification override
     if (googleSiteVerification) {
       let metaGSC = document.querySelector('meta[name="google-site-verification"]');
@@ -92,13 +174,13 @@ export const SEOHead = ({ title, description, keywords, structuredData, canonica
       script.text = JSON.stringify(structuredData);
       document.head.appendChild(script);
     }
-
-    return () => {
+      
+      return () => {
       if (script) {
         document.head.removeChild(script);
       }
-    };
-  }, [title, description, keywords, structuredData, canonical, robots, googleSiteVerification]);
+      };
+  }, [title, description, keywords, structuredData, canonical, robots, googleSiteVerification, ogTitle, ogDescription, ogImage, ogUrl, ogType, twitterTitle, twitterDescription, twitterImage, articlePublishedTime, articleModifiedTime, articleSection, articleTags, prevUrl, nextUrl]);
 
   return null;
 };

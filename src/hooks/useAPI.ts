@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { toast } from '@/components/ui/use-toast';
-import { useAuthToken } from '@/lib/clerk';
 import { useCredits } from './useCredits';
 
 interface APIResponse<T> {
@@ -50,7 +49,7 @@ export function useWriter() {
     error: null
   });
 
-  const getToken = useAuthToken();
+  // Auth token not required for current endpoints
   const { creditsData, useCredits: deductCredits, refetch: refetchCredits } = useCredits();
 
   const generateContent = async (request: WriterRequest) => {
@@ -111,7 +110,7 @@ export function useScriptGenerator() {
     error: null
   });
 
-  const getToken = useAuthToken();
+  // Auth token not required for current endpoints
 
   const generateScript = async (request: ScriptRequest) => {
     setState(prev => ({ ...prev, loading: true, error: null }));
@@ -159,7 +158,7 @@ export function useImageGenerator() {
     error: null
   });
 
-  const getToken = useAuthToken();
+  // Auth token not required for current endpoints
 
   const generateImage = async (request: ImageRequest) => {
     setState(prev => ({ ...prev, loading: true, error: null }));
@@ -207,7 +206,7 @@ export function usePDFAnalyzer() {
     error: null
   });
 
-  const getToken = useAuthToken();
+  // Auth token not required for current endpoints
 
   const analyzePDF = async (request: PDFRequest) => {
     setState(prev => ({ ...prev, loading: true, error: null }));
@@ -255,7 +254,7 @@ export function useAgent() {
     error: null
   });
 
-  const getToken = useAuthToken();
+  // Auth token not required for current endpoints
 
   const sendMessage = async (request: AgentRequest) => {
     setState(prev => ({ ...prev, loading: true, error: null }));

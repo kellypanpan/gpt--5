@@ -5,8 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { config } from "@/lib/config";
-import { ClerkProviderWrapper } from "@/lib/clerk";
 import { I18nProvider } from "@/components/I18nProvider";
+import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Writer from "@/pages/tools/Writer";
@@ -19,6 +19,7 @@ import Dashboard from "@/pages/Dashboard";
 import TestSubscription from "@/pages/TestSubscription";
 import TestPage from "./pages/tools/TestPage";
 import ToolsIndex from "./pages/tools/index";
+import Chat from "./pages/Chat";
 
 // Blog pages
 import BlogIndex from "./pages/blog/index";
@@ -32,7 +33,13 @@ import PromptEngineeringGuide from "./pages/blog/prompt-engineering-guide";
 import OpenSourceAIModelsComparison from "./pages/blog/open-source-ai-models-comparison";
 import GPT5IndustryGuides from "./pages/blog/gpt-5-industry-guides";
 import GPT5AIEthicsSafety from "./pages/blog/gpt-5-ai-ethics-safety";
+import ChatGPT5Prompts from "./pages/blog/50-best-chatgpt5-prompts";
+import ReduceChatGPT5Costs from "./pages/blog/reduce-chatgpt5-api-costs";
 import Sitemap from "./pages/Sitemap";
+import CanGPT5GenerateVideos from "./pages/blog/can-gpt-5-generate-videos";
+import AuthCallback from "./pages/AuthCallback";
+import ErrorPage from "./pages/ErrorPage";
+import GPT5UseCases from "./pages/blog/gpt-5-use-cases";
 
 // Use cases pages
 import UseCases from "./pages/use-cases/index";
@@ -44,36 +51,36 @@ config.validate();
 
 const App = () => (
   <I18nProvider>
-    <ClerkProviderWrapper>
+    <AuthProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <Toaster />
           <Sonner />
           <BrowserRouter>
-          <div className="min-h-screen bg-background">
-            <Header />
-            <Routes>
+            <div className="min-h-screen bg-background">
+              <Header />
+              <Routes>
+            {/* Home - Marketing page */}
             <Route path="/" element={<Index />} />
             
-            {/* Tools Routes */}
+            {/* Chat interface */}
+            <Route path="/chat" element={<Chat />} />
+            
+            {/* Tools */}
             <Route path="/tools" element={<ToolsIndex />} />
-            <Route path="/tools/test" element={<TestPage />} />
             <Route path="/tools/writer" element={<Writer />} />
-            <Route path="/tools/pdf" element={<PDFAnalyzer />} />
             <Route path="/tools/script" element={<ScriptGenerator />} />
             <Route path="/tools/image" element={<ImageGenerator />} />
+            <Route path="/tools/pdf" element={<PDFAnalyzer />} />
             <Route path="/tools/prompts" element={<PromptLab />} />
             
-            {/* Pricing Route */}
+            {/* Keep pricing and other essential pages */}
             <Route path="/pricing" element={<Pricing />} />
-
-            {/* Dashboard Route */}
             <Route path="/dashboard" element={<Dashboard />} />
-
-            {/* Test Route */}
-            <Route path="/test-subscription" element={<TestSubscription />} />
-
-            {/* Blog Routes */}
+            <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="/error" element={<ErrorPage />} />
+            
+            {/* Blog Routes - keep for SEO */}
             <Route path="/blog" element={<BlogIndex />} />
             <Route path="/blog/what-is-gpt-5" element={<WhatIsGPT5 />} />
             <Route path="/blog/gpt-5-vs-claude-3" element={<GPT5VsClaude3 />} />
@@ -85,6 +92,10 @@ const App = () => (
             <Route path="/blog/open-source-ai-models-comparison" element={<OpenSourceAIModelsComparison />} />
             <Route path="/blog/gpt-5-industry-guides" element={<GPT5IndustryGuides />} />
             <Route path="/blog/gpt-5-ai-ethics-safety" element={<GPT5AIEthicsSafety />} />
+            <Route path="/blog/50-best-chatgpt5-prompts" element={<ChatGPT5Prompts />} />
+            <Route path="/blog/reduce-chatgpt5-api-costs" element={<ReduceChatGPT5Costs />} />
+            <Route path="/blog/can-gpt-5-generate-videos" element={<CanGPT5GenerateVideos />} />
+            <Route path="/blog/gpt-5-use-cases" element={<GPT5UseCases />} />
             
             {/* Sitemap Route */}
             <Route path="/sitemap" element={<Sitemap />} />
@@ -99,7 +110,7 @@ const App = () => (
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
-    </ClerkProviderWrapper>
+    </AuthProvider>
   </I18nProvider>
 );
 

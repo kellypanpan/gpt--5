@@ -1,214 +1,130 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, Sparkles, Zap, Crown } from "lucide-react";
-import { Header } from "@/components/Header";
+import { Check, Sparkles, Crown, ArrowRight, X } from "lucide-react";
 import { SEOHead } from "@/components/SEOHead";
-import { useAuthState } from "@/lib/clerk";
+import { useAuth } from "@/contexts/AuthContext";
+import Layout from "@/components/Layout";
+import { useSearchParams } from "react-router-dom";
+import { UNIFIED_PRICING_PLANS, PRO_FEATURES } from "@/config/pricing";
 
 const Pricing = () => {
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
-  const { isSignedIn } = useAuthState();
+  const { isAuthenticated: isSignedIn } = useAuth();
+  const [selectedPlan, setSelectedPlan] = useState<keyof typeof UNIFIED_PRICING_PLANS>('yearly');
+  const [searchParams] = useSearchParams();
+  const [showCancelMessage, setShowCancelMessage] = useState(false);
 
-  const plans = [
-    {
-      name: "Starter",
-      monthlyPrice: 19.99,
-      yearlyPrice: 191.88,
-      credits: 100,
-      features: [
-        "100 credits per month",
-        "AI Writer Tool",
-        "PDF Analysis Tool", 
-        "Script Generator",
-        "Email Support"
-      ],
-      popular: false
-    },
-    {
-      name: "Pro",
-      monthlyPrice: 39.99,
-      yearlyPrice: 383.88,
-      credits: 300,
-      features: [
-        "300 credits per month",
-        "All Starter features",
-        "Image Generator",
-        "Advanced AI Agent",
-        "Priority Support",
-        "API Access"
-      ],
-      popular: true
-    },
-    {
-      name: "Business",
-      monthlyPrice: 79.99,
-      yearlyPrice: 767.88,
-      credits: 800,
-      features: [
-        "800 credits per month",
-        "All Pro features",
-        "Custom AI Models",
-        "White-label Solutions",
-        "Dedicated Support",
-        "Team Management"
-      ],
-      popular: false
+  // Check for payment cancellation
+  useEffect(() => {
+    const paymentStatus = searchParams.get('payment');
+    
+    if (paymentStatus === 'cancelled') {
+      setShowCancelMessage(true);
+      
+      // Auto-hide cancel message after 5 seconds
+      setTimeout(() => {
+        setShowCancelMessage(false);
+      }, 5000);
     }
+  }, [searchParams]);
+
+  // Free plan features
+  const FREE_FEATURES = [
+    "Limited daily conversations",
+    "Basic GPT-5 access",
+    "Community support"
   ];
 
-  const handleSubscribe = async (planName: string) => {
+  const handleSubscribe = async (planKey: keyof typeof UNIFIED_PRICING_PLANS) => {
     if (!isSignedIn) {
-      // 重定向到登录页面
-      window.location.href = '/sign-in';
+      // Show auth modal or redirect to login
+      window.location.href = '/chat'; // This will trigger auth modal
       return;
     }
 
+    const plan = UNIFIED_PRICING_PLANS[planKey];
+    
     try {
-      const planType = `${planName.toLowerCase()}_${billingCycle}`;
-      const response = await fetch('/api/payment/create-order', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          planType,
-          returnUrl: `${window.location.origin}/dashboard`
-        })
-      });
-
-      const data = await response.json();
-      
-      if (data.success && data.paymentUrl) {
-        window.location.href = data.paymentUrl;
+      // TODO: Integrate with Creem checkout
+      if (plan.creemUrl) {
+        window.location.href = plan.creemUrl;
       } else {
-        throw new Error(data.error || 'Failed to create order');
+        // Fallback - redirect to existing upgrade flow
+        window.location.href = '/dashboard';
       }
     } catch (error) {
       console.error('Subscription error:', error);
-      alert('Failed to create subscription. Please try again.');
-    }
-  };
-
-  const handleBuyCredits = async () => {
-    if (!isSignedIn) {
-      window.location.href = '/sign-in';
-      return;
-    }
-
-    try {
-      const response = await fetch('/api/payment/buy-credits', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          amount: 50, // 默认购买50个credits
-          returnUrl: `${window.location.origin}/dashboard`
-        })
-      });
-
-      const data = await response.json();
-      
-      if (data.success && data.paymentUrl) {
-        window.location.href = data.paymentUrl;
-      } else {
-        throw new Error(data.error || 'Failed to create order');
-      }
-    } catch (error) {
-      console.error('Buy credits error:', error);
-      alert('Failed to create credits order. Please try again.');
+      alert('Failed to start subscription. Please try again.');
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+    <Layout>
       <SEOHead 
-        title="GPT-5 Tools Pricing - Choose Your Plan"
-        description="Choose the perfect GPT-5 tools subscription plan. Monthly and yearly options with credits-based pricing."
-        keywords="gpt-5 pricing, gpt-5 subscription, ai tools pricing, gpt-5 credits"
+        title="GPT-5 AI Pricing - Choose Your Plan"
+        description="Choose between Free and Pro plans for GPT-5 AI. Get unlimited conversations and premium features starting at just $0.19/day."
+        keywords="gpt-5 pricing, gpt-5 subscription, ai tools pricing, gpt-5 pro plan"
       />
-      <Header />
-      
-      <div className="container mx-auto px-4 py-8 pt-20">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Crown className="h-8 w-8 text-primary" />
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              Choose Your Plan
-            </h1>
-          </div>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Get access to powerful GPT-5 AI tools with our flexible subscription plans
-          </p>
-        </div>
+      <div className="bg-gradient-to-br from-background via-background to-muted/20">
+        <div className="container mx-auto px-4 py-8 pt-20">
+          {/* Payment Cancelled Banner */}
+          {showCancelMessage && (
+            <div className="mb-6 p-4 bg-orange-50 border border-orange-200 rounded-lg">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <X className="h-5 w-5 text-orange-600" />
+                  <div>
+                    <h3 className="font-semibold text-orange-800">Payment Cancelled</h3>
+                    <p className="text-orange-700">No worries! You can try again anytime.</p>
+                  </div>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowCancelMessage(false)}
+                  className="text-orange-600 hover:text-orange-800"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          )}
 
-        {/* Billing Toggle */}
-        <div className="flex justify-center mb-8">
-          <div className="bg-muted rounded-lg p-1 flex">
-            <Button
-              variant={billingCycle === 'monthly' ? 'default' : 'ghost'}
-              size="sm"
-              onClick={() => setBillingCycle('monthly')}
-            >
-              Monthly
-            </Button>
-            <Button
-              variant={billingCycle === 'yearly' ? 'default' : 'ghost'}
-              size="sm"
-              onClick={() => setBillingCycle('yearly')}
-            >
-              Yearly
-              <Badge variant="secondary" className="ml-2 text-xs">
-                Save 20%
-              </Badge>
-            </Button>
+          {/* Header */}
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Crown className="h-8 w-8 text-primary" />
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                Simple, Transparent Pricing
+              </h1>
+            </div>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Start free, then upgrade to Pro for unlimited access to GPT-5's full potential
+            </p>
           </div>
-        </div>
 
-        {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {plans.map((plan, index) => (
-            <Card 
-              key={index} 
-              className={`relative transition-all duration-300 hover:shadow-lg ${
-                plan.popular 
-                  ? 'border-primary/50 shadow-lg scale-105' 
-                  : 'border-border/50'
-              }`}
-            >
-              {plan.popular && (
-                <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-primary text-primary-foreground border-0">
-                  Most Popular
-                </Badge>
-              )}
-              
+          {/* Free vs Pro Comparison */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+            {/* Free Plan */}
+            <Card className="relative">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  {plan.name}
-                  {plan.name === 'Pro' && <Sparkles className="h-4 w-4 text-primary" />}
-                  {plan.name === 'Business' && <Crown className="h-4 w-4 text-primary" />}
+                  <Sparkles className="h-5 w-5 text-gray-600" />
+                  Free Plan
                 </CardTitle>
-                <CardDescription>
-                  {plan.credits} credits per month
-                </CardDescription>
+                <CardDescription>Perfect for trying out GPT-5 AI</CardDescription>
               </CardHeader>
               
               <CardContent className="space-y-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold">
-                    ${billingCycle === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice}
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    per {billingCycle === 'monthly' ? 'month' : 'year'}
-                  </div>
+                  <div className="text-4xl font-bold text-gray-900">$0</div>
+                  <div className="text-sm text-muted-foreground">forever</div>
                 </div>
 
                 <div className="space-y-3">
-                  {plan.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-center gap-2">
+                  {FREE_FEATURES.map((feature, index) => (
+                    <div key={index} className="flex items-center gap-2">
                       <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
                       <span className="text-sm">{feature}</span>
                     </div>
@@ -217,37 +133,181 @@ const Pricing = () => {
 
                 <Button 
                   className="w-full" 
-                  variant={plan.popular ? 'default' : 'outline'}
-                  onClick={() => handleSubscribe(plan.name)}
+                  variant="outline"
+                  onClick={() => window.location.href = '/chat'}
                 >
-                  <Zap className="h-4 w-4 mr-2" />
-                  Subscribe Now
+                  Get Started Free
                 </Button>
               </CardContent>
             </Card>
-          ))}
-        </div>
 
-        {/* Additional Info */}
-        <div className="text-center mt-12 space-y-4">
-          <div className="bg-muted/50 rounded-lg p-6 max-w-2xl mx-auto">
-            <h3 className="text-lg font-semibold mb-2">Additional Credits</h3>
-            <p className="text-muted-foreground mb-4">
-              Need more credits? Purchase additional credits at $0.30 per credit.
-            </p>
-            <Button variant="outline" size="sm" onClick={handleBuyCredits}>
-              Buy Extra Credits
-            </Button>
+            {/* Pro Plan */}
+            <Card className="relative border-primary/50 shadow-lg">
+              <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-600 to-purple-600 text-white border-0">
+                Most Popular
+              </Badge>
+              
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Crown className="h-5 w-5 text-primary" />
+                  Pro Plan
+                </CardTitle>
+                <CardDescription>Unlimited access to everything</CardDescription>
+              </CardHeader>
+              
+              <CardContent className="space-y-6">
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-primary">
+                    ${UNIFIED_PRICING_PLANS[selectedPlan].price}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {UNIFIED_PRICING_PLANS[selectedPlan].period} • Only ${UNIFIED_PRICING_PLANS[selectedPlan].dailyCost}/day
+                  </div>
+                  {selectedPlan === 'yearly' && (
+                    <Badge className="mt-2 bg-green-100 text-green-800">
+                      Save 70% vs Monthly
+                    </Badge>
+                  )}
+                </div>
+
+                <div className="space-y-3">
+                  {PRO_FEATURES.map((feature, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
+                      <span className="text-sm">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <Button 
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" 
+                  onClick={() => handleSubscribe(selectedPlan)}
+                >
+                  <Crown className="h-4 w-4 mr-2" />
+                  Upgrade to Pro
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Button>
+              </CardContent>
+            </Card>
           </div>
-          
-          <p className="text-sm text-muted-foreground">
-            All plans include access to our full suite of GPT-5 AI tools. 
-            Credits are used based on tool complexity and usage.
-          </p>
+
+          {/* Pro Plan Options */}
+          <div className="max-w-3xl mx-auto mb-16">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold mb-4">Choose Your Pro Plan Duration</h2>
+              <p className="text-muted-foreground">Longer plans offer better value per day</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {Object.entries(UNIFIED_PRICING_PLANS).map(([planKey, plan]) => (
+                <Card 
+                  key={planKey}
+                  className={`cursor-pointer transition-all duration-200 ${
+                    selectedPlan === planKey 
+                      ? 'border-primary bg-primary/5 shadow-md' 
+                      : 'border-border hover:border-primary/30'
+                  }`}
+                  onClick={() => setSelectedPlan(planKey as keyof typeof UNIFIED_PRICING_PLANS)}
+                >
+                  <CardContent className="p-6 text-center relative">
+                    {plan.popular && (
+                      <Badge className="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white text-xs">
+                        Most Popular
+                      </Badge>
+                    )}
+                    {plan.savings && (
+                      <Badge className="absolute -top-2 right-2 bg-green-500 text-white text-xs">
+                        {plan.savings}
+                      </Badge>
+                    )}
+                    
+                    <div className="mb-4">
+                      <div className={`w-6 h-6 rounded-full border-2 mx-auto mb-3 ${
+                        selectedPlan === planKey 
+                          ? 'border-primary bg-primary' 
+                          : 'border-gray-300'
+                      }`}>
+                        {selectedPlan === planKey && (
+                          <div className="w-full h-full rounded-full bg-primary flex items-center justify-center">
+                            <div className="w-2 h-2 bg-white rounded-full"></div>
+                          </div>
+                        )}
+                      </div>
+                      
+                      <h3 className="font-semibold text-lg">{plan.period}</h3>
+                      <p className="text-2xl font-bold text-primary">${plan.price}</p>
+                      <p className="text-sm text-muted-foreground">
+                        ${plan.dailyCost}/day
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+            
+            <div className="space-y-6">
+              <div className="bg-muted/50 rounded-lg p-6">
+                <h3 className="font-semibold mb-2">What's the difference between Free and Pro?</h3>
+                <p className="text-muted-foreground">
+                  Free users get limited daily conversations with GPT-5. Pro users get unlimited conversations, 
+                  all premium AI tools, priority support, and advanced features.
+                </p>
+              </div>
+              
+              <div className="bg-muted/50 rounded-lg p-6">
+                <h3 className="font-semibold mb-2">Can I cancel anytime?</h3>
+                <p className="text-muted-foreground">
+                  Yes! You can cancel your Pro subscription at any time. No long-term commitments required.
+                </p>
+              </div>
+              
+              <div className="bg-muted/50 rounded-lg p-6">
+                <h3 className="font-semibold mb-2">Do you offer refunds?</h3>
+                <p className="text-muted-foreground">
+                  We offer a 7-day money-back guarantee for all Pro plans. If you're not satisfied, 
+                  we'll refund your payment in full.
+                </p>
+              </div>
+
+              <div className="bg-muted/50 rounded-lg p-6">
+                <h3 className="font-semibold mb-2">Why choose yearly over monthly?</h3>
+                <p className="text-muted-foreground">
+                  The yearly plan costs only $0.19/day compared to $0.67/day for monthly - that's 70% savings! 
+                  It's less than a cup of coffee per day for unlimited GPT-5 access.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Trust Signals */}
+          <div className="text-center mt-16 pt-8 border-t border-border">
+            <div className="flex justify-center items-center space-x-8 mb-4">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">50K+</div>
+                <div className="text-sm text-muted-foreground">Active Users</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">1M+</div>
+                <div className="text-sm text-muted-foreground">Conversations</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">95%</div>
+                <div className="text-sm text-muted-foreground">Satisfaction</div>
+              </div>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              🔒 Secure payments • 7-day money-back guarantee • Cancel anytime
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
-export default Pricing; 
+export default Pricing;

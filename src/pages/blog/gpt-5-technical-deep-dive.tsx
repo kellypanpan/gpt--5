@@ -20,12 +20,13 @@ import {
   BarChart3
 } from 'lucide-react';
 import { SEOHead } from '@/components/SEOHead';
+import { PrevNext } from '@/components/PrevNext';
 
 const GPT5TechnicalDeepDive = () => {
   const articleMetadata = {
     title: "GPT-5 Technical Deep Dive: Unified Architecture & Multimodal Capabilities | 2025",
     description: "In-depth technical analysis of GPT-5's unified architecture, Mixture-of-Experts design, 256k context window, and advanced multimodal capabilities with performance benchmarks.",
-    author: "GPT-5 Tools Team",
+    author: "GPT-5 AI Team",
     datePublished: "2025-01-15",
     dateModified: "2025-01-15",
     coverImage: "/images/gpt5-technical-cover.jpg",
@@ -38,6 +39,19 @@ const GPT5TechnicalDeepDive = () => {
       <SEOHead 
         title={articleMetadata.title}
         description={articleMetadata.description}
+        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog/gpt-5-technical-deep-dive' : 'https://gpt-5ai.com/blog/gpt-5-technical-deep-dive'}
+        ogTitle={articleMetadata.title}
+        ogDescription={articleMetadata.description}
+        ogImage={articleMetadata.coverImage}
+        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog/gpt-5-technical-deep-dive'}
+        ogType="article"
+        twitterTitle={articleMetadata.title}
+        twitterDescription={articleMetadata.description}
+        twitterImage={articleMetadata.coverImage}
+        articlePublishedTime={articleMetadata.datePublished}
+        articleModifiedTime={articleMetadata.dateModified}
+        articleSection="Technical Analysis"
+        articleTags={["GPT-5", "Architecture", "MoE", "Multimodal"]}
       />
       <script
         type="application/ld+json"
@@ -51,7 +65,7 @@ const GPT5TechnicalDeepDive = () => {
             author: { "@type": "Person", name: articleMetadata.author },
             publisher: {
               "@type": "Organization",
-              name: "GPT-5 Tools",
+              name: "GPT-5 AI",
               logo: {
                 "@type": "ImageObject",
                 url: "https://gpt-5ai.com/g5-logo.png",
@@ -59,6 +73,10 @@ const GPT5TechnicalDeepDive = () => {
             },
             image: articleMetadata.coverImage,
             description: articleMetadata.description,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": "https://gpt-5ai.com/blog/gpt-5-technical-deep-dive"
+            }
           }),
         }}
       />
@@ -624,7 +642,7 @@ const GPT5TechnicalDeepDive = () => {
                 <Link to="/tools/writer">
                   <Button size="lg" className="w-full sm:w-auto">
                     <Sparkles className="h-4 w-4 mr-2" />
-                    Try GPT-5 Tools
+                    Try GPT-5 AI
                   </Button>
                 </Link>
                 <Link to="/tools">
@@ -636,6 +654,7 @@ const GPT5TechnicalDeepDive = () => {
               </div>
             </div>
           </div>
+          <PrevNext currentId="gpt-5-technical-deep-dive" />
         </div>
       </div>
     </>

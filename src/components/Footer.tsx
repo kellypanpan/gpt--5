@@ -13,14 +13,14 @@ const Footer = () => {
                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-sm"></div>
               </div>
               <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                GPT-5 Tools
+                GPT-5 AI
               </span>
             </div>
             <p className="text-muted-foreground mb-4 max-w-md">
-              Discover powerful GPT-5 AI tools for writing, image generation, and content creation. Best GPT-5 tools for content creators and businesses.
+              Discover powerful GPT-5 AI tools for writing, image generation, and content creation. Best GPT-5 AI platform for content creators and businesses.
             </p>
             <div className="text-sm text-muted-foreground/60">
-              Professional GPT-5 tools for creators and businesses worldwide.
+              Professional GPT-5 AI for creators and businesses worldwide.
             </div>
           </div>
 
@@ -53,7 +53,7 @@ const Footer = () => {
 
         <div className="border-t border-border/20 mt-8 pt-8 text-center">
           <p className="text-muted-foreground text-sm">
-            © 2025 GPT-5 Tools. All rights reserved. Best GPT-5 tools for content creators and professionals worldwide.
+            © 2025 GPT-5 AI. All rights reserved. Best GPT-5 AI platform for content creators and professionals worldwide.
           </p>
         </div>
       </div>

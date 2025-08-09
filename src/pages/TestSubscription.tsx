@@ -1,17 +1,16 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Header } from "@/components/Header";
 import { SEOHead } from "@/components/SEOHead";
-import { useAuthState } from "@/lib/clerk";
+import { useAuth } from "@/contexts/AuthContext";
 import { useCredits } from "@/hooks/useCredits";
 import { CreditsDisplay } from "@/components/CreditsDisplay";
 import { Badge } from "@/components/ui/badge";
 import { Coins, TestTube } from "lucide-react";
 
 const TestSubscription = () => {
-  const { isSignedIn } = useAuthState();
-  const { creditsData, loading, useCredits: deductCredits, buyCredits } = useCredits();
+  const { isAuthenticated } = useAuth();
+  const { creditsData, loading, useCredits: deductCredits } = useCredits();
   const [testResult, setTestResult] = useState<string>("");
 
   const testUseCredits = async () => {
@@ -23,23 +22,13 @@ const TestSubscription = () => {
     }
   };
 
-  const testBuyCredits = async () => {
-    try {
-      await buyCredits(10);
-      setTestResult("Redirecting to payment...");
-    } catch (error) {
-      setTestResult(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
-  };
-
-  if (!isSignedIn) {
+  if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
         <SEOHead 
-          title="Subscription Test - GPT-5 Tools"
+          title="Subscription Test - GPT-5 AI"
           description="Test the subscription system"
         />
-        <Header />
         <div className="container mx-auto px-4 py-8 pt-20">
           <div className="text-center">
             <h1 className="text-2xl font-bold mb-4">Please sign in to test subscription</h1>
@@ -52,11 +41,9 @@ const TestSubscription = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
       <SEOHead 
-        title="Subscription Test - GPT-5 Tools"
+        title="Subscription Test - GPT-5 AI"
         description="Test the subscription system"
       />
-      <Header />
-      
       <div className="container mx-auto px-4 py-8 pt-20">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2 flex items-center gap-2">
@@ -64,7 +51,7 @@ const TestSubscription = () => {
             Subscription System Test
           </h1>
           <p className="text-muted-foreground">
-            Test the credits and subscription functionality
+            Test the credits functionality
           </p>
         </div>
 
@@ -92,13 +79,6 @@ const TestSubscription = () => {
                   >
                     Test Use Credits (1 credit)
                   </Button>
-                  <Button 
-                    onClick={testBuyCredits}
-                    variant="outline"
-                    className="w-full"
-                  >
-                    Test Buy Credits (10 credits)
-                  </Button>
                 </div>
 
                 {testResult && (
@@ -114,7 +94,7 @@ const TestSubscription = () => {
               <CardHeader>
                 <CardTitle>Current Status</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
+              <CardContent className="space-y-2">
                 {loading ? (
                   <div className="animate-pulse space-y-2">
                     <div className="h-4 bg-muted rounded w-3/4"></div>
@@ -127,19 +107,9 @@ const TestSubscription = () => {
                       <Badge variant="outline">{creditsData.currentCredits}</Badge>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-sm">Total Credits:</span>
-                      <Badge variant="outline">{creditsData.totalCredits}</Badge>
+                      <span className="text-sm">Plan:</span>
+                      <Badge variant="outline" className="capitalize">{creditsData.plan}</Badge>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-sm">Used Credits:</span>
-                      <Badge variant="outline">{creditsData.usedCredits}</Badge>
-                    </div>
-                    {creditsData.subscription && (
-                      <div className="flex justify-between">
-                        <span className="text-sm">Subscription:</span>
-                        <Badge variant="secondary">{creditsData.subscription.plan}</Badge>
-                      </div>
-                    )}
                   </div>
                 ) : (
                   <p className="text-sm text-muted-foreground">No data available</p>

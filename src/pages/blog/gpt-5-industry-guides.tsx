@@ -27,12 +27,13 @@ import {
   Lightbulb
 } from 'lucide-react';
 import { SEOHead } from '@/components/SEOHead';
+import { PrevNext } from '@/components/PrevNext';
 
 const GPT5IndustryGuides = () => {
   const articleMetadata = {
     title: "GPT-5 Industry Implementation Guides: Education, Finance, Healthcare & Marketing | 2025",
     description: "Complete implementation guides for GPT-5 in specific industries. Learn best practices, use cases, and ROI strategies for education, finance, healthcare, and marketing sectors.",
-    author: "GPT-5 Tools Team",
+    author: "GPT-5 AI Team",
     datePublished: "2025-01-15",
     dateModified: "2025-01-15",
     coverImage: "/images/gpt5-industry-guides-cover.jpg",
@@ -45,6 +46,19 @@ const GPT5IndustryGuides = () => {
       <SEOHead 
         title={articleMetadata.title}
         description={articleMetadata.description}
+        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog/gpt-5-industry-guides' : 'https://gpt-5ai.com/blog/gpt-5-industry-guides'}
+        ogTitle={articleMetadata.title}
+        ogDescription={articleMetadata.description}
+        ogImage={articleMetadata.coverImage}
+        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog/gpt-5-industry-guides'}
+        ogType="article"
+        twitterTitle={articleMetadata.title}
+        twitterDescription={articleMetadata.description}
+        twitterImage={articleMetadata.coverImage}
+        articlePublishedTime={articleMetadata.datePublished}
+        articleModifiedTime={articleMetadata.dateModified}
+        articleSection="Industry Guide"
+        articleTags={["GPT-5", "Industry", "Education", "Finance", "Healthcare", "Marketing"]}
       />
       <script
         type="application/ld+json"
@@ -58,7 +72,7 @@ const GPT5IndustryGuides = () => {
             author: { "@type": "Person", name: articleMetadata.author },
             publisher: {
               "@type": "Organization",
-              name: "GPT-5 Tools",
+              name: "GPT-5 AI",
               logo: {
                 "@type": "ImageObject",
                 url: "https://gpt-5ai.com/g5-logo.png",
@@ -66,6 +80,10 @@ const GPT5IndustryGuides = () => {
             },
             image: articleMetadata.coverImage,
             description: articleMetadata.description,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": "https://gpt-5ai.com/blog/gpt-5-industry-guides"
+            }
           }),
         }}
       />
@@ -738,6 +756,7 @@ const GPT5IndustryGuides = () => {
               </div>
             </div>
           </div>
+          <PrevNext currentId="gpt-5-industry-guides" />
         </div>
       </div>
     </>

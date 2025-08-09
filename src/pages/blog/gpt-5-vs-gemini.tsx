@@ -6,12 +6,13 @@ import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { Sparkles, Zap, Brain, DollarSign, Clock, CheckCircle, XCircle, User, Calendar } from 'lucide-react';
 import { SEOHead } from '@/components/SEOHead';
+import { PrevNext } from '@/components/PrevNext';
 
 const GPT5VsGemini = () => {
   const articleMetadata = {
     title: "GPT-5 vs Gemini 1.5: Battle of AI Titans 2025 | Complete Comparison",
     description: "Comprehensive comparison of GPT-5 and Google's Gemini 1.5. Compare features, performance, pricing and find the best AI model for your needs in 2025.",
-    author: "GPT-5 Tools Team",
+    author: "GPT-5 AI Team",
     datePublished: "2025-01-15",
     dateModified: "2025-01-15",
     coverImage: "/images/gpt5-vs-gemini-cover.jpg",
@@ -23,6 +24,19 @@ const GPT5VsGemini = () => {
       <SEOHead 
         title={articleMetadata.title}
         description={articleMetadata.description}
+        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog/gpt-5-vs-gemini' : 'https://gpt-5ai.com/blog/gpt-5-vs-gemini'}
+        ogTitle={articleMetadata.title}
+        ogDescription={articleMetadata.description}
+        ogImage={articleMetadata.coverImage}
+        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog/gpt-5-vs-gemini'}
+        ogType="article"
+        twitterTitle={articleMetadata.title}
+        twitterDescription={articleMetadata.description}
+        twitterImage={articleMetadata.coverImage}
+        articlePublishedTime={articleMetadata.datePublished}
+        articleModifiedTime={articleMetadata.dateModified}
+        articleSection="Comparison"
+        articleTags={["GPT-5", "Gemini", "AI models", "Comparison"]}
       />
       <script
         type="application/ld+json"
@@ -36,7 +50,7 @@ const GPT5VsGemini = () => {
             author: { "@type": "Person", name: articleMetadata.author },
             publisher: {
               "@type": "Organization",
-              name: "GPT-5 Tools",
+              name: "GPT-5 AI",
               logo: {
                 "@type": "ImageObject",
                 url: "https://gpt-5ai.com/g5-logo.png",
@@ -44,6 +58,10 @@ const GPT5VsGemini = () => {
             },
             image: articleMetadata.coverImage,
             description: articleMetadata.description,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": "https://gpt-5ai.com/blog/gpt-5-vs-gemini"
+            }
           }),
         }}
       />
@@ -287,6 +305,7 @@ const GPT5VsGemini = () => {
             </Link>
           </div>
         </div>
+        <PrevNext currentId="gpt-5-vs-gemini" />
       </div>
       </div>
     </>

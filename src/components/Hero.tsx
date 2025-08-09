@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Zap, Brain, Sparkles } from "lucide-react";
+import { ArrowRight, Zap, Brain, Sparkles, MessageSquare, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
@@ -15,34 +15,36 @@ const Hero = () => {
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-card/20 backdrop-blur-sm border border-border/20 rounded-full px-4 py-2 mb-8 animate-slide-up">
-            <Sparkles className="h-4 w-4 text-primary animate-glow-pulse" />
-            <span className="text-sm text-muted-foreground">Experience GPT-5 AI Tools</span>
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 backdrop-blur-sm border border-blue-500/30 rounded-full px-6 py-3 mb-8 animate-slide-up">
+            <MessageSquare className="h-4 w-4 text-blue-400 animate-glow-pulse" />
+            <span className="text-sm text-blue-200 font-medium">🚀 Trusted by 50,000+ professionals worldwide</span>
           </div>
 
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            <span className="bg-gradient-primary bg-clip-text text-transparent">GPT-5 AI</span>
+            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Experience True</span>
             <br />
-            <span className="text-foreground">Tools Hub</span>
+            <span className="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">GPT-5 Conversation</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl leading-relaxed animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            Powerful GPT-5 tools for writing, image generation, and content creation. Advanced AI capabilities for creators, businesses, and professionals who demand excellence.
+          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl leading-relaxed animate-slide-up" style={{ animationDelay: '0.2s' }}>
+            Professional AI tools + intelligent conversation, all in one platform. 
+            <br className="hidden md:block" />
+            Chat with GPT-5, create content, analyze documents – everything you need to succeed.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-slide-up" style={{ animationDelay: '0.3s' }}>
-            <Link to="/tools">
-              <Button variant="hero" size="xl" className="group">
-                Try GPT-5 Tools Now
-                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-smooth" />
+            <Link to="/chat">
+              <Button className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group">
+                💬 Start Chatting Now
+                <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-smooth" />
               </Button>
             </Link>
-            <Link to="/blog/what-is-gpt-5">
-              <Button variant="glass" size="xl">
-                What is GPT-5?
+            <Link to="/tools">
+              <Button variant="outline" className="border-2 border-gray-700 text-gray-300 hover:bg-gray-800 px-8 py-4 text-lg rounded-xl">
+                Explore AI Tools
               </Button>
             </Link>
           </div>
@@ -76,9 +78,16 @@ const Hero = () => {
 
           {/* Trust Indicator */}
           <div className="mt-16 text-center animate-slide-up" style={{ animationDelay: '0.5s' }}>
-            <p className="text-sm text-muted-foreground mb-4">Best GPT-5 tools for content creators and businesses</p>
-            <div className="text-xs text-muted-foreground/60">
-              Professional GPT-5 AI tools. Experience the future of content creation.
+            <div className="flex items-center justify-center space-x-1 text-yellow-400 mb-3">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-5 h-5 fill-current" />
+              ))}
+            </div>
+            <p className="text-lg text-gray-300 font-semibold mb-2">⭐ 4.9/5 from 2,847+ reviews</p>
+            <div className="flex items-center justify-center space-x-8 text-sm text-gray-400">
+              <div>💳 No credit card required</div>
+              <div>🔒 30-day money-back guarantee</div>
+              <div>⚡ Instant access</div>
             </div>
           </div>
         </div>

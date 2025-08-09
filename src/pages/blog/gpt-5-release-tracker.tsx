@@ -6,12 +6,13 @@ import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { Sparkles, Calendar, Clock, AlertTriangle, CheckCircle, TrendingUp, Users, User } from 'lucide-react';
 import { SEOHead } from '@/components/SEOHead';
+import { PrevNext } from '@/components/PrevNext';
 
 const GPT5ReleaseTracker = () => {
   const articleMetadata = {
     title: "GPT-5 Release Tracker: Latest News and Updates 2025 | Official Timeline",
     description: "Stay updated with the latest GPT-5 release news, official announcements, and timeline. Track OpenAI's progress toward GPT-5 launch with real-time updates.",
-    author: "GPT-5 Tools Team",
+    author: "GPT-5 AI Team",
     datePublished: "2025-01-15",
     dateModified: "2025-01-15",
     coverImage: "/images/gpt5-release-tracker-cover.jpg",
@@ -23,6 +24,19 @@ const GPT5ReleaseTracker = () => {
       <SEOHead 
         title={articleMetadata.title}
         description={articleMetadata.description}
+        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog/gpt-5-release-tracker' : 'https://gpt-5ai.com/blog/gpt-5-release-tracker'}
+        ogTitle={articleMetadata.title}
+        ogDescription={articleMetadata.description}
+        ogImage={articleMetadata.coverImage}
+        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog/gpt-5-release-tracker'}
+        ogType="article"
+        twitterTitle={articleMetadata.title}
+        twitterDescription={articleMetadata.description}
+        twitterImage={articleMetadata.coverImage}
+        articlePublishedTime={articleMetadata.datePublished}
+        articleModifiedTime={articleMetadata.dateModified}
+        articleSection="News & Updates"
+        articleTags={["GPT-5", "Release", "Timeline", "News"]}
       />
       <script
         type="application/ld+json"
@@ -36,7 +50,7 @@ const GPT5ReleaseTracker = () => {
             author: { "@type": "Person", name: articleMetadata.author },
             publisher: {
               "@type": "Organization",
-              name: "GPT-5 Tools",
+              name: "GPT-5 AI",
               logo: {
                 "@type": "ImageObject",
                 url: "https://gpt-5ai.com/g5-logo.png",
@@ -44,6 +58,10 @@ const GPT5ReleaseTracker = () => {
             },
             image: articleMetadata.coverImage,
             description: articleMetadata.description,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": "https://gpt-5ai.com/blog/gpt-5-release-tracker"
+            }
           }),
         }}
       />
@@ -389,6 +407,7 @@ const GPT5ReleaseTracker = () => {
             </Link>
           </div>
         </div>
+        <PrevNext currentId="gpt-5-release-tracker" />
       </div>
       </div>
     </>

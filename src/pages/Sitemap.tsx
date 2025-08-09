@@ -60,7 +60,7 @@ const Sitemap = () => {
             Sitemap
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Complete overview of all pages and resources available on GPT-5 Tools. 
+            Complete overview of all pages and resources available on GPT-5 AI. 
             Find everything you need to explore our AI-powered platform.
           </p>
           <div className="flex items-center justify-center gap-2 mt-4 text-sm text-muted-foreground">

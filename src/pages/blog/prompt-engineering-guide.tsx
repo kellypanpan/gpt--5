@@ -19,12 +19,13 @@ import {
   Zap
 } from 'lucide-react';
 import { SEOHead } from '@/components/SEOHead';
+import { PrevNext } from '@/components/PrevNext';
 
 const PromptEngineeringGuide = () => {
   const articleMetadata = {
     title: "GPT-5 Prompt Engineering Guide: Master AI Communication | Best Practices 2025",
     description: "Complete guide to prompt engineering for GPT-5. Learn advanced techniques, best practices, and proven frameworks to maximize AI performance and get better results.",
-    author: "GPT-5 Tools Team",
+    author: "GPT-5 AI Team",
     datePublished: "2025-01-15",
     dateModified: "2025-01-15",
     coverImage: "/images/prompt-engineering-guide-cover.jpg",
@@ -37,6 +38,19 @@ const PromptEngineeringGuide = () => {
       <SEOHead 
         title={articleMetadata.title}
         description={articleMetadata.description}
+        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog/prompt-engineering-guide' : 'https://gpt-5ai.com/blog/prompt-engineering-guide'}
+        ogTitle={articleMetadata.title}
+        ogDescription={articleMetadata.description}
+        ogImage={articleMetadata.coverImage}
+        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog/prompt-engineering-guide'}
+        ogType="article"
+        twitterTitle={articleMetadata.title}
+        twitterDescription={articleMetadata.description}
+        twitterImage={articleMetadata.coverImage}
+        articlePublishedTime={articleMetadata.datePublished}
+        articleModifiedTime={articleMetadata.dateModified}
+        articleSection="Practical Guide"
+        articleTags={["GPT-5", "Prompt Engineering", "Best Practices", "Frameworks"]}
       />
       <script
         type="application/ld+json"
@@ -50,7 +64,7 @@ const PromptEngineeringGuide = () => {
             author: { "@type": "Person", name: articleMetadata.author },
             publisher: {
               "@type": "Organization",
-              name: "GPT-5 Tools",
+              name: "GPT-5 AI",
               logo: {
                 "@type": "ImageObject",
                 url: "https://gpt-5ai.com/g5-logo.png",
@@ -58,6 +72,10 @@ const PromptEngineeringGuide = () => {
             },
             image: articleMetadata.coverImage,
             description: articleMetadata.description,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": "https://gpt-5ai.com/blog/prompt-engineering-guide"
+            }
           }),
         }}
       />
@@ -770,6 +788,7 @@ Provide:
               </div>
             </div>
           </div>
+          <PrevNext currentId="prompt-engineering-guide" />
         </div>
       </div>
     </>

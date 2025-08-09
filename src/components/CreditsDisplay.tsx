@@ -4,13 +4,13 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Coins, Crown, Sparkles, AlertCircle } from "lucide-react";
-import { useAuthState } from "@/lib/clerk";
+import { useAuth } from "@/contexts/AuthContext";
 
 export function CreditsDisplay() {
-  const { creditsData, loading, error, buyCredits } = useCredits();
-  const { isSignedIn } = useAuthState();
+  const { creditsData, loading, error } = useCredits();
+  const { isAuthenticated } = useAuth();
 
-  if (!isSignedIn) {
+  if (!isAuthenticated) {
     return null;
   }
 
@@ -45,9 +45,7 @@ export function CreditsDisplay() {
     return null;
   }
 
-  const { currentCredits, totalCredits, usedCredits, subscription } = creditsData;
-  const usagePercentage = totalCredits > 0 ? (usedCredits / totalCredits) * 100 : 0;
-  const isLowCredits = currentCredits < 10;
+  const { currentCredits, plan } = creditsData;
 
   return (
     <Card className="w-full max-w-md">
@@ -55,11 +53,7 @@ export function CreditsDisplay() {
         <CardTitle className="flex items-center gap-2 text-lg">
           <Coins className="h-5 w-5 text-primary" />
           Credits
-          {subscription?.status === 'active' && (
-            <Badge variant="secondary" className="text-xs">
-              {subscription.plan}
-            </Badge>
-          )}
+          <Badge variant="secondary" className="text-xs capitalize">{plan}</Badge>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -70,67 +64,6 @@ export function CreditsDisplay() {
           </div>
           <div className="text-sm text-muted-foreground">
             available credits
-          </div>
-        </div>
-
-        {/* Usage Progress */}
-        <div className="space-y-2">
-          <div className="flex justify-between text-sm">
-            <span>Usage</span>
-            <span>{usedCredits} / {totalCredits}</span>
-          </div>
-          <Progress value={usagePercentage} className="h-2" />
-        </div>
-
-        {/* Subscription Status */}
-        {subscription && (
-          <div className="space-y-2">
-            <div className="flex items-center gap-2 text-sm">
-              <Crown className="h-4 w-4 text-primary" />
-              <span className="font-medium">{subscription.plan}</span>
-              <Badge 
-                variant={subscription.status === 'active' ? 'default' : 'secondary'}
-                className="text-xs"
-              >
-                {subscription.status}
-              </Badge>
-            </div>
-            {subscription.nextBillingDate && (
-              <div className="text-xs text-muted-foreground">
-                Next billing: {new Date(subscription.nextBillingDate).toLocaleDateString()}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Actions */}
-        <div className="space-y-2">
-          {isLowCredits && (
-            <div className="flex items-center gap-2 text-amber-600 text-sm">
-              <AlertCircle className="h-4 w-4" />
-              <span>Low credits remaining</span>
-            </div>
-          )}
-          
-          <div className="flex gap-2">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="flex-1"
-              onClick={() => buyCredits(50)}
-            >
-              <Coins className="h-4 w-4 mr-2" />
-              Buy Credits
-            </Button>
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="flex-1"
-              onClick={() => window.location.href = '/pricing'}
-            >
-              <Sparkles className="h-4 w-4 mr-2" />
-              Upgrade
-            </Button>
           </div>
         </div>
       </CardContent>

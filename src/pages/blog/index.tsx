@@ -1,134 +1,61 @@
-import React, { useState } from 'react';
-import { Header } from '@/components/Header';
+import React, { useMemo, useState } from 'react';
+import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-import { Sparkles, Clock, TrendingUp, BookOpen, Users, DollarSign, Bot, Building, Shield, Search } from 'lucide-react';
+import { Sparkles, Clock, TrendingUp, BookOpen, Users, Search } from 'lucide-react';
 import { BlogSearch } from '@/components/BlogSearch';
 import { SocialShare } from '@/components/SocialShare';
+import { SEOHead } from '@/components/SEOHead';
+import { blogPosts as allPosts } from '@/data/blogPosts';
 
 const BlogIndex = () => {
   const [showSearch, setShowSearch] = useState(false);
-  const blogPosts = [
-    {
-      id: 'what-is-gpt-5',
-      title: 'What is GPT-5? Complete Guide to OpenAI\'s Latest AI',
-      description: 'Everything you need to know about GPT-5, including its capabilities, features, and how it compares to previous models.',
-      category: 'Core Introduction',
-      readTime: '8 min read',
-      date: 'January 2025',
-      path: '/blog/what-is-gpt-5',
-      icon: Sparkles,
-      featured: true
-    },
-    {
-      id: 'gpt-5-vs-claude-3',
-      title: 'GPT-5 vs Claude 3 Opus: Which AI is Better in 2025?',
-      description: 'A comprehensive comparison of GPT-5 and Claude 3 Opus, helping you choose the right AI for your needs.',
-      category: 'Comparison',
-      readTime: '10 min read',
-      date: 'January 2025',
-      path: '/blog/gpt-5-vs-claude-3',
-      icon: TrendingUp
-    },
-    {
-      id: 'gpt-5-vs-gemini',
-      title: 'GPT-5 vs Gemini 1.5: Battle of the AI Titans',
-      description: 'Compare OpenAI\'s GPT-5 with Google\'s Gemini 1.5 - two of the most advanced AI models available today.',
-      category: 'Comparison',
-      readTime: '12 min read',
-      date: 'January 2025',
-      path: '/blog/gpt-5-vs-gemini',
-      icon: TrendingUp
-    },
-    {
-      id: 'gpt-5-release-tracker',
-      title: 'GPT-5 Release Tracker: Latest News and Updates',
-      description: 'Stay updated with the latest news, rumors, and official announcements about GPT-5\'s release timeline.',
-      category: 'News & Updates',
-      readTime: '6 min read',
-      date: 'January 2025',
-      path: '/blog/gpt-5-release-tracker',
-      icon: Clock
-    },
-    {
-      id: 'gpt-5-for-business',
-      title: 'GPT-5 for Business: Transform Your Operations',
-      description: 'Discover how GPT-5 can revolutionize your business processes, boost productivity, and drive growth.',
-      category: 'Business Guide',
-      readTime: '15 min read',
-      date: 'January 2025',
-      path: '/blog/gpt-5-for-business',
-      icon: DollarSign
-    },
-    {
-      id: 'gpt-5-technical-deep-dive',
-      title: 'GPT-5 Technical Deep Dive: Unified Architecture & Multimodal Capabilities',
-      description: 'In-depth technical analysis of GPT-5\'s revolutionary architecture, MoE design, and advanced multimodal processing.',
-      category: 'Technical Analysis',
-      readTime: '20 min read',
-      date: 'January 2025',
-      path: '/blog/gpt-5-technical-deep-dive',
-      icon: Sparkles
-    },
-    {
-      id: 'prompt-engineering-guide',
-      title: 'GPT-5 Prompt Engineering Guide: Master AI Communication',
-      description: 'Complete guide to prompt engineering for GPT-5. Learn advanced techniques and frameworks for optimal AI performance.',
-      category: 'Practical Guide',
-      readTime: '18 min read',
-      date: 'January 2025',
-      path: '/blog/prompt-engineering-guide',
-      icon: BookOpen
-    },
-    {
-      id: 'open-source-ai-models-comparison',
-      title: 'GPT-5 vs Open Source AI Models: Complete Comparison Guide',
-      description: 'Compare GPT-5 with leading open source AI models including Llama 3, Mistral, and CodeLlama. Performance benchmarks and cost analysis.',
-      category: 'Comparison',
-      readTime: '22 min read',
-      date: 'January 2025',
-      path: '/blog/open-source-ai-models-comparison',
-      icon: TrendingUp
-    },
-    {
-      id: 'gpt-5-industry-guides',
-      title: 'GPT-5 Industry Implementation Guides: Education, Finance, Healthcare & Marketing',
-      description: 'Complete implementation guides for GPT-5 in specific industries. Learn best practices, use cases, and ROI strategies.',
-      category: 'Industry Guide',
-      readTime: '28 min read',
-      date: 'January 2025',
-      path: '/blog/gpt-5-industry-guides',
-      icon: Building
-    },
-    {
-      id: 'gpt-5-ai-ethics-safety',
-      title: 'GPT-5 AI Ethics & Safety: Responsible AI Implementation Guide',
-      description: 'Comprehensive guide to ethical GPT-5 implementation. Learn about AI bias mitigation, privacy protection, and safety measures.',
-      category: 'Ethics & Safety',
-      readTime: '24 min read',
-      date: 'January 2025',
-      path: '/blog/gpt-5-ai-ethics-safety',
-      icon: Shield
-    }
-  ];
+  const featured = allPosts.find((p) => p.featured) || allPosts[0];
+  const rest = allPosts.filter((p) => p.id !== featured.id);
 
-  const categories = [
-    { name: 'All', count: blogPosts.length },
-    { name: 'Core Introduction', count: 1 },
-    { name: 'Comparison', count: 3 },
-    { name: 'News & Updates', count: 1 },
-    { name: 'Business Guide', count: 1 },
-    { name: 'Technical Analysis', count: 1 },
-    { name: 'Practical Guide', count: 1 },
-    { name: 'Industry Guide', count: 1 },
-    { name: 'Ethics & Safety', count: 1 }
-  ];
+  const pageTitle = 'GPT-5 Blog - Expert AI Insights';
+  const pageDesc = 'Your ultimate resource for everything GPT-5. From comprehensive guides to latest updates, stay informed about the future of AI.';
+
+  const categories = useMemo(() => {
+    const counts = new Map<string, number>();
+    allPosts.forEach((p) => counts.set(p.category, (counts.get(p.category) || 0) + 1));
+    return Array.from(counts.entries()).map(([name, count]) => ({ name, count }));
+  }, []);
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <Layout>
+      <SEOHead 
+        title={pageTitle}
+        description={pageDesc}
+        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog' : 'https://gpt-5ai.com/blog'}
+        ogTitle={pageTitle}
+        ogDescription={pageDesc}
+        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog'}
+        twitterTitle={pageTitle}
+        twitterDescription={pageDesc}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            name: "GPT-5 Tools Blog",
+            description: pageDesc,
+            url: "https://gpt-5ai.com/blog",
+            publisher: {
+              "@type": "Organization",
+              name: "GPT-5 AI",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://gpt-5ai.com/g5-logo.png"
+              }
+            }
+          })
+        }}
+      />
       <div className="container mx-auto px-4 py-8 pt-20">
         {/* Hero Section */}
         <div className="text-center mb-12">
@@ -142,7 +69,7 @@ const BlogIndex = () => {
           <div className="flex items-center justify-center gap-4 mt-6">
             <Badge variant="outline" className="text-sm">
               <BookOpen className="h-3 w-3 mr-1" />
-              {blogPosts.length} Articles
+              {allPosts.length} Articles
             </Badge>
             <Badge variant="outline" className="text-sm">
               <Users className="h-3 w-3 mr-1" />
@@ -158,7 +85,7 @@ const BlogIndex = () => {
               Search Articles
             </Button>
             <SocialShare 
-              url={window.location.href}
+              url={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog'}
               title="GPT-5 Blog - Expert AI Insights"
               description="Your ultimate resource for everything GPT-5. From comprehensive guides to latest updates."
             />
@@ -173,7 +100,17 @@ const BlogIndex = () => {
                 <CardTitle>Search Articles</CardTitle>
               </CardHeader>
               <CardContent>
-                <BlogSearch posts={blogPosts} />
+                <BlogSearch
+                  posts={allPosts.map((p) => ({
+                    id: p.id,
+                    title: p.title,
+                    description: p.description,
+                    category: p.category,
+                    readTime: p.readTime,
+                    date: new Date(p.dateModified).toLocaleDateString('en-US', { year: 'numeric', month: 'long' }),
+                    path: p.path,
+                  }))}
+                />
               </CardContent>
             </Card>
           </div>
@@ -182,51 +119,51 @@ const BlogIndex = () => {
         {!showSearch && (
           <>
         {/* Featured Article */}
-        {blogPosts.filter(post => post.featured).map(post => (
-          <Card key={post.id} className="max-w-4xl mx-auto mb-8 border-primary/20 bg-gradient-to-r from-primary/5 to-primary/10">
+        {featured && (
+          <Card className="max-w-4xl mx-auto mb-8 border-primary/20 bg-gradient-to-r from-primary/5 to-primary/10">
             <CardHeader>
               <div className="flex items-center gap-2 mb-2">
                 <Badge variant="default" className="text-xs">
                   Featured
                 </Badge>
                 <Badge variant="outline" className="text-xs">
-                  {post.category}
+                  {featured.category}
                 </Badge>
               </div>
               <CardTitle className="text-2xl md:text-3xl">
-                <Link to={post.path} className="hover:text-primary transition-colors">
-                  {post.title}
+                <Link to={featured.path} className="hover:text-primary transition-colors">
+                  {featured.title}
                 </Link>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground mb-4 text-lg">
-                {post.description}
+                {featured.description}
               </p>
               <div className="flex items-center gap-4 text-base text-foreground/85 mb-4">
                 <div className="flex items-center gap-1">
                   <Clock className="h-4 w-4" />
-                  {post.readTime}
+                  {featured.readTime}
                 </div>
                 <div className="flex items-center gap-1">
                   <Sparkles className="h-4 w-4" />
-                  {post.date}
+                  {new Date(featured.dateModified).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
                 </div>
               </div>
-              <Link to={post.path}>
+              <Link to={featured.path}>
                 <Button size="lg">
                   Read Full Article
                 </Button>
               </Link>
             </CardContent>
           </Card>
-        ))}
+        )}
 
         {/* All Articles */}
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold mb-6">All Articles</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPosts.filter(post => !post.featured).map(post => (
+            {rest.map(post => (
               <Card key={post.id} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <div className="flex items-center gap-2 mb-2">
@@ -304,7 +241,7 @@ const BlogIndex = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

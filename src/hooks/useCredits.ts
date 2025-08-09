@@ -1,99 +1,38 @@
-import { useState, useEffect } from 'react';
-import { useAuthState } from '@/lib/clerk';
+import { useEffect, useState } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/lib/supabase';
 
 interface CreditsData {
   currentCredits: number;
-  totalCredits: number;
-  usedCredits: number;
-  subscription: {
-    plan: string;
-    status: 'active' | 'inactive' | 'expired';
-    nextBillingDate?: string;
-  } | null;
+  plan: 'free' | 'pro' | 'business';
 }
 
 export function useCredits() {
+  const { isAuthenticated: isSignedIn, user } = useAuth();
   const [creditsData, setCreditsData] = useState<CreditsData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { isSignedIn } = useAuthState();
 
   const fetchCredits = async () => {
-    if (!isSignedIn) {
-      setLoading(false);
-      return;
-    }
-
+    setLoading(true);
+    setError(null);
     try {
-      const response = await fetch('/api/user/credits');
-      if (!response.ok) {
-        throw new Error('Failed to fetch credits');
+      if (!user) {
+        setCreditsData({ currentCredits: 0, plan: 'free' });
+      } else {
+        const { data, error } = await supabase
+          .from('users')
+          .select('credits, plan')
+          .eq('id', user.id)
+          .single();
+        
+        if (error) throw error;
+        setCreditsData({ currentCredits: data.credits, plan: data.plan });
       }
-      
-      const data = await response.json();
-      setCreditsData(data);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch credits');
+    } catch (e: any) {
+      setError(e.message || 'Failed to fetch credits');
     } finally {
       setLoading(false);
-    }
-  };
-
-  const useCredits = async (amount: number) => {
-    if (!isSignedIn) {
-      throw new Error('User not authenticated');
-    }
-
-    try {
-      const response = await fetch('/api/user/use-credits', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ amount })
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to use credits');
-      }
-
-      const data = await response.json();
-      setCreditsData(data);
-      return data;
-    } catch (err) {
-      throw err;
-    }
-  };
-
-  const buyCredits = async (amount: number) => {
-    if (!isSignedIn) {
-      throw new Error('User not authenticated');
-    }
-
-    try {
-      const response = await fetch('/api/payment/buy-credits', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ amount })
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to create credits order');
-      }
-
-      const data = await response.json();
-      
-      if (data.success && data.paymentUrl) {
-        window.location.href = data.paymentUrl;
-      } else {
-        throw new Error(data.error || 'Failed to create order');
-      }
-    } catch (err) {
-      throw err;
     }
   };
 
@@ -101,12 +40,17 @@ export function useCredits() {
     fetchCredits();
   }, [isSignedIn]);
 
-  return {
-    creditsData,
-    loading,
-    error,
-    useCredits,
-    buyCredits,
-    refetch: fetchCredits
+  const useCredits = async (amount: number) => {
+    if (!user) throw new Error('Not authenticated');
+
+    const { data, error } = await supabase.rpc('deduct_credits', {
+      user_id: user.id,
+      amount
+    });
+    if (error) throw error;
+    await fetchCredits();
+    return data;
   };
+
+  return { creditsData, loading, error, refetch: fetchCredits, useCredits };
 } 

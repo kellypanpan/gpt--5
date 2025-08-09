@@ -27,12 +27,13 @@ import {
   BookOpen
 } from 'lucide-react';
 import { SEOHead } from '@/components/SEOHead';
+import { PrevNext } from '@/components/PrevNext';
 
 const GPT5AIEthicsSafety = () => {
   const articleMetadata = {
     title: "GPT-5 AI Ethics & Safety: Responsible AI Implementation Guide | Bias, Privacy & Security 2025",
     description: "Comprehensive guide to ethical GPT-5 implementation. Learn about AI bias mitigation, privacy protection, safety measures, and responsible AI governance frameworks.",
-    author: "GPT-5 Tools Team",
+    author: "GPT-5 AI Team",
     datePublished: "2025-01-15",
     dateModified: "2025-01-15",
     coverImage: "/images/gpt5-ethics-safety-cover.jpg",
@@ -45,6 +46,19 @@ const GPT5AIEthicsSafety = () => {
       <SEOHead 
         title={articleMetadata.title}
         description={articleMetadata.description}
+        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog/gpt-5-ai-ethics-safety' : 'https://gpt-5ai.com/blog/gpt-5-ai-ethics-safety'}
+        ogTitle={articleMetadata.title}
+        ogDescription={articleMetadata.description}
+        ogImage={articleMetadata.coverImage}
+        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog/gpt-5-ai-ethics-safety'}
+        ogType="article"
+        twitterTitle={articleMetadata.title}
+        twitterDescription={articleMetadata.description}
+        twitterImage={articleMetadata.coverImage}
+        articlePublishedTime={articleMetadata.datePublished}
+        articleModifiedTime={articleMetadata.dateModified}
+        articleSection="Ethics & Safety"
+        articleTags={["GPT-5", "Ethics", "Safety", "Bias", "Privacy"]}
       />
       <script
         type="application/ld+json"
@@ -58,7 +72,7 @@ const GPT5AIEthicsSafety = () => {
             author: { "@type": "Person", name: articleMetadata.author },
             publisher: {
               "@type": "Organization",
-              name: "GPT-5 Tools",
+              name: "GPT-5 AI",
               logo: {
                 "@type": "ImageObject",
                 url: "https://gpt-5ai.com/g5-logo.png",
@@ -66,6 +80,10 @@ const GPT5AIEthicsSafety = () => {
             },
             image: articleMetadata.coverImage,
             description: articleMetadata.description,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": "https://gpt-5ai.com/blog/gpt-5-ai-ethics-safety"
+            }
           }),
         }}
       />
@@ -821,6 +839,7 @@ const GPT5AIEthicsSafety = () => {
               </div>
             </div>
           </div>
+          <PrevNext currentId="gpt-5-ai-ethics-safety" />
         </div>
       </div>
     </>

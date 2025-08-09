@@ -1,0 +1,157 @@
+[
+  {
+    "id": "what-is-gpt-5",
+    "title": "What is GPT-5? Complete Guide to OpenAI's Latest AI",
+    "description": "Everything you need to know about GPT-5, including its capabilities, features, and how it compares to previous models.",
+    "category": "Core Introduction",
+    "readTime": "8 min read",
+    "datePublished": "2025-01-15",
+    "dateModified": "2025-01-15",
+    "path": "/blog/what-is-gpt-5",
+    "coverImage": "/images/what-is-gpt5-cover.jpg",
+    "featured": true
+  },
+  {
+    "id": "gpt-5-vs-claude-3",
+    "title": "GPT-5 vs Claude 3 Opus: Which AI is Better in 2025?",
+    "description": "A comprehensive comparison of GPT-5 and Claude 3 Opus, helping you choose the right AI for your needs.",
+    "category": "Comparison",
+    "readTime": "10 min read",
+    "datePublished": "2025-01-15",
+    "dateModified": "2025-01-15",
+    "path": "/blog/gpt-5-vs-claude-3",
+    "coverImage": "/images/gpt5-vs-claude3-cover.jpg"
+  },
+  {
+    "id": "gpt-5-vs-gemini",
+    "title": "GPT-5 vs Gemini 1.5: Battle of the AI Titans",
+    "description": "Compare OpenAI's GPT-5 with Google's Gemini 1.5 - two of the most advanced AI models available today.",
+    "category": "Comparison",
+    "readTime": "12 min read",
+    "datePublished": "2025-01-15",
+    "dateModified": "2025-01-15",
+    "path": "/blog/gpt-5-vs-gemini",
+    "coverImage": "/images/gpt5-vs-gemini-cover.jpg"
+  },
+  {
+    "id": "gpt-5-release-tracker",
+    "title": "GPT-5 Release Tracker: Latest News and Updates",
+    "description": "Stay updated with the latest news, rumors, and official announcements about GPT-5's release timeline.",
+    "category": "News & Updates",
+    "readTime": "6 min read",
+    "datePublished": "2025-01-15",
+    "dateModified": "2025-01-15",
+    "path": "/blog/gpt-5-release-tracker",
+    "coverImage": "/images/gpt5-release-tracker-cover.jpg"
+  },
+  {
+    "id": "gpt-5-for-business",
+    "title": "GPT-5 for Business: Transform Your Operations",
+    "description": "Discover how GPT-5 can revolutionize your business processes, boost productivity, and drive growth.",
+    "category": "Business Guide",
+    "readTime": "15 min read",
+    "datePublished": "2025-01-15",
+    "dateModified": "2025-01-15",
+    "path": "/blog/gpt-5-for-business",
+    "coverImage": "/images/gpt5-business-cover.jpg"
+  },
+  {
+    "id": "gpt-5-technical-deep-dive",
+    "title": "GPT-5 Technical Deep Dive: Unified Architecture & Multimodal Capabilities",
+    "description": "In-depth technical analysis of GPT-5's revolutionary architecture, MoE design, and advanced multimodal processing.",
+    "category": "Technical Analysis",
+    "readTime": "20 min read",
+    "datePublished": "2025-01-15",
+    "dateModified": "2025-01-15",
+    "path": "/blog/gpt-5-technical-deep-dive",
+    "coverImage": "/images/gpt5-technical-cover.jpg"
+  },
+  {
+    "id": "prompt-engineering-guide",
+    "title": "GPT-5 Prompt Engineering Guide: Master AI Communication",
+    "description": "Complete guide to prompt engineering for GPT-5. Learn advanced techniques and frameworks for optimal AI performance.",
+    "category": "Practical Guide",
+    "readTime": "18 min read",
+    "datePublished": "2025-01-15",
+    "dateModified": "2025-01-15",
+    "path": "/blog/prompt-engineering-guide",
+    "coverImage": "/images/prompt-engineering-guide-cover.jpg"
+  },
+  {
+    "id": "open-source-ai-models-comparison",
+    "title": "GPT-5 vs Open Source AI Models: Complete Comparison Guide",
+    "description": "Compare GPT-5 with leading open source AI models including Llama 3, Mistral, and CodeLlama. Performance benchmarks and cost analysis.",
+    "category": "Comparison",
+    "readTime": "22 min read",
+    "datePublished": "2025-01-15",
+    "dateModified": "2025-01-15",
+    "path": "/blog/open-source-ai-models-comparison",
+    "coverImage": "/images/gpt5-vs-open-source-cover.jpg"
+  },
+  {
+    "id": "gpt-5-industry-guides",
+    "title": "GPT-5 Industry Implementation Guides: Education, Finance, Healthcare & Marketing",
+    "description": "Complete implementation guides for GPT-5 in specific industries. Learn best practices, use cases, and ROI strategies.",
+    "category": "Industry Guide",
+    "readTime": "28 min read",
+    "datePublished": "2025-01-15",
+    "dateModified": "2025-01-15",
+    "path": "/blog/gpt-5-industry-guides",
+    "coverImage": "/images/gpt5-industry-guides-cover.jpg"
+  },
+  {
+    "id": "gpt-5-ai-ethics-safety",
+    "title": "GPT-5 AI Ethics & Safety: Responsible AI Implementation Guide",
+    "description": "Comprehensive guide to ethical GPT-5 implementation. Learn about AI bias mitigation, privacy protection, and safety measures.",
+    "category": "Ethics & Safety",
+    "readTime": "24 min read",
+    "datePublished": "2025-01-15",
+    "dateModified": "2025-01-15",
+    "path": "/blog/gpt-5-ai-ethics-safety",
+    "coverImage": "/images/gpt5-ethics-safety-cover.jpg"
+  },
+  {
+    "id": "50-best-chatgpt5-prompts",
+    "title": "50 Best ChatGPT-5 Prompts for Everyday Use",
+    "description": "A curated list of 50 powerful ChatGPT-5 prompts to boost creativity, productivity, and problem-solving in daily life.",
+    "category": "Practical Guide",
+    "readTime": "10 min read",
+    "datePublished": "2025-08-08",
+    "dateModified": "2025-08-08",
+    "path": "/blog/50-best-chatgpt5-prompts",
+    "coverImage": "/images/blog/chatgpt5-prompts.jpg"
+  },
+  {
+    "id": "reduce-chatgpt5-api-costs",
+    "title": "How to Reduce ChatGPT-5 API Costs Without Losing Quality",
+    "description": "Practical strategies for developers and businesses to cut ChatGPT-5 API expenses while keeping output quality high.",
+    "category": "Business Guide",
+    "readTime": "9 min read",
+    "datePublished": "2025-08-08",
+    "dateModified": "2025-08-08",
+    "path": "/blog/reduce-chatgpt5-api-costs",
+    "coverImage": "/images/blog/reduce-chatgpt5-cost.jpg"
+  },
+  {
+    "id": "can-gpt-5-generate-videos",
+    "title": "Can GPT-5 Generate Videos? Here’s the Truth",
+    "description": "GPT-5 is powerful, but can it create videos? What it can do, what it can’t, and how to pair it with video models.",
+    "category": "Practical Guide",
+    "readTime": "6 min read",
+    "datePublished": "2025-08-08",
+    "dateModified": "2025-08-08",
+    "path": "/blog/can-gpt-5-generate-videos",
+    "coverImage": "/images/blog/can-gpt-5-generate-videos.jpg"
+  },
+  {
+    "id": "gpt-5-use-cases",
+    "title": "GPT-5 Use Cases: Real-World Applications Across Teams",
+    "description": "Practical GPT-5 use cases across writing, code, marketing, operations, support and data analysis.",
+    "category": "Practical Guide",
+    "readTime": "12 min read",
+    "datePublished": "2025-08-08",
+    "dateModified": "2025-08-08",
+    "path": "/blog/gpt-5-use-cases",
+    "coverImage": "/images/blog/gpt5-use-cases.jpg"
+  }
+] 

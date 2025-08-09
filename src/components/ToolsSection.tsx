@@ -62,7 +62,7 @@ const ToolsSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-primary bg-clip-text text-transparent">GPT-5 Tools</span>
+            <span className="bg-gradient-primary bg-clip-text text-transparent">GPT-5 AI</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Comprehensive GPT-5 AI tools for writing, image generation, and content creation. Best GPT-5 tools for content creators and professionals.
@@ -121,7 +121,7 @@ const ToolsSection = () => {
           </p>
           <Link to="/tools">
             <Button variant="hero" size="lg">
-              Explore All GPT-5 Tools
+              Explore All GPT-5 AI
             </Button>
           </Link>
         </div>

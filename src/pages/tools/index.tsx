@@ -10,6 +10,7 @@ import {
   Lightbulb,
   Zap
 } from 'lucide-react';
+import Layout from '@/components/Layout';
 
 const ToolsIndex = () => {
   const tools = [
@@ -51,7 +52,7 @@ const ToolsIndex = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <Layout>
       <div className="container mx-auto px-4 py-8 pt-20">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-foreground mb-4">
@@ -92,7 +93,7 @@ const ToolsIndex = () => {
           </p>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

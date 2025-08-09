@@ -125,3 +125,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer base {
+  html { scroll-behavior: smooth; }
+}
+
+@layer utilities {
+  .section { padding-top: 64px; padding-bottom: 64px; }
+  @media (min-width: 768px) { .section { padding-top: 88px; padding-bottom: 88px; } }
+}

@@ -5,23 +5,42 @@ import { ArrowRight, Sparkles, Zap, Brain, Globe, Shield, User, Calendar } from 
 import { Link } from "react-router-dom";
 import { SEOHead } from "@/components/SEOHead";
 import { SocialShare } from "@/components/SocialShare";
+import { PrevNext } from "@/components/PrevNext";
+import { getPrevNext } from "@/data/blogPosts";
 
 const WhatIsGPT5 = () => {
   const articleMetadata = {
-    title: "What Is GPT-5? Complete Guide to OpenAI's Latest AI | GPT-5 Tools",
+    title: "What Is GPT-5? Complete Guide to OpenAI's Latest AI | GPT-5 AI",
     description: "Learn about GPT-5's unified architecture, multimodal capabilities, and how it differs from GPT-4. Discover how GPT-5 transforms writing, coding, and analysis.",
-    author: "GPT-5 Tools Team",
+    author: "GPT-5 AI Team",
     datePublished: "2025-01-15",
     dateModified: "2025-01-15",
     coverImage: "/images/what-is-gpt5-cover.jpg",
     excerpt: "Discover the revolutionary capabilities of GPT-5, OpenAI's latest AI model that promises to transform how we interact with artificial intelligence.",
     readTime: "8 min read"
   };
+  const { prev, next } = getPrevNext('what-is-gpt-5');
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://gpt-5ai.com';
   return (
     <>
       <SEOHead 
         title={articleMetadata.title}
         description={articleMetadata.description}
+        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog/what-is-gpt-5' : 'https://gpt-5ai.com/blog/what-is-gpt-5'}
+        ogTitle={articleMetadata.title}
+        ogDescription={articleMetadata.description}
+        ogImage={articleMetadata.coverImage}
+        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog/what-is-gpt-5'}
+        ogType="article"
+        twitterTitle={articleMetadata.title}
+        twitterDescription={articleMetadata.description}
+        twitterImage={articleMetadata.coverImage}
+        articlePublishedTime={articleMetadata.datePublished}
+        articleModifiedTime={articleMetadata.dateModified}
+        articleSection="Core Introduction"
+        articleTags={["GPT-5", "Guide", "OpenAI", "Introduction"]}
+        prevUrl={prev ? `${origin}${prev.path}` : undefined}
+        nextUrl={next ? `${origin}${next.path}` : undefined}
       />
       <script
         type="application/ld+json"
@@ -35,7 +54,7 @@ const WhatIsGPT5 = () => {
             author: { "@type": "Person", name: articleMetadata.author },
             publisher: {
               "@type": "Organization",
-              name: "GPT-5 Tools",
+              name: "GPT-5 AI",
               logo: {
                 "@type": "ImageObject",
                 url: "https://gpt-5ai.com/g5-logo.png",
@@ -43,6 +62,10 @@ const WhatIsGPT5 = () => {
             },
             image: articleMetadata.coverImage,
             description: articleMetadata.description,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": "https://gpt-5ai.com/blog/what-is-gpt-5"
+            }
           }),
         }}
       />
@@ -94,7 +117,7 @@ const WhatIsGPT5 = () => {
                 <a href="#gpt5-vs-gpt4" className="block text-primary hover:underline">GPT-5 vs GPT-4: What's New?</a>
                 <a href="#technical-deep-dive" className="block text-primary hover:underline">Technical Deep Dive</a>
                 <a href="#use-cases" className="block text-primary hover:underline">Real-World Use Cases</a>
-                <a href="#try-gpt5" className="block text-primary hover:underline">Try GPT-5 Tools</a>
+                <a href="#try-gpt5" className="block text-primary hover:underline">Try GPT-5 AI</a>
               </nav>
             </CardContent>
           </Card>
@@ -497,6 +520,10 @@ const WhatIsGPT5 = () => {
                   </CardContent>
                 </Card>
               </div>
+            </section>
+            {/* Prev/Next Navigation */}
+            <section>
+              <PrevNext currentId="what-is-gpt-5" />
             </section>
           </article>
           </div>

@@ -24,12 +24,13 @@ import {
   Shield
 } from 'lucide-react';
 import { SEOHead } from '@/components/SEOHead';
+import { PrevNext } from '@/components/PrevNext';
 
 const OpenSourceAIModelsComparison = () => {
   const articleMetadata = {
     title: "GPT-5 vs Open Source AI Models: Complete Comparison Guide 2025 | Llama 3, Claude, Mixtral",
     description: "Compare GPT-5 with leading open source AI models including Llama 3, Mistral, and CodeLlama. Performance benchmarks, costs, and deployment options analyzed.",
-    author: "GPT-5 Tools Team",
+    author: "GPT-5 AI Team",
     datePublished: "2025-01-15",
     dateModified: "2025-01-15",
     coverImage: "/images/gpt5-vs-open-source-cover.jpg",
@@ -42,6 +43,19 @@ const OpenSourceAIModelsComparison = () => {
       <SEOHead 
         title={articleMetadata.title}
         description={articleMetadata.description}
+        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog/open-source-ai-models-comparison' : 'https://gpt-5ai.com/blog/open-source-ai-models-comparison'}
+        ogTitle={articleMetadata.title}
+        ogDescription={articleMetadata.description}
+        ogImage={articleMetadata.coverImage}
+        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog/open-source-ai-models-comparison'}
+        ogType="article"
+        twitterTitle={articleMetadata.title}
+        twitterDescription={articleMetadata.description}
+        twitterImage={articleMetadata.coverImage}
+        articlePublishedTime={articleMetadata.datePublished}
+        articleModifiedTime={articleMetadata.dateModified}
+        articleSection="Comparison"
+        articleTags={["GPT-5", "Open Source", "Llama 3", "Mixtral"]}
       />
       <script
         type="application/ld+json"
@@ -55,7 +69,7 @@ const OpenSourceAIModelsComparison = () => {
             author: { "@type": "Person", name: articleMetadata.author },
             publisher: {
               "@type": "Organization",
-              name: "GPT-5 Tools",
+              name: "GPT-5 AI",
               logo: {
                 "@type": "ImageObject",
                 url: "https://gpt-5ai.com/g5-logo.png",
@@ -63,6 +77,10 @@ const OpenSourceAIModelsComparison = () => {
             },
             image: articleMetadata.coverImage,
             description: articleMetadata.description,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": "https://gpt-5ai.com/blog/open-source-ai-models-comparison"
+            }
           }),
         }}
       />
@@ -343,7 +361,7 @@ const OpenSourceAIModelsComparison = () => {
 
                 <div className="bg-muted/30 rounded-lg p-6">
                   <h4 className="font-semibold mb-3">Performance Benchmarks</h4>
-                  <div class="overflow-x-auto">
+                  <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <thead>
                         <tr className="border-b">
@@ -757,6 +775,7 @@ const OpenSourceAIModelsComparison = () => {
               </div>
             </div>
           </div>
+          <PrevNext currentId="open-source-ai-models-comparison" />
         </div>
       </div>
     </>
