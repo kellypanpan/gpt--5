@@ -94,7 +94,7 @@
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 76%;
+    --muted-foreground: 210 20% 88%;
 
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
@@ -133,4 +133,40 @@
 @layer utilities {
   .section { padding-top: 64px; padding-bottom: 64px; }
   @media (min-width: 768px) { .section { padding-top: 88px; padding-bottom: 88px; } }
+  
+  /* Blog article content improvements */
+  .prose {
+    color: hsl(var(--foreground));
+  }
+  
+  .prose p {
+    color: hsl(var(--foreground) / 0.9);
+  }
+  
+  .prose li {
+    color: hsl(var(--foreground) / 0.9);
+  }
+  
+  .prose strong {
+    color: hsl(var(--foreground));
+  }
+  
+  .prose em {
+    color: hsl(var(--foreground) / 0.9);
+  }
+  
+  .prose blockquote {
+    color: hsl(var(--foreground) / 0.8);
+    border-left-color: hsl(var(--primary));
+  }
+  
+  .prose code {
+    color: hsl(var(--foreground));
+    background-color: hsl(var(--muted));
+  }
+  
+  .prose pre {
+    background-color: hsl(var(--muted));
+    color: hsl(var(--foreground));
+  }
 }
