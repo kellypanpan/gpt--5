@@ -1,220 +1,97 @@
-import React from 'react';
-import { Header } from '@/components/Header';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
-import { 
-  Home, 
-  Wrench, 
-  BookOpen, 
-  DollarSign, 
-  BarChart3, 
-  ExternalLink,
-  Calendar
-} from 'lucide-react';
+import Layout from '@/components/Layout';
+import { SEOHead } from '@/components/SEOHead';
 
 const Sitemap = () => {
-  const siteStructure = {
-    main: [
-      { name: 'Home', path: '/', icon: Home },
-      { name: 'Tools', path: '/tools', icon: Wrench },
-      { name: 'Blog', path: '/blog', icon: BookOpen },
-      { name: 'Pricing', path: '/pricing', icon: DollarSign },
-      { name: 'Use Cases', path: '/use-cases', icon: BarChart3 },
-      { name: 'Dashboard', path: '/dashboard', icon: BarChart3 },
-    ],
-    tools: [
-      { name: 'AI Writer', path: '/tools/writer' },
-      { name: 'PDF Analyzer', path: '/tools/pdf' },
-      { name: 'Script Generator', path: '/tools/script' },
-      { name: 'Image Generator', path: '/tools/image' },
-      { name: 'Prompt Lab', path: '/tools/prompts' },
-    ],
-    blog: [
-      { name: 'What is GPT-5?', path: '/blog/what-is-gpt-5', category: 'Core Introduction' },
-      { name: 'GPT-5 vs Claude 3', path: '/blog/gpt-5-vs-claude-3', category: 'Comparison' },
-      { name: 'GPT-5 vs Gemini', path: '/blog/gpt-5-vs-gemini', category: 'Comparison' },
-      { name: 'GPT-5 vs Open Source Models', path: '/blog/open-source-ai-models-comparison', category: 'Comparison' },
-      { name: 'GPT-5 Release Tracker', path: '/blog/gpt-5-release-tracker', category: 'News & Updates' },
-      { name: 'GPT-5 for Business', path: '/blog/gpt-5-for-business', category: 'Business Guide' },
-      { name: 'GPT-5 Technical Deep Dive', path: '/blog/gpt-5-technical-deep-dive', category: 'Technical Analysis' },
-      { name: 'Prompt Engineering Guide', path: '/blog/prompt-engineering-guide', category: 'Practical Guide' },
-      { name: 'Agent Building Tutorial', path: '/blog/gpt-5-agent-building-tutorial', category: 'Practical Guide' },
-      { name: 'Industry Implementation Guides', path: '/blog/gpt-5-industry-guides', category: 'Industry Guide' },
-      { name: 'AI Ethics & Safety', path: '/blog/gpt-5-ai-ethics-safety', category: 'Ethics & Safety' },
-    ]
-  };
+  const today = new Date().toISOString().split('T')[0];
 
-  const currentDate = new Date().toLocaleDateString('en-US', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
-  });
+  const pages = [
+    // Main Pages
+    { path: '/', priority: '1.0', lastMod: today },
+    { path: '/chat', priority: '0.9', lastMod: today },
+    { path: '/pricing', priority: '0.8', lastMod: today },
+    { path: '/about', priority: '0.7', lastMod: today },
+    { path: '/contact', priority: '0.7', lastMod: today },
+
+    // Tools
+    { path: '/tools', priority: '0.9', lastMod: today },
+    { path: '/tools/writer', priority: '0.8', lastMod: today },
+    { path: '/tools/script', priority: '0.8', lastMod: today },
+    { path: '/tools/image', priority: '0.8', lastMod: today },
+    { path: '/tools/pdf', priority: '0.8', lastMod: today },
+    { path: '/tools/prompts', priority: '0.8', lastMod: today },
+
+    // Legal
+    { path: '/privacy', priority: '0.5', lastMod: today },
+    { path: '/terms', priority: '0.5', lastMod: today },
+    { path: '/cookies', priority: '0.5', lastMod: today },
+    
+    // Blog
+    { path: '/blog', priority: '0.9', lastMod: today },
+    { path: '/blog/what-is-gpt-5', priority: '0.8', lastMod: today },
+    { path: '/blog/gpt-5-vs-claude-3', priority: '0.8', lastMod: today },
+    { path: '/blog/gpt-5-vs-gemini', priority: '0.8', lastMod: today },
+    { path: '/blog/gpt-5-release-tracker', priority: '0.8', lastMod: today },
+    { path: '/blog/gpt-5-for-business', priority: '0.8', lastMod: today },
+    { path: '/blog/gpt-5-technical-deep-dive', priority: '0.8', lastMod: today },
+    { path: '/blog/prompt-engineering-guide', priority: '0.8', lastMod: today },
+    { path: '/blog/open-source-ai-models-comparison', priority: '0.8', lastMod: today },
+    { path: '/blog/gpt-5-industry-guides', priority: '0.8', lastMod: today },
+    { path: '/blog/gpt-5-ai-ethics-safety', priority: '0.8', lastMod: today },
+    { path: '/blog/50-best-chatgpt5-prompts', priority: '0.8', lastMod: today },
+    { path: '/blog/reduce-chatgpt5-api-costs', priority: '0.8', lastMod: today },
+    { path: '/blog/can-gpt-5-generate-videos', priority: '0.8', lastMod: today },
+    { path: '/blog/gpt-5-use-cases', priority: '0.8', lastMod: today },
+
+    // Use Cases
+    { path: '/use-cases', priority: '0.7', lastMod: today },
+  ];
+
+  const renderSection = (title: string, links: { path: string; priority: string, lastMod: string }[]) => (
+    <div className="mb-8">
+      <h2 className="text-2xl font-semibold mb-4 text-primary">{title}</h2>
+      <ul className="space-y-2">
+        {links.map(page => (
+          <li key={page.path}>
+            <Link to={page.path} className="text-muted-foreground hover:text-foreground hover:underline">
+              {page.path}
+            </Link>
+            <span className="ml-4 text-sm text-gray-500">(Priority: {page.priority})</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <div className="container mx-auto px-4 py-8 pt-20">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            Sitemap
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Complete overview of all pages and resources available on GPT-5 AI. 
-            Find everything you need to explore our AI-powered platform.
+    <Layout>
+      <SEOHead
+        title="Sitemap - GPT-5 AI"
+        description="Explore all pages on the GPT-5 AI platform. Find links to our tools, blog articles, and company information."
+      />
+      <div className="min-h-screen bg-background">
+        <div className="container mx-auto px-4 py-8 pt-20">
+          <h1 className="text-4xl font-bold mb-8 text-center">Sitemap</h1>
+          <p className="text-center text-muted-foreground mb-12">
+            Last Updated: {today}
           </p>
-          <div className="flex items-center justify-center gap-2 mt-4 text-sm text-muted-foreground">
-            <Calendar className="h-4 w-4" />
-            <span>Last updated: {currentDate}</span>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div>
+              {renderSection('Main Pages', pages.filter(p => !p.path.includes('/') || p.path.length < 2))}
+              {renderSection('Core Features', pages.filter(p => ['/chat', '/pricing', '/about', '/contact'].includes(p.path)))}
+            </div>
+            <div>
+              {renderSection('Tools', pages.filter(p => p.path.startsWith('/tools')))}
+              {renderSection('Legal', pages.filter(p => p.path.startsWith('/privacy') || p.path.startsWith('/terms') || p.path.startsWith('/cookies')))}
+            </div>
+            <div>
+              {renderSection('Blog & Use Cases', pages.filter(p => p.path.startsWith('/blog') || p.path.startsWith('/use-cases')))}
+            </div>
           </div>
         </div>
-
-        <div className="max-w-6xl mx-auto space-y-8">
-          {/* Main Pages */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Home className="h-5 w-5" />
-                Main Pages
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {siteStructure.main.map(page => (
-                  <Link
-                    key={page.path}
-                    to={page.path}
-                    className="flex items-center gap-3 p-3 rounded-lg border border-border hover:bg-muted/50 transition-colors"
-                  >
-                    <page.icon className="h-4 w-4 text-primary" />
-                    <span className="font-medium">{page.name}</span>
-                  </Link>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Tools */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Wrench className="h-5 w-5" />
-                AI Tools
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {siteStructure.tools.map(tool => (
-                  <Link
-                    key={tool.path}
-                    to={tool.path}
-                    className="flex items-center gap-3 p-3 rounded-lg border border-border hover:bg-muted/50 transition-colors"
-                  >
-                    <ExternalLink className="h-4 w-4 text-primary" />
-                    <span className="font-medium">{tool.name}</span>
-                  </Link>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Blog Articles */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <BookOpen className="h-5 w-5" />
-                Blog Articles
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-6">
-                {/* Group by category */}
-                {Array.from(new Set(siteStructure.blog.map(post => post.category))).map(category => (
-                  <div key={category}>
-                    <h3 className="font-semibold text-lg mb-3 text-primary">{category}</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {siteStructure.blog
-                        .filter(post => post.category === category)
-                        .map(post => (
-                          <Link
-                            key={post.path}
-                            to={post.path}
-                            className="flex items-center gap-3 p-3 rounded-lg border border-border hover:bg-muted/50 transition-colors"
-                          >
-                            <ExternalLink className="h-4 w-4 text-primary" />
-                            <span className="font-medium">{post.name}</span>
-                          </Link>
-                        ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Technical Information */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Technical Information</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <h4 className="font-semibold mb-2">Site Statistics</h4>
-                    <ul className="text-sm text-muted-foreground space-y-1">
-                      <li>• Total Pages: {siteStructure.main.length + siteStructure.tools.length + siteStructure.blog.length}</li>
-                      <li>• Blog Articles: {siteStructure.blog.length}</li>
-                      <li>• AI Tools: {siteStructure.tools.length}</li>
-                      <li>• Main Sections: {siteStructure.main.length}</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2">Content Categories</h4>
-                    <ul className="text-sm text-muted-foreground space-y-1">
-                      {Array.from(new Set(siteStructure.blog.map(post => post.category))).map(category => (
-                        <li key={category}>
-                          • {category}: {siteStructure.blog.filter(post => post.category === category).length} articles
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Additional Resources */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Additional Resources</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-3 rounded-lg border border-border">
-                  <h4 className="font-semibold mb-2">XML Sitemap</h4>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Machine-readable sitemap for search engines
-                  </p>
-                  <Link to="/sitemap.xml" className="text-primary text-sm hover:underline">
-                    View XML Sitemap
-                  </Link>
-                </div>
-                <div className="p-3 rounded-lg border border-border">
-                  <h4 className="font-semibold mb-2">RSS Feed</h4>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Subscribe to our latest blog posts
-                  </p>
-                  <Link to="/rss.xml" className="text-primary text-sm hover:underline">
-                    Subscribe to RSS
-                  </Link>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
