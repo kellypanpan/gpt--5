@@ -4,6 +4,18 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Cookie, Settings, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+declare global {
+  interface Window {
+    gtag?: (
+      command: 'consent',
+      action: 'update',
+      params: {
+        analytics_storage: 'granted' | 'denied';
+      }
+    ) => void;
+  }
+}
+
 const COOKIE_CONSENT_KEY = 'gpt5ai-cookie-consent';
 
 interface CookiePreferences {
@@ -106,37 +118,32 @@ export const CookieConsent = () => {
   if (!showBanner) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center p-4">
-      {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-black/20 backdrop-blur-sm"
-        onClick={() => setShowBanner(false)}
-      />
+    <div className="fixed inset-x-0 bottom-0 z-50 flex items-end justify-end p-4 sm:p-6">
+      {/* Backdrop removed for a less intrusive banner */}
       
       {/* Cookie Banner */}
-      <Card className="relative w-full max-w-2xl shadow-2xl border-2">
+      <Card className="relative w-full max-w-lg shadow-2xl border-2 dark:border-gray-700 bg-white dark:bg-gray-800">
         <CardContent className="p-6">
           {!showSettings ? (
             // Main Banner
             <div>
               <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Cookie className="h-6 w-6 text-blue-600" />
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Cookie className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    We use cookies to enhance your experience
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                    We value your privacy
                   </h3>
-                  <p className="text-sm text-gray-600 mb-4">
-                    We use essential cookies to make our service work, and optional cookies to enhance your experience 
-                    and understand how you use our platform. You can choose which cookies to accept.
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                    We use cookies to enhance your experience. By clicking "Accept All", you agree to our use of cookies.
                   </p>
                 </div>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setShowBanner(false)}
-                  className="text-gray-400 hover:text-gray-600 p-1"
+                  className="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 p-1"
                 >
                   <X className="h-4 w-4" />
                 </Button>
@@ -145,33 +152,26 @@ export const CookieConsent = () => {
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button 
                   onClick={handleAcceptAll}
-                  className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                  className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
                 >
-                  Accept All Cookies
+                  Accept All
                 </Button>
                 <Button 
                   variant="outline" 
-                  onClick={handleRejectNonEssential}
-                  className="flex-1"
-                >
-                  Accept Essential Only
-                </Button>
-                <Button 
-                  variant="ghost" 
                   onClick={() => setShowSettings(true)}
-                  className="flex-1"
+                  className="flex-1 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
                 >
                   <Settings className="h-4 w-4 mr-2" />
                   Customize
                 </Button>
               </div>
               
-              <div className="flex items-center justify-center gap-4 mt-4 text-xs text-gray-500">
-                <Link to="/cookies" className="hover:text-blue-600 hover:underline">
+              <div className="flex items-center justify-center gap-4 mt-4 text-xs text-gray-500 dark:text-gray-400">
+                <Link to="/cookies" className="hover:text-blue-600 dark:hover:text-blue-400 hover:underline">
                   Cookie Policy
                 </Link>
                 <span>•</span>
-                <Link to="/privacy" className="hover:text-blue-600 hover:underline">
+                <Link to="/privacy" className="hover:text-blue-600 dark:hover:text-blue-400 hover:underline">
                   Privacy Policy
                 </Link>
               </div>
@@ -180,14 +180,14 @@ export const CookieConsent = () => {
             // Settings Panel
             <div>
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                   Cookie Preferences
                 </h3>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setShowSettings(false)}
-                  className="text-gray-400 hover:text-gray-600"
+                  className="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
                 >
                   <X className="h-4 w-4" />
                 </Button>
@@ -195,25 +195,25 @@ export const CookieConsent = () => {
               
               <div className="space-y-4 mb-6">
                 {/* Essential Cookies */}
-                <div className="flex items-center justify-between p-4 bg-red-50 rounded-lg border border-red-200">
+                <div className="flex items-center justify-between p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-900">
                   <div className="flex-1">
-                    <h4 className="font-medium text-red-800 mb-1">Essential Cookies</h4>
-                    <p className="text-sm text-red-600">
+                    <h4 className="font-medium text-red-800 dark:text-red-300 mb-1">Essential Cookies</h4>
+                    <p className="text-sm text-red-600 dark:text-red-400">
                       Required for basic website functionality. Cannot be disabled.
                     </p>
                   </div>
                   <div className="ml-4">
-                    <div className="w-12 h-6 bg-red-600 rounded-full flex items-center justify-end px-1">
+                    <div className="w-12 h-6 bg-red-600/80 dark:bg-red-500/90 rounded-full flex items-center justify-end px-1">
                       <div className="w-4 h-4 bg-white rounded-full"></div>
                     </div>
                   </div>
                 </div>
                 
                 {/* Functional Cookies */}
-                <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <div className="flex items-center justify-between p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-900">
                   <div className="flex-1">
-                    <h4 className="font-medium text-blue-800 mb-1">Functional Cookies</h4>
-                    <p className="text-sm text-blue-600">
+                    <h4 className="font-medium text-blue-800 dark:text-blue-300 mb-1">Functional Cookies</h4>
+                    <p className="text-sm text-blue-600 dark:text-blue-400">
                       Remember your preferences and enhance your experience.
                     </p>
                   </div>
@@ -223,7 +223,7 @@ export const CookieConsent = () => {
                       className={`w-12 h-6 rounded-full flex items-center px-1 transition-colors ${
                         preferences.functional 
                           ? 'bg-blue-600 justify-end' 
-                          : 'bg-gray-300 justify-start'
+                          : 'bg-gray-300 dark:bg-gray-600 justify-start'
                       }`}
                     >
                       <div className="w-4 h-4 bg-white rounded-full"></div>
@@ -232,10 +232,10 @@ export const CookieConsent = () => {
                 </div>
                 
                 {/* Analytics Cookies */}
-                <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-200">
+                <div className="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-900">
                   <div className="flex-1">
-                    <h4 className="font-medium text-green-800 mb-1">Analytics Cookies</h4>
-                    <p className="text-sm text-green-600">
+                    <h4 className="font-medium text-green-800 dark:text-green-300 mb-1">Analytics Cookies</h4>
+                    <p className="text-sm text-green-600 dark:text-green-400">
                       Help us understand how you use our service to improve it.
                     </p>
                   </div>
@@ -245,7 +245,7 @@ export const CookieConsent = () => {
                       className={`w-12 h-6 rounded-full flex items-center px-1 transition-colors ${
                         preferences.analytics 
                           ? 'bg-green-600 justify-end' 
-                          : 'bg-gray-300 justify-start'
+                          : 'bg-gray-300 dark:bg-gray-600 justify-start'
                       }`}
                     >
                       <div className="w-4 h-4 bg-white rounded-full"></div>
@@ -257,14 +257,14 @@ export const CookieConsent = () => {
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button 
                   onClick={handleSaveCustom}
-                  className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                  className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
                 >
                   Save Preferences
                 </Button>
                 <Button 
                   variant="outline" 
                   onClick={() => setShowSettings(false)}
-                  className="flex-1"
+                  className="flex-1 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
                 >
                   Cancel
                 </Button>

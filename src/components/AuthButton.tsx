@@ -29,7 +29,7 @@ export function AuthButton() {
   return (
     <Button variant="outline" disabled>
       <User className="h-4 w-4 mr-2" />
-      Demo Mode
+      Login
     </Button>
   );
 }
@@ -56,8 +56,8 @@ export function AuthStatus() {
 
   return (
     <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-      <div className="text-sm font-medium text-yellow-800">⚠️ Demo Mode</div>
-      <div className="text-xs text-yellow-600 mt-1">Authentication not configured</div>
+      <div className="text-sm font-medium text-yellow-800">⚠️ Not Authenticated</div>
+      <div className="text-xs text-yellow-600 mt-1">Please login to access full features</div>
     </div>
   );
 }

@@ -22,14 +22,14 @@ const ScriptGenerator = () => {
   const [style, setStyle] = useState("");
   const [generatedScript, setGeneratedScript] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 模拟登录状态
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Simulate login state
 
   const scriptStyles = [
-    { value: "romance", label: "爱情", icon: "💕" },
-    { value: "comedy", label: "搞笑", icon: "😂" },
-    { value: "thriller", label: "悬疑", icon: "😱" },
-    { value: "drama", label: "剧情", icon: "🎭" },
-    { value: "action", label: "动作", icon: "💥" }
+    { value: "romance", label: "Romance", icon: "💕" },
+    { value: "comedy", label: "Comedy", icon: "😂" },
+    { value: "thriller", label: "Thriller", icon: "😱" },
+    { value: "drama", label: "Drama", icon: "🎭" },
+    { value: "action", label: "Action", icon: "💥" }
   ];
 
   const handleGenerate = async () => {
@@ -52,50 +52,50 @@ const ScriptGenerator = () => {
     }
 
     setIsLoading(true);
-    // 模拟API调用
+    // Simulate API call
     setTimeout(() => {
       const selectedStyle = scriptStyles.find(s => s.value === style);
-      setGeneratedScript(`🎬 ${selectedStyle?.label}短剧剧本: "${scene}"
+      setGeneratedScript(`🎬 ${selectedStyle?.label} Short Script: "${scene}"
 
-📱 场景1: 校园走廊
-📹 镜头: 中景，跟随镜头
-🎭 角色: 女主角小美，男主角小明
-💬 台词:
-小美: (低头走路，撞到小明) 啊！对不起...
-小明: (扶住小美) 没关系，你没事吧？
-小美: (脸红) 我...我没事，谢谢。
-小明: 我叫小明，你呢？
-小美: 我叫小美...
+📱 Scene 1: School Hallway
+📹 Camera: Medium shot, following shot
+🎭 Characters: Female lead Amy, Male lead Mike
+💬 Dialogue:
+Amy: (Walking with head down, bumps into Mike) Oh! I'm sorry...
+Mike: (Catches Amy) It's okay, are you alright?
+Amy: (Blushing) I...I'm fine, thank you.
+Mike: I'm Mike, what's your name?
+Amy: I'm Amy...
 
-📱 场景2: 图书馆
-📹 镜头: 特写，过肩镜头
-🎭 角色: 小美，小明
-💬 台词:
-小明: (轻声) 小美，这道题你会做吗？
-小美: (小声) 嗯，我教你...
-小明: (靠近) 谢谢，你真好。
-小美: (心跳加速) 不...不客气...
+📱 Scene 2: Library
+📹 Camera: Close-up, over-the-shoulder shot
+🎭 Characters: Amy, Mike
+💬 Dialogue:
+Mike: (Whispering) Amy, do you know how to solve this problem?
+Amy: (Softly) Yes, let me teach you...
+Mike: (Moving closer) Thank you, you're so kind.
+Amy: (Heart racing) You're...you're welcome...
 
-📱 场景3: 校园樱花树下
-📹 镜头: 远景，逆光
-🎭 角色: 小美，小明
-💬 台词:
-小明: 小美，我喜欢你。
-小美: (惊讶) 真的吗？
-小明: 真的，从第一次见面就喜欢你了。
-小美: (感动) 我也是...
-小明: 那我们在一起吧？
-小美: (点头) 嗯！
+📱 Scene 3: Under the Cherry Blossom Tree
+📹 Camera: Wide shot, backlit
+🎭 Characters: Amy, Mike
+💬 Dialogue:
+Mike: Amy, I like you.
+Amy: (Surprised) Really?
+Mike: Really, I've liked you since we first met.
+Amy: (Touched) Me too...
+Mike: So shall we be together?
+Amy: (Nodding) Yes!
 
-🎵 背景音乐: 温馨浪漫的钢琴曲
-🎨 滤镜: 温暖色调，柔光效果
-⏱️ 时长: 约60秒
+🎵 Background Music: Warm romantic piano music
+🎨 Filter: Warm tones, soft light effect
+⏱️ Duration: About 60 seconds
 
-💡 拍摄建议:
-- 注意光线充足
-- 表情要自然真实
-- 可以加入慢动作效果
-- 结尾可以加爱心特效`);
+💡 Shooting Tips:
+- Ensure sufficient lighting
+- Keep expressions natural and authentic
+- Add slow motion effects
+- Add heart effects at the ending`);
       setIsLoading(false);
     }, 2500);
   };
@@ -151,7 +151,7 @@ const ScriptGenerator = () => {
               <div className="space-y-2">
                 <label className="text-sm font-medium">Script Scene</label>
                 <Textarea
-                  placeholder="校园恋爱短剧..."
+                  placeholder="School romance short drama..."
                   value={scene}
                   onChange={(e) => setScene(e.target.value)}
                   className="min-h-[100px] resize-none"
@@ -163,7 +163,7 @@ const ScriptGenerator = () => {
                 <label className="text-sm font-medium">Script Style</label>
                 <Select value={style} onValueChange={setStyle} disabled={!isLoggedIn}>
                   <SelectTrigger>
-                    <SelectValue placeholder="选择剧本类型" />
+                    <SelectValue placeholder="Select script type" />
                   </SelectTrigger>
                   <SelectContent>
                     {scriptStyles.map((styleOption) => (
@@ -181,7 +181,7 @@ const ScriptGenerator = () => {
               {!isLoggedIn ? (
                 <div className="text-center space-y-4">
                   <p className="text-muted-foreground">
-                    需订阅才能使用
+                    Subscription required
                   </p>
                   <Button variant="hero" className="w-full sm:w-auto">
                     <Lock className="h-4 w-4 mr-2" />

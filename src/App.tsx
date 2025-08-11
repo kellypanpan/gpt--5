@@ -45,6 +45,7 @@ import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
 import GPT5UseCases from "./pages/blog/gpt-5-use-cases";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 // Use cases pages
 import UseCases from "./pages/use-cases/index";
@@ -82,6 +83,7 @@ const App = () => (
             {/* Keep pricing and other essential pages */}
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/auth/callback" element={<AuthCallback />} />
             <Route path="/error" element={<ErrorPage />} />

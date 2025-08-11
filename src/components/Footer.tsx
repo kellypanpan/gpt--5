@@ -1,6 +1,10 @@
 import { Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-background border-t border-border/20 py-12">
       <div className="container mx-auto px-4">
@@ -26,27 +30,33 @@ const Footer = () => {
 
           {/* Tools */}
           <div>
-            <h3 className="font-semibold mb-4">Tools</h3>
+            <h3 className="font-semibold mb-4">{t("tools")}</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li><a href="/tools/writer" className="hover:text-foreground transition-smooth">GPT-5 Writing Tool</a></li>
-              <li><a href="/tools/pdf" className="hover:text-foreground transition-smooth">GPT-5 PDF Summarizer</a></li>
-              <li><a href="/tools/script" className="hover:text-foreground transition-smooth">GPT-5 Script Generator</a></li>
-              <li><a href="/tools/image" className="hover:text-foreground transition-smooth">GPT-5 Image Generator</a></li>
-              <li><a href="/tools/agent" className="hover:text-foreground transition-smooth">GPT-5 Agent</a></li>
-              <li><a href="/tools/prompts" className="hover:text-foreground transition-smooth">GPT-5 Prompt Examples</a></li>
+              <li><Link to="/tools/writer" className="hover:text-foreground transition-smooth">{t("toolWriter")}</Link></li>
+              <li><Link to="/tools/pdf" className="hover:text-foreground transition-smooth">{t("toolPDF")}</Link></li>
+              <li><Link to="/tools/script" className="hover:text-foreground transition-smooth">{t("toolScript")}</Link></li>
+              <li><Link to="/tools/image" className="hover:text-foreground transition-smooth">{t("toolImage")}</Link></li>
+              <li><Link to="/tools/agent" className="hover:text-foreground transition-smooth">{t("toolAgent")}</Link></li>
+              <li><Link to="/tools/prompts" className="hover:text-foreground transition-smooth">{t("toolPrompts")}</Link></li>
             </ul>
           </div>
 
           {/* Company */}
           <div>
-            <h3 className="font-semibold mb-4">Company</h3>
-            <ul className="space-y-2 text-muted-foreground">
-              <li><a href="/about" className="hover:text-foreground transition-smooth">About</a></li>
-              <li><a href="/pricing" className="hover:text-foreground transition-smooth">Pricing</a></li>
-              <li><a href="/blog" className="hover:text-foreground transition-smooth">Blog</a></li>
-              <li><a href="/contact" className="hover:text-foreground transition-smooth">Contact</a></li>
-              <li><a href="/privacy" className="hover:text-foreground transition-smooth">Privacy</a></li>
-              <li><a href="/terms" className="hover:text-foreground transition-smooth">Terms</a></li>
+            <h3 className="font-semibold mb-4">{t("company")}</h3>
+            <ul className="space-y-2">
+              <li><Link to="/about" className="text-sm text-muted-foreground hover:text-foreground">{t("about")}</Link></li>
+              <li><Link to="/contact" className="text-sm text-muted-foreground hover:text-foreground">{t("contact")}</Link></li>
+              <li><Link to="/pricing" className="text-sm text-muted-foreground hover:text-foreground">{t("pricing")}</Link></li>
+              <li><Link to="/blog" className="text-sm text-muted-foreground hover:text-foreground">{t("blog")}</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-4">{t("legal")}</h3>
+            <ul className="space-y-2">
+              <li><Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground">{t("privacy")}</Link></li>
+              <li><Link to="/terms" className="text-sm text-muted-foreground hover:text-foreground">{t("terms")}</Link></li>
+              <li><Link to="/cookies" className="text-sm text-muted-foreground hover:text-foreground">{t("cookies")}</Link></li>
             </ul>
           </div>
         </div>
