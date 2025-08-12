@@ -284,6 +284,34 @@ const Pricing = () => {
             </div>
           </div>
 
+          {/* Secure Payments Section */}
+          <div className="max-w-3xl mx-auto mt-16 text-center">
+            <h2 className="text-2xl font-bold mb-4">Bank-Level Security Guarantee</h2>
+            <p className="text-muted-foreground mb-6">
+              We partner with Creem to handle all payments, ensuring your transaction is secure and worry-free.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6 text-left">
+              <div className="bg-muted/50 p-6 rounded-lg">
+                <h4 className="font-semibold mb-2">Credit Card Security</h4>
+                <p className="text-sm text-muted-foreground">
+                  Your sensitive data like credit card numbers is processed directly by Creem's secure servers. We never store this information on our platform.
+                </p>
+              </div>
+              <div className="bg-muted/50 p-6 rounded-lg">
+                <h4 className="font-semibold mb-2">Data Encryption</h4>
+                <p className="text-sm text-muted-foreground">
+                  All data transmission, from your browser to the payment processor, is protected by TLS 1.2+ encryption.
+                </p>
+              </div>
+              <div className="bg-muted/50 p-6 rounded-lg">
+                <h4 className="font-semibold mb-2">Compliance Standards</h4>
+                <p className="text-sm text-muted-foreground">
+                  Our payment process is compliant with PCI DSS, the most stringent security standard in the payment industry.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Trust Signals */}
           <div className="text-center mt-16 pt-8 border-t border-border">
             <div className="flex justify-center items-center space-x-8 mb-4">

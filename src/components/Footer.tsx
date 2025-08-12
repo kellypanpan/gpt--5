@@ -66,8 +66,13 @@ const Footer = () => {
             © 2025 AI Tools Hub. All rights reserved. Professional AI tools platform for creators and businesses.
           </p>
           
+          {/* Secure Payments Notice */}
+          <div className="mt-6 text-xs text-muted-foreground/80 max-w-4xl mx-auto">
+            <strong className="text-muted-foreground">Secure Payments:</strong> Your security is our priority. All payments are securely processed by Creem. We never handle or store your credit card information. This site is protected by SSL encryption.
+          </div>
+
           {/* Legal Disclaimer */}
-          <div className="mt-6 text-xs text-muted-foreground/70 max-w-4xl mx-auto">
+          <div className="mt-4 text-xs text-muted-foreground/70 max-w-4xl mx-auto">
             <strong className="text-muted-foreground">Legal Disclaimer:</strong> This platform is an independent AI tools service and is not affiliated with, endorsed, or sponsored by OpenAI, Google, Anthropic, or any AI model provider. 
             All tools provided here are for lawful, educational, and productivity purposes only. 
             We do not request, collect, or store any sensitive personal information such as banking credentials or official account passwords. 

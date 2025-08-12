@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { SEOHead } from "@/components/SEOHead";
-import { Sparkles, Shield, Users, Target, CheckCircle, AlertTriangle } from "lucide-react";
+import { Sparkles, Shield, Users, Target, CheckCircle, AlertTriangle, ShieldCheck } from "lucide-react";
 
 const About = () => {
   return (
@@ -98,6 +98,35 @@ const About = () => {
                         <p className="text-sm text-muted-foreground">Promoting responsible AI implementation</p>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Our Commitment to Security */}
+            <Card className="mb-8 border-border/50">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <ShieldCheck className="h-5 w-5 text-primary" />
+                  Our Commitment to Security
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-lg leading-relaxed mb-6">
+                  We are deeply committed to protecting your data and ensuring a secure experience on our platform.
+                </p>
+                <div className="grid md:grid-cols-2 gap-6 text-left">
+                  <div className="bg-muted/30 p-4 rounded-lg">
+                    <h4 className="font-semibold mb-2">Bank-Level Payment Security</h4>
+                    <p className="text-sm text-muted-foreground">
+                      All payments are processed by Creem, a certified PCI Level 1 Service Provider. We do not handle or store any of your credit card information, ensuring your financial data is always safe.
+                    </p>
+                  </div>
+                  <div className="bg-muted/30 p-4 rounded-lg">
+                    <h4 className="font-semibold mb-2">End-to-End Encryption</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Our entire website is protected by SSL (Secure Sockets Layer) encryption, meaning all data transferred between your browser and our servers is secure and private.
+                    </p>
                   </div>
                 </div>
               </CardContent>
