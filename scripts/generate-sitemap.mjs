@@ -3,6 +3,7 @@ import path from 'path';
 
 // This script generates a sitemap.xml file for SEO purposes.
 // It is intended to be run during the build process.
+// Forcing a change to fix git sync issue.
 
 const generateSitemap = () => {
   const domain = 'https://gpt5hub.com';
