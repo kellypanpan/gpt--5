@@ -418,23 +418,23 @@ const ChatInterface = () => {
   }, [userCredits, isAuthenticated, isPaidPlan]);
 
   return (
-    <div className="flex h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="flex h-screen bg-background text-foreground">
       {/* Sidebar */}
-      <div className={`${isSidebarOpen ? 'w-80' : 'w-0'} transition-all duration-300 bg-white/80 backdrop-blur-sm border-r border-gray-200/50 flex flex-col overflow-hidden shadow-sm`}>
+      <div className={`${isSidebarOpen ? 'w-80' : 'w-0'} transition-all duration-300 bg-background/80 dark:bg-slate-900/80 backdrop-blur-sm border-r border-border/50 flex flex-col overflow-hidden shadow-sm`}>
         {/* Sidebar Header */}
-        <div className="p-4 border-b border-gray-200">
+        <div className="p-4 border-b border-border">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">G5</span>
               </div>
-              <h1 className="font-semibold text-gray-900">GPT-5 AI</h1>
+              <h1 className="font-semibold text-foreground">GPT-5 AI</h1>
             </div>
           </div>
           
           <Button 
             onClick={createNewChat}
-            className="w-full bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 mb-4"
+            className="w-full bg-card border border-border text-foreground hover:bg-muted mb-4"
           >
             <Plus className="w-4 h-4 mr-2" />
             New Chat
@@ -442,8 +442,8 @@ const ChatInterface = () => {
         </div>
 
         {/* Tools Section */}
-        <div className="p-4 border-b border-gray-200">
-          <h2 className="text-sm font-medium text-gray-600 mb-3">AI Tools</h2>
+        <div className="p-4 border-b border-border">
+          <h2 className="text-sm font-medium text-muted-foreground mb-3">AI Tools</h2>
           <div className="space-y-2">
             {TOOLS.map(tool => {
               const Icon = tool.icon;
@@ -451,15 +451,15 @@ const ChatInterface = () => {
                 <button
                   key={tool.id}
                   onClick={() => handleToolClick(tool)}
-                  className="w-full p-3 text-left rounded-lg hover:bg-gray-100 transition-colors group"
+                  className="w-full p-3 text-left rounded-lg hover:bg-muted transition-colors group"
                 >
                   <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-gray-100 group-hover:bg-gray-200 rounded-lg flex items-center justify-center">
-                      <Icon className="w-4 h-4 text-gray-600" />
+                    <div className="w-8 h-8 bg-muted group-hover:bg-muted/80 rounded-lg flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-muted-foreground" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="font-medium text-gray-900 text-sm">{tool.name}</div>
-                      <div className="text-xs text-gray-500 truncate">{tool.description}</div>
+                      <div className="font-medium text-foreground text-sm">{tool.name}</div>
+                      <div className="text-xs text-muted-foreground truncate">{tool.description}</div>
                     </div>
                   </div>
                 </button>
@@ -471,7 +471,7 @@ const ChatInterface = () => {
         {/* Chat History */}
         <div className="flex-1 overflow-hidden">
           <div className="p-4">
-            <h2 className="text-sm font-medium text-gray-600 mb-3">Recent Chats</h2>
+            <h2 className="text-sm font-medium text-muted-foreground mb-3">Recent Chats</h2>
             <ScrollArea className="h-full">
               <div className="space-y-2">
                 {sessions.map(session => (
@@ -480,15 +480,15 @@ const ChatInterface = () => {
                     onClick={() => setCurrentSessionId(session.id)}
                     className={`w-full text-left p-3 rounded-lg transition-colors ${
                       currentSessionId === session.id 
-                        ? 'bg-gray-200 text-gray-900' 
-                        : 'text-gray-700 hover:bg-gray-100'
+                        ? 'bg-muted text-foreground' 
+                        : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
                     }`}
                   >
                     <div className="flex items-center space-x-3">
-                      <MessageSquare className="w-4 h-4 text-gray-400" />
+                      <MessageSquare className="w-4 h-4 text-muted-foreground/70" />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium truncate">{session.title}</p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-muted-foreground/70">
                           {new Date(session.updated_at).toLocaleDateString()}
                         </p>
                       </div>
@@ -501,13 +501,13 @@ const ChatInterface = () => {
         </div>
 
         {/* User Info */}
-        <div className="p-4 border-t border-gray-200">
-          <div className="bg-gradient-to-r from-blue-50/80 to-purple-50/80 backdrop-blur-sm rounded-lg p-3 shadow-sm">
+        <div className="p-4 border-t border-border">
+          <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-lg p-3 shadow-sm">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-blue-700 font-medium text-sm">
+              <span className="text-primary font-medium text-sm">
                 {isAuthenticated && isPaidPlan ? 'PRO PLAN' : isAuthenticated ? 'FREE PLAN' : 'GUEST'}
               </span>
-              <span className="text-blue-600 text-sm">
+              <span className="text-primary/80 text-sm">
                 {isAuthenticated && isPaidPlan ? '∞ Unlimited' : isAuthenticated ? `${userCredits} credits` : 'Sign in for credits'}
               </span>
             </div>
@@ -529,15 +529,15 @@ const ChatInterface = () => {
       </div>
 
       {/* Main Chat Area */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col bg-muted/30">
         {/* Chat Header */}
-        <div className="bg-white/90 backdrop-blur-sm border-b border-gray-200/50 px-4 py-3 flex items-center justify-between shadow-sm">
+        <div className="bg-background/90 backdrop-blur-sm border-b border-border px-4 py-3 flex items-center justify-between shadow-sm">
           <div className="flex items-center space-x-3">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className="text-gray-600"
+              className="text-muted-foreground"
             >
               <Menu className="w-4 h-4" />
             </Button>
@@ -548,11 +548,11 @@ const ChatInterface = () => {
                   <Button size="sm" variant="outline" onClick={onRename}>Save</Button>
                 </div>
               ) : (
-                <h2 className="font-medium text-gray-900">
+                <h2 className="font-medium text-foreground">
                   {currentSession?.title || 'New Conversation'}
                 </h2>
               )}
-              <p className="text-sm text-gray-500">GPT-5 AI Assistant</p>
+              <p className="text-sm text-muted-foreground">GPT-5 AI Assistant</p>
             </div>
           </div>
           {currentSession && (
@@ -566,7 +566,7 @@ const ChatInterface = () => {
                 <Button size="sm" variant="outline" onClick={regenerateLast}>Regenerate</Button>
               )}
               <Button size="sm" variant="ghost" onClick={editLastUser}>Edit last</Button>
-              <Button size="sm" variant="ghost" onClick={onDelete} className="text-red-600">Delete</Button>
+              <Button size="sm" variant="ghost" onClick={onDelete} className="text-red-600 hover:text-red-700 dark:hover:text-red-500">Delete</Button>
             </div>
           )}
         </div>
@@ -580,10 +580,10 @@ const ChatInterface = () => {
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Bot className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
                     Welcome to GPT-5 AI
                   </h3>
-                  <p className="text-gray-600 mb-8">
+                  <p className="text-muted-foreground mb-8">
                     Start a conversation or use one of the AI tools from the sidebar.
                   </p>
 
@@ -599,9 +599,9 @@ const ChatInterface = () => {
                         <button
                           key={index}
                           onClick={() => handleSend(prompt)}
-                          className="p-3 text-left text-sm bg-white/40 backdrop-blur-sm border border-gray-200/50 rounded-xl hover:bg-white/60 hover:border-gray-300/50 transition-all duration-200 group"
+                          className="p-3 text-left text-sm bg-background/40 backdrop-blur-sm border border-border rounded-xl hover:bg-background/60 hover:border-border/80 transition-all duration-200 group"
                         >
-                          <div className="flex items-center text-gray-700 group-hover:text-gray-900">
+                          <div className="flex items-center text-foreground group-hover:text-foreground/80">
                             <span className="mr-2 opacity-50">💭</span>
                             {prompt}
                           </div>
@@ -617,15 +617,15 @@ const ChatInterface = () => {
                         <button
                           key={tool.id}
                           onClick={() => handleToolClick(tool)}
-                          className="p-4 text-left rounded-xl border border-gray-200/50 bg-white/60 backdrop-blur-sm hover:border-gray-300 hover:bg-white/80 transition-all duration-200 shadow-sm"
+                          className="p-4 text-left rounded-xl border border-border bg-background/60 backdrop-blur-sm hover:border-border/80 hover:bg-background/80 transition-all duration-200 shadow-sm"
                         >
                           <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
-                              <Icon className="w-5 h-5 text-gray-600" />
+                            <div className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center">
+                              <Icon className="w-5 h-5 text-muted-foreground" />
                             </div>
                             <div>
-                              <div className="font-medium text-gray-900">{tool.name}</div>
-                              <div className="text-sm text-gray-500">{tool.description}</div>
+                              <div className="font-medium text-foreground">{tool.name}</div>
+                              <div className="text-sm text-muted-foreground">{tool.description}</div>
                             </div>
                           </div>
                         </button>
@@ -638,20 +638,20 @@ const ChatInterface = () => {
                   {messages.map((message) => (
                     <div key={message.id} className="group">
                       <div className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                        <div className={`max-w-[80%] flex items-start gap-3 ${message.role === 'user' ? 'flex-row-reverse' : ''} ${message.role === 'assistant' ? 'bg-white/60 backdrop-blur-sm py-4 px-4 rounded-lg' : ''}`}>
+                        <div className={`max-w-[80%] flex items-start gap-3 ${message.role === 'user' ? 'flex-row-reverse' : ''}`}>
                           <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                             message.role === 'user' ? 'bg-blue-600 text-white' : 'bg-green-600 text-white'
                           }`}>
                             {message.role === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                           </div>
-                          <div className={`flex-1 min-w-0 ${message.role === 'user' ? 'text-right' : ''}`}>
+                          <div className={`flex-1 min-w-0 p-4 rounded-lg ${message.role === 'user' ? 'text-right bg-primary text-primary-foreground' : 'bg-card text-card-foreground'}`}>
                             <MarkdownRenderer content={message.content} />
                             {message.role === 'assistant' && (
                               <div className={`flex items-center space-x-2 mt-3 opacity-0 group-hover:opacity-100 transition-opacity`}>
-                                <Button variant="ghost" size="sm" className="h-8 px-2 text-gray-500 hover:text-gray-700" onClick={() => copyText(message.content)}>
+                                <Button variant="ghost" size="sm" className="h-8 px-2 text-muted-foreground hover:text-foreground" onClick={() => copyText(message.content)}>
                                   <Copy className="w-3 h-3" />
                                 </Button>
-                                <Button variant="ghost" size="sm" className="h-8 px-2 text-gray-500 hover:text-gray-700">
+                                <Button variant="ghost" size="sm" className="h-8 px-2 text-muted-foreground hover:text-foreground">
                                   <Share className="w-3 h-3" />
                                 </Button>
                               </div>
@@ -665,13 +665,13 @@ const ChatInterface = () => {
                   {streamingMessage && (
                     <div className="group">
                       <div className="flex justify-start">
-                        <div className="max-w-[80%] bg-white/60 backdrop-blur-sm py-4 px-4 rounded-lg flex items-start gap-3">
-                          <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center">
+                        <div className="max-w-[80%] flex items-start gap-3">
+                          <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center flex-shrink-0">
                             <Bot className="w-4 h-4" />
                           </div>
-                          <div className="flex-1 min-w-0">
+                          <div className="flex-1 min-w-0 bg-card text-card-foreground p-4 rounded-lg">
                             <MarkdownRenderer content={streamingMessage + ' '} />
-                            <span className="inline-block w-2 h-4 bg-gray-400 ml-1 animate-pulse" />
+                            <span className="inline-block w-2 h-4 bg-muted-foreground ml-1 animate-pulse" />
                           </div>
                         </div>
                       </div>
@@ -680,14 +680,14 @@ const ChatInterface = () => {
                   
                   {isLoading && !streamingMessage && (
                     <div className="flex justify-start">
-                      <div className="max-w-[80%] bg-white/60 backdrop-blur-sm py-4 px-4 rounded-lg flex items-center gap-3">
-                        <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center">
+                      <div className="max-w-[80%] flex items-center gap-3">
+                        <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center flex-shrink-0">
                           <Bot className="w-4 h-4" />
                         </div>
-                        <div className="flex space-x-1">
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        <div className="flex space-x-1 bg-card p-4 rounded-lg">
+                          <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce"></div>
+                          <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                          <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                         </div>
                       </div>
                     </div>
@@ -701,7 +701,7 @@ const ChatInterface = () => {
 
         {/* Input Area */}
         <div 
-          className="bg-white/90 backdrop-blur-sm border-t border-gray-200/50 p-4 shadow-sm"
+          className="bg-background/90 backdrop-blur-sm border-t border-border p-4 shadow-sm"
           onDrop={handleFileDrop}
           onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
           onDragLeave={() => setIsDragging(false)}
@@ -712,31 +712,31 @@ const ChatInterface = () => {
               <div className="absolute inset-0 bg-blue-500/10 border-2 border-dashed border-blue-400 rounded-xl flex items-center justify-center z-10">
                 <div className="text-center">
                   <Upload className="w-8 h-8 text-blue-500 mx-auto mb-2" />
-                  <p className="text-blue-600 font-medium">Drop your file here</p>
-                  <p className="text-sm text-gray-500">Images (JPEG, PNG, WebP) or PDF files</p>
+                  <p className="text-blue-600 dark:text-blue-400 font-medium">Drop your file here</p>
+                  <p className="text-sm text-muted-foreground">Images (JPEG, PNG, WebP) or PDF files</p>
                 </div>
               </div>
             )}
 
             {/* 附件预览 */}
             {attachedFile && (
-              <div className="mb-3 p-3 bg-blue-50 border border-blue-200 rounded-lg flex items-center justify-between">
+              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/50 rounded-lg flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   {attachedFile.type.startsWith('image/') ? (
-                    <Image className="w-5 h-5 text-blue-600" />
+                    <Image className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   ) : (
-                    <FileText className="w-5 h-5 text-blue-600" />
+                    <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   )}
                   <div>
-                    <p className="text-sm font-medium text-blue-900">{attachedFile.name}</p>
-                    <p className="text-xs text-blue-600">{(attachedFile.size / 1024 / 1024).toFixed(1)} MB</p>
+                    <p className="text-sm font-medium text-blue-900 dark:text-blue-200">{attachedFile.name}</p>
+                    <p className="text-xs text-blue-600 dark:text-blue-400">{(attachedFile.size / 1024 / 1024).toFixed(1)} MB</p>
                   </div>
                 </div>
                 <Button
                   size="sm"
                   variant="ghost"
                   onClick={removeAttachment}
-                  className="text-blue-600 hover:text-blue-800 hover:bg-blue-100"
+                  className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200 dark:hover:bg-blue-900/30"
                 >
                   <X className="w-4 h-4" />
                 </Button>
@@ -750,7 +750,7 @@ const ChatInterface = () => {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
                   placeholder="Message GPT-5..."
-                  className="pr-20 py-3 bg-white/80 backdrop-blur-sm border-gray-300/50 focus:border-blue-500 focus:ring-blue-500 rounded-xl shadow-sm"
+                  className="pr-20 py-3 bg-background/80 backdrop-blur-sm border-border focus:border-primary focus:ring-primary rounded-xl shadow-sm"
                   disabled={isLoading}
                 />
                 
@@ -760,7 +760,7 @@ const ChatInterface = () => {
                   size="sm"
                   variant="ghost"
                   onClick={handleFileInput}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-2"
+                  className="absolute right-12 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground p-2"
                   disabled={isLoading}
                 >
                   <Paperclip className="w-4 h-4" />
@@ -788,7 +788,7 @@ const ChatInterface = () => {
               </Button>
             </div>
             
-            <div className="flex items-center justify-center mt-2 text-xs text-gray-500">
+            <div className="flex items-center justify-center mt-2 text-xs text-muted-foreground">
               GPT-5 can make mistakes. Consider checking important information.
             </div>
           </div>
