@@ -29,7 +29,7 @@ const generateSitemap = () => {
 
     // Legal
     { path: '/privacy', priority: '0.5' },
-    { path: '/terms', priority:0.5' },
+    { path: '/terms', priority: '0.5' },
     { path: '/cookies', priority: '0.5' },
     
     // Blog
