@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import { Sparkles, ChevronDown, User, LogOut } from 'lucide-react';
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { CompactAuthModal } from '@/components/modals/CompactAuthModal';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -117,9 +117,9 @@ export const Header: React.FC = () => {
             </DropdownMenu>
           </nav>
 
-          {/* Auth and Language */}
+          {/* Auth and Theme */}
           <div className="flex items-center gap-3">
-            <LanguageSwitcher variant="compact" />
+            <ThemeToggle />
             {isAuthenticated ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

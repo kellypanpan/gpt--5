@@ -1,12 +1,12 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { CookieConsent } from "@/components/CookieConsent";
 import { config } from "@/lib/config";
-import { I18nProvider } from "@/components/I18nProvider";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -56,10 +56,15 @@ const queryClient = new QueryClient();
 config.validate();
 
 const App = () => (
-  <I18nProvider>
-    <AuthProvider>
+  <AuthProvider>
       <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TooltipProvider>
           <Toaster />
           <Sonner />
           <BrowserRouter>
@@ -122,10 +127,10 @@ const App = () => (
           <CookieConsent />
         </div>
         </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
+          </TooltipProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
     </AuthProvider>
-  </I18nProvider>
 );
 
 export default App;
