@@ -4,27 +4,43 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { SEOHead } from "@/components/SEOHead";
+import { BlogSchema } from "@/components/BlogSchema";
 
 const GPT5JobsImpact = () => {
+  const articleMetadata = {
+    title: "Why GPT-5 Might Replace More Jobs Than Any AI Before - GPT-5 Future of Work",
+    description: "GPT-5 isn't just smarter — it's more capable, more autonomous, and more human-like than any model before it. Discover how GPT-5 might impact your job and what you can do about it.",
+    author: "GPT5AI Editorial",
+    datePublished: "2025-01-01",
+    dateModified: "2025-01-01",
+    coverImage: "/images/blog/gpt5-jobs-impact.jpg", // Assuming a cover image path
+    readTime: "7 min read"
+  };
+
+  const origin = 'https://gpt5hub.com';
+  const canonicalUrl = `${origin}/blog/gpt-5-jobs-impact`;
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Why GPT-5 Might Replace More Jobs Than Any AI Before - GPT-5 Future of Work"
-        description="GPT-5 isn't just smarter — it's more capable, more autonomous, and more human-like than any model before it. Discover how GPT-5 might impact your job and what you can do about it."
+        title={articleMetadata.title}
+        description={articleMetadata.description}
+        canonical={canonicalUrl}
+        ogTitle={articleMetadata.title}
+        ogDescription={articleMetadata.description}
+        ogImage={origin + articleMetadata.coverImage}
+        ogUrl={canonicalUrl}
+        ogType="article"
         keywords="gpt-5, future of work, ai automation, job replacement, gpt-5 vs gpt-4, gpt-5 capabilities, prompt engineering, ai jobs impact"
-        structuredData={{
-          "@context": "https://schema.org",
-          "@type": "Article",
-          "headline": "Why GPT-5 Might Replace More Jobs Than Any AI Before",
-          "description": "GPT-5 isn't just smarter — it's more capable, more autonomous, and more human-like than any model before it. Here's how that might impact your job, and what you can do about it.",
-          "author": {
-            "@type": "Organization",
-            "name": "GPT5AI Editorial"
-          },
-          "datePublished": "2025-01-01",
-          "dateModified": "2025-01-01",
-          "keywords": "gpt-5, future of work, ai automation, job replacement, prompt engineering"
-        }}
+      />
+      <BlogSchema
+        title={articleMetadata.title}
+        description={articleMetadata.description}
+        authorName={articleMetadata.author}
+        publishDate={articleMetadata.datePublished}
+        updateDate={articleMetadata.dateModified}
+        imageUrl={origin + articleMetadata.coverImage}
+        url={canonicalUrl}
       />
       
       <div className="container max-w-4xl mx-auto px-4 py-8">

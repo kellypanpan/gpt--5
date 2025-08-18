@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { Sparkles, TrendingUp, DollarSign, Users, Zap, Target, BarChart3, Lightbulb, User, Calendar, ArrowRight } from 'lucide-react';
 import { SEOHead } from '@/components/SEOHead';
 import { PrevNext } from '@/components/PrevNext';
+import { BlogSchema } from '@/components/BlogSchema';
 
 const GPT5ForBusiness = () => {
   const articleMetadata = {
@@ -19,16 +20,20 @@ const GPT5ForBusiness = () => {
     excerpt: "Discover how GPT-5 can revolutionize your business processes, boost productivity, and drive growth across all departments.",
     readTime: "15 min read"
   };
+
+  const origin = 'https://gpt5hub.com';
+  const canonicalUrl = `${origin}/blog/gpt-5-for-business`;
+
   return (
     <>
       <SEOHead 
         title={articleMetadata.title}
         description={articleMetadata.description}
-        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog/gpt-5-for-business' : 'https://gpt-5ai.com/blog/gpt-5-for-business'}
+        canonical={canonicalUrl}
         ogTitle={articleMetadata.title}
         ogDescription={articleMetadata.description}
         ogImage={articleMetadata.coverImage}
-        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog/gpt-5-for-business'}
+        ogUrl={canonicalUrl}
         ogType="article"
         twitterTitle={articleMetadata.title}
         twitterDescription={articleMetadata.description}
@@ -38,32 +43,14 @@ const GPT5ForBusiness = () => {
         articleSection="Business Guide"
         articleTags={["GPT-5", "Business", "Implementation", "ROI"]}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: "GPT-5 for Business: Transform Your Operations",
-            datePublished: articleMetadata.datePublished,
-            dateModified: articleMetadata.dateModified,
-            author: { "@type": "Person", name: articleMetadata.author },
-            publisher: {
-              "@type": "Organization",
-              name: "GPT-5 AI",
-              logo: {
-                "@type": "ImageObject",
-                url: "https://gpt-5ai.com/g5-logo.png",
-              },
-            },
-            image: articleMetadata.coverImage,
-            description: articleMetadata.description,
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": "https://gpt-5ai.com/blog/gpt-5-for-business"
-            }
-          }),
-        }}
+      <BlogSchema
+        title={articleMetadata.title}
+        description={articleMetadata.description}
+        authorName={articleMetadata.author}
+        publishDate={articleMetadata.datePublished}
+        updateDate={articleMetadata.dateModified}
+        imageUrl={origin + articleMetadata.coverImage}
+        url={canonicalUrl}
       />
       <div className="min-h-screen bg-background blog-article">
         <Header />

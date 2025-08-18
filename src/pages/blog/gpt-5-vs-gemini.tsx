@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { Sparkles, Zap, Brain, DollarSign, Clock, CheckCircle, XCircle, User, Calendar } from 'lucide-react';
 import { SEOHead } from '@/components/SEOHead';
 import { PrevNext } from '@/components/PrevNext';
+import { BlogSchema } from '@/components/BlogSchema';
 
 const GPT5VsGemini = () => {
   const articleMetadata = {
@@ -19,16 +20,18 @@ const GPT5VsGemini = () => {
     excerpt: "A comprehensive comparison of OpenAI's GPT-5 and Google's Gemini 1.5 - two of the most advanced AI models available today.",
     readTime: "12 min read"
   };
+  const origin = 'https://gpt5hub.com';
+  const canonicalUrl = `${origin}/blog/gpt-5-vs-gemini`;
   return (
     <>
       <SEOHead 
         title={articleMetadata.title}
         description={articleMetadata.description}
-        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog/gpt-5-vs-gemini' : 'https://gpt-5ai.com/blog/gpt-5-vs-gemini'}
+        canonical={canonicalUrl}
         ogTitle={articleMetadata.title}
         ogDescription={articleMetadata.description}
         ogImage={articleMetadata.coverImage}
-        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog/gpt-5-vs-gemini'}
+        ogUrl={canonicalUrl}
         ogType="article"
         twitterTitle={articleMetadata.title}
         twitterDescription={articleMetadata.description}
@@ -38,32 +41,14 @@ const GPT5VsGemini = () => {
         articleSection="Comparison"
         articleTags={["GPT-5", "Gemini", "AI models", "Comparison"]}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: "GPT-5 vs Gemini 1.5: Battle of the AI Titans",
-            datePublished: articleMetadata.datePublished,
-            dateModified: articleMetadata.dateModified,
-            author: { "@type": "Person", name: articleMetadata.author },
-            publisher: {
-              "@type": "Organization",
-              name: "GPT-5 AI",
-              logo: {
-                "@type": "ImageObject",
-                url: "https://gpt-5ai.com/g5-logo.png",
-              },
-            },
-            image: articleMetadata.coverImage,
-            description: articleMetadata.description,
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": "https://gpt-5ai.com/blog/gpt-5-vs-gemini"
-            }
-          }),
-        }}
+      <BlogSchema
+        title={articleMetadata.title}
+        description={articleMetadata.description}
+        authorName={articleMetadata.author}
+        publishDate={articleMetadata.datePublished}
+        updateDate={articleMetadata.dateModified}
+        imageUrl={origin + articleMetadata.coverImage}
+        url={canonicalUrl}
       />
       <div className="min-h-screen bg-background">
         <Header />

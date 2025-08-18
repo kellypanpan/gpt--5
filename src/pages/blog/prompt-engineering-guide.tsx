@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { SEOHead } from '@/components/SEOHead';
 import { PrevNext } from '@/components/PrevNext';
+import { BlogSchema } from '@/components/BlogSchema';
 
 const PromptEngineeringGuide = () => {
   const articleMetadata = {
@@ -33,16 +34,19 @@ const PromptEngineeringGuide = () => {
     readTime: "18 min read"
   };
 
+  const origin = 'https://gpt5hub.com';
+  const canonicalUrl = `${origin}/blog/prompt-engineering-guide`;
+
   return (
     <>
       <SEOHead 
         title={articleMetadata.title}
         description={articleMetadata.description}
-        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog/prompt-engineering-guide' : 'https://gpt-5ai.com/blog/prompt-engineering-guide'}
+        canonical={canonicalUrl}
         ogTitle={articleMetadata.title}
         ogDescription={articleMetadata.description}
         ogImage={articleMetadata.coverImage}
-        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog/prompt-engineering-guide'}
+        ogUrl={canonicalUrl}
         ogType="article"
         twitterTitle={articleMetadata.title}
         twitterDescription={articleMetadata.description}

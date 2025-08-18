@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Calendar, User, Sparkles } from 'lucide-react';
 import { getPrevNext } from '@/data/blogPosts';
+import { BlogSchema } from '@/components/BlogSchema';
 
 const ChatGPT5Prompts: React.FC = () => {
   const articleMetadata = {
@@ -24,7 +25,7 @@ const ChatGPT5Prompts: React.FC = () => {
   } as const;
 
   const { prev, next } = getPrevNext('50-best-chatgpt5-prompts');
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://gpt-5ai.com';
+  const origin = 'https://gpt5hub.com';
   const canonical = `${origin}/blog/${articleMetadata.slug}`;
 
   return (
@@ -48,26 +49,14 @@ const ChatGPT5Prompts: React.FC = () => {
         prevUrl={prev ? `${origin}${prev.path}` : undefined}
         nextUrl={next ? `${origin}${next.path}` : undefined}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Article',
-            headline: articleMetadata.title,
-            datePublished: articleMetadata.datePublished,
-            dateModified: articleMetadata.dateModified,
-            author: { '@type': 'Person', name: articleMetadata.author },
-            publisher: {
-              '@type': 'Organization',
-              name: 'GPT-5 AI',
-              logo: { '@type': 'ImageObject', url: 'https://gpt-5ai.com/g5-logo.png' },
-            },
-            image: articleMetadata.coverImage,
-            description: articleMetadata.description,
-            mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
-          }),
-        }}
+      <BlogSchema
+        title={articleMetadata.title}
+        description={articleMetadata.description}
+        authorName={articleMetadata.author}
+        publishDate={articleMetadata.datePublished}
+        updateDate={articleMetadata.dateModified}
+        imageUrl={origin + articleMetadata.coverImage}
+        url={canonical}
       />
 
       <div className="min-h-screen bg-background">

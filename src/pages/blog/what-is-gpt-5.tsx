@@ -7,6 +7,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { SocialShare } from "@/components/SocialShare";
 import { PrevNext } from "@/components/PrevNext";
 import { getPrevNext } from "@/data/blogPosts";
+import { BlogSchema } from "@/components/BlogSchema";
 
 const WhatIsGPT5 = () => {
   const articleMetadata = {
@@ -20,17 +21,19 @@ const WhatIsGPT5 = () => {
     readTime: "8 min read"
   };
   const { prev, next } = getPrevNext('what-is-gpt-5');
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://gpt-5ai.com';
+  const origin = 'https://gpt5hub.com';
+  const canonicalUrl = origin + '/blog/what-is-gpt-5';
+
   return (
     <>
       <SEOHead 
         title={articleMetadata.title}
         description={articleMetadata.description}
-        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog/what-is-gpt-5' : 'https://gpt-5ai.com/blog/what-is-gpt-5'}
+        canonical={canonicalUrl}
         ogTitle={articleMetadata.title}
         ogDescription={articleMetadata.description}
         ogImage={articleMetadata.coverImage}
-        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog/what-is-gpt-5'}
+        ogUrl={canonicalUrl}
         ogType="article"
         twitterTitle={articleMetadata.title}
         twitterDescription={articleMetadata.description}
@@ -42,32 +45,14 @@ const WhatIsGPT5 = () => {
         prevUrl={prev ? `${origin}${prev.path}` : undefined}
         nextUrl={next ? `${origin}${next.path}` : undefined}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: "What Is GPT-5? Complete Guide to OpenAI's Latest AI",
-            datePublished: articleMetadata.datePublished,
-            dateModified: articleMetadata.dateModified,
-            author: { "@type": "Person", name: articleMetadata.author },
-            publisher: {
-              "@type": "Organization",
-              name: "GPT-5 AI",
-              logo: {
-                "@type": "ImageObject",
-                url: "https://gpt-5ai.com/g5-logo.png",
-              },
-            },
-            image: articleMetadata.coverImage,
-            description: articleMetadata.description,
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": "https://gpt-5ai.com/blog/what-is-gpt-5"
-            }
-          }),
-        }}
+      <BlogSchema
+        title={articleMetadata.title}
+        description={articleMetadata.description}
+        authorName={articleMetadata.author}
+        publishDate={articleMetadata.datePublished}
+        updateDate={articleMetadata.dateModified}
+        imageUrl={origin + articleMetadata.coverImage}
+        url={canonicalUrl}
       />
       <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 pt-20">
         <div className="container mx-auto px-4 py-8">

@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import { SEOHead } from '@/components/SEOHead';
 import { PrevNext } from '@/components/PrevNext';
+import { BlogSchema } from '@/components/BlogSchema';
 
 const OpenSourceAIModelsComparison = () => {
   const articleMetadata = {
@@ -38,16 +39,19 @@ const OpenSourceAIModelsComparison = () => {
     readTime: "22 min read"
   };
 
+  const origin = 'https://gpt5hub.com';
+  const canonicalUrl = `${origin}/blog/open-source-ai-models-comparison`;
+
   return (
     <>
       <SEOHead 
         title={articleMetadata.title}
         description={articleMetadata.description}
-        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog/open-source-ai-models-comparison' : 'https://gpt-5ai.com/blog/open-source-ai-models-comparison'}
+        canonical={canonicalUrl}
         ogTitle={articleMetadata.title}
         ogDescription={articleMetadata.description}
         ogImage={articleMetadata.coverImage}
-        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog/open-source-ai-models-comparison'}
+        ogUrl={canonicalUrl}
         ogType="article"
         twitterTitle={articleMetadata.title}
         twitterDescription={articleMetadata.description}
@@ -57,32 +61,14 @@ const OpenSourceAIModelsComparison = () => {
         articleSection="Comparison"
         articleTags={["GPT-5", "Open Source", "Llama 3", "Mixtral"]}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: "GPT-5 vs Open Source AI Models: Complete Comparison Guide 2025",
-            datePublished: articleMetadata.datePublished,
-            dateModified: articleMetadata.dateModified,
-            author: { "@type": "Person", name: articleMetadata.author },
-            publisher: {
-              "@type": "Organization",
-              name: "GPT-5 AI",
-              logo: {
-                "@type": "ImageObject",
-                url: "https://gpt-5ai.com/g5-logo.png",
-              },
-            },
-            image: articleMetadata.coverImage,
-            description: articleMetadata.description,
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": "https://gpt-5ai.com/blog/open-source-ai-models-comparison"
-            }
-          }),
-        }}
+      <BlogSchema
+        title={articleMetadata.title}
+        description={articleMetadata.description}
+        authorName={articleMetadata.author}
+        publishDate={articleMetadata.datePublished}
+        updateDate={articleMetadata.dateModified}
+        imageUrl={origin + articleMetadata.coverImage}
+        url={canonicalUrl}
       />
       <div className="min-h-screen bg-background blog-article">
         <Header />

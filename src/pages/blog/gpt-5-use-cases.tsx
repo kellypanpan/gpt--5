@@ -4,6 +4,7 @@ import { SocialShare } from "@/components/SocialShare";
 import { PrevNext } from "@/components/PrevNext";
 import { getPrevNext } from "@/data/blogPosts";
 import Prose from "@/components/Prose";
+import { BlogSchema } from "@/components/BlogSchema";
 
 const GPT5UseCases = () => {
   const articleMetadata = {
@@ -20,26 +21,19 @@ const GPT5UseCases = () => {
   };
 
   const { prev, next } = getPrevNext("gpt-5-use-cases");
-  const origin = typeof window !== "undefined" ? window.location.origin : "https://gpt-5ai.com";
+  const origin = "https://gpt5hub.com";
+  const canonicalUrl = `${origin}/blog/gpt-5-use-cases`;
 
   return (
     <>
       <SEOHead
         title={articleMetadata.title}
         description={articleMetadata.description}
-        canonical={
-          typeof window !== "undefined"
-            ? window.location.origin + "/blog/gpt-5-use-cases"
-            : "https://gpt-5ai.com/blog/gpt-5-use-cases"
-        }
+        canonical={canonicalUrl}
         ogTitle={articleMetadata.title}
         ogDescription={articleMetadata.description}
         ogImage={articleMetadata.coverImage}
-        ogUrl={
-          typeof window !== "undefined"
-            ? window.location.href
-            : "https://gpt-5ai.com/blog/gpt-5-use-cases"
-        }
+        ogUrl={canonicalUrl}
         ogType="article"
         twitterTitle={articleMetadata.title}
         twitterDescription={articleMetadata.description}
@@ -51,32 +45,15 @@ const GPT5UseCases = () => {
         prevUrl={prev ? `${origin}${prev.path}` : undefined}
         nextUrl={next ? `${origin}${next.path}` : undefined}
       />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: "GPT-5 Use Cases: Real-World Applications Across Teams",
-            datePublished: articleMetadata.datePublished,
-            dateModified: articleMetadata.dateModified,
-            author: { "@type": "Person", name: articleMetadata.author },
-            publisher: {
-              "@type": "Organization",
-              name: "GPT-5 AI",
-              logo: { "@type": "ImageObject", url: "https://gpt-5ai.com/g5-logo.png" },
-            },
-            image: articleMetadata.coverImage,
-            description: articleMetadata.description,
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": "https://gpt-5ai.com/blog/gpt-5-use-cases",
-            },
-          }),
-        }}
+      <BlogSchema
+        title={articleMetadata.title}
+        description={articleMetadata.description}
+        authorName={articleMetadata.author}
+        publishDate={articleMetadata.datePublished}
+        updateDate={articleMetadata.dateModified}
+        imageUrl={origin + articleMetadata.coverImage}
+        url={canonicalUrl}
       />
-
       <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 pt-20">
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">

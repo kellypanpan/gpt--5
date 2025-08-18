@@ -28,6 +28,7 @@ import {
 } from 'lucide-react';
 import { SEOHead } from '@/components/SEOHead';
 import { PrevNext } from '@/components/PrevNext';
+import { BlogSchema } from '@/components/BlogSchema';
 
 const GPT5AIEthicsSafety = () => {
   const articleMetadata = {
@@ -41,16 +42,19 @@ const GPT5AIEthicsSafety = () => {
     readTime: "24 min read"
   };
 
+  const origin = 'https://gpt5hub.com';
+  const canonicalUrl = `${origin}/blog/gpt-5-ai-ethics-safety`;
+
   return (
     <>
       <SEOHead 
         title={articleMetadata.title}
         description={articleMetadata.description}
-        canonical={typeof window !== 'undefined' ? window.location.origin + '/blog/gpt-5-ai-ethics-safety' : 'https://gpt-5ai.com/blog/gpt-5-ai-ethics-safety'}
+        canonical={canonicalUrl}
         ogTitle={articleMetadata.title}
         ogDescription={articleMetadata.description}
         ogImage={articleMetadata.coverImage}
-        ogUrl={typeof window !== 'undefined' ? window.location.href : 'https://gpt-5ai.com/blog/gpt-5-ai-ethics-safety'}
+        ogUrl={canonicalUrl}
         ogType="article"
         twitterTitle={articleMetadata.title}
         twitterDescription={articleMetadata.description}
@@ -60,32 +64,14 @@ const GPT5AIEthicsSafety = () => {
         articleSection="Ethics & Safety"
         articleTags={["GPT-5", "Ethics", "Safety", "Bias", "Privacy"]}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: "GPT-5 AI Ethics & Safety: Responsible AI Implementation Guide",
-            datePublished: articleMetadata.datePublished,
-            dateModified: articleMetadata.dateModified,
-            author: { "@type": "Person", name: articleMetadata.author },
-            publisher: {
-              "@type": "Organization",
-              name: "GPT-5 AI",
-              logo: {
-                "@type": "ImageObject",
-                url: "https://gpt-5ai.com/g5-logo.png",
-              },
-            },
-            image: articleMetadata.coverImage,
-            description: articleMetadata.description,
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": "https://gpt-5ai.com/blog/gpt-5-ai-ethics-safety"
-            }
-          }),
-        }}
+      <BlogSchema
+        title={articleMetadata.title}
+        description={articleMetadata.description}
+        authorName={articleMetadata.author}
+        publishDate={articleMetadata.datePublished}
+        updateDate={articleMetadata.dateModified}
+        imageUrl={origin + articleMetadata.coverImage}
+        url={canonicalUrl}
       />
       <div className="min-h-screen bg-background blog-article">
         <Header />
