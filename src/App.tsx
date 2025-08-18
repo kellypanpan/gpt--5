@@ -46,6 +46,7 @@ import Cookies from "./pages/Cookies";
 import GPT5UseCases from "./pages/blog/gpt-5-use-cases";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import IsGPT5ALetdown from "./pages/blog/is-gpt-5-a-letdown";
 
 // Use cases pages
 import UseCases from "./pages/use-cases/index";
@@ -112,6 +113,7 @@ const App = () => (
             <Route path="/blog/reduce-chatgpt5-api-costs" element={<ReduceChatGPT5Costs />} />
             <Route path="/blog/can-gpt-5-generate-videos" element={<CanGPT5GenerateVideos />} />
             <Route path="/blog/gpt-5-use-cases" element={<GPT5UseCases />} />
+            <Route path="/blog/is-gpt-5-a-letdown" element={<IsGPT5ALetdown />} />
             
             {/* Sitemap Route */}
             <Route path="/sitemap" element={<Sitemap />} />

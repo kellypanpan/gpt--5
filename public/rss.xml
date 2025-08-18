@@ -5,9 +5,18 @@
     <description>Your ultimate resource for everything GPT-5. From comprehensive guides to latest updates, stay informed about the future of AI.</description>
     <link>https://gpt-5ai.com/blog</link>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 Aug 2025 03:53:22 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 18 Aug 2025 08:39:14 GMT</lastBuildDate>
     <atom:link href="https://gpt-5ai.com/rss.xml" rel="self" type="application/rss+xml"/>
     
+    <item>
+      <title>Is GPT-5 a Letdown? Why Users Miss GPT-4o</title>
+      <description>Is GPT-5 really a downgrade? Discover why some users joke &apos;bring back 4o,&apos; the hidden strengths of GPT-5, and where it truly shines.</description>
+      <link>https://gpt-5ai.com/blog/is-gpt-5-a-letdown</link>
+      <guid>https://gpt-5ai.com/blog/is-gpt-5-a-letdown</guid>
+      <pubDate>Mon, 18 Aug 2025 00:00:00 GMT</pubDate>
+      <category>Opinion</category>
+    </item>
+
     <item>
       <title>GPT-5 Use Cases: Real-World Applications Across Teams</title>
       <description>Practical GPT-5 use cases across writing, code, marketing, operations, support and data analysis.</description>

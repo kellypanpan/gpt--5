@@ -163,11 +163,11 @@ const ImageGenerator = () => {
               {!isLoggedIn ? (
                 <div className="text-center space-y-4">
                   <p className="text-muted-foreground">
-                    未登录或未订阅状态下按钮禁用
+                    Sign in or subscribe to generate images
                   </p>
                   <Button variant="hero" className="w-full sm:w-auto">
                     <Lock className="h-4 w-4 mr-2" />
-                    升级 CTA
+                    Upgrade to Pro
                   </Button>
                 </div>
               ) : (

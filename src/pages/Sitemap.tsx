@@ -42,6 +42,7 @@ const Sitemap = () => {
     { path: '/blog/reduce-chatgpt5-api-costs', priority: '0.8', lastMod: today },
     { path: '/blog/can-gpt-5-generate-videos', priority: '0.8', lastMod: today },
     { path: '/blog/gpt-5-use-cases', priority: '0.8', lastMod: today },
+    { path: '/blog/is-gpt-5-a-letdown', priority: '0.8', lastMod: today },
 
     // Use Cases
     { path: '/use-cases', priority: '0.7', lastMod: today },

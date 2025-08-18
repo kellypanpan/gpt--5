@@ -701,12 +701,12 @@ const ChatInterface = () => {
 
         {/* Input Area */}
         <div 
-          className="bg-background/90 backdrop-blur-sm border-t border-border p-4 shadow-sm"
+          className="bg-background/95 backdrop-blur-sm border-t border-border p-6 shadow-lg"
           onDrop={handleFileDrop}
           onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
           onDragLeave={() => setIsDragging(false)}
         >
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             {/* 拖拽覆盖层 */}
             {isDragging && (
               <div className="absolute inset-0 bg-blue-500/10 border-2 border-dashed border-blue-400 rounded-xl flex items-center justify-center z-10">
@@ -720,51 +720,55 @@ const ChatInterface = () => {
 
             {/* 附件预览 */}
             {attachedFile && (
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/50 rounded-lg flex items-center justify-between">
+              <div className="mb-4 p-4 bg-muted/30 border border-border/50 rounded-2xl flex items-center justify-between shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex items-center space-x-3">
-                  {attachedFile.type.startsWith('image/') ? (
-                    <Image className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                  ) : (
-                    <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                  )}
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    {attachedFile.type.startsWith('image/') ? (
+                      <Image className="w-5 h-5 text-primary" />
+                    ) : (
+                      <FileText className="w-5 h-5 text-primary" />
+                    )}
+                  </div>
                   <div>
-                    <p className="text-sm font-medium text-blue-900 dark:text-blue-200">{attachedFile.name}</p>
-                    <p className="text-xs text-blue-600 dark:text-blue-400">{(attachedFile.size / 1024 / 1024).toFixed(1)} MB</p>
+                    <p className="text-sm font-medium text-foreground">{attachedFile.name}</p>
+                    <p className="text-xs text-muted-foreground">{(attachedFile.size / 1024 / 1024).toFixed(1)} MB</p>
                   </div>
                 </div>
                 <Button
                   size="sm"
                   variant="ghost"
                   onClick={removeAttachment}
-                  className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200 dark:hover:bg-blue-900/30"
+                  className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg"
                 >
                   <X className="w-4 h-4" />
                 </Button>
               </div>
             )}
 
-            <div className="flex items-end space-x-3">
+            <div className="flex items-end space-x-4">
               <div className="flex-1 relative">
-                <Input
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
-                  placeholder="Message GPT-5..."
-                  className="pr-20 py-3 bg-background/80 backdrop-blur-sm border-border focus:border-primary focus:ring-primary rounded-xl shadow-sm"
-                  disabled={isLoading}
-                />
-                
-                {/* 附件按钮 */}
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="ghost"
-                  onClick={handleFileInput}
-                  className="absolute right-12 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground p-2"
-                  disabled={isLoading}
-                >
-                  <Paperclip className="w-4 h-4" />
-                </Button>
+                <div className="relative flex items-center bg-background border-2 border-border hover:border-border/80 focus-within:border-primary/50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200">
+                  <Input
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
+                    placeholder="Message ChatGPT-5..."
+                    className="flex-1 border-0 bg-transparent px-4 py-4 text-base focus:ring-0 focus:outline-none placeholder:text-muted-foreground/60"
+                    disabled={isLoading}
+                  />
+                  
+                  {/* 附件按钮 */}
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="ghost"
+                    onClick={handleFileInput}
+                    className="mr-2 h-8 w-8 p-0 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-colors"
+                    disabled={isLoading}
+                  >
+                    <Paperclip className="h-4 w-4" />
+                  </Button>
+                </div>
                 
                 {/* 隐藏的文件输入 */}
                 <input
@@ -782,14 +786,14 @@ const ChatInterface = () => {
               <Button
                 onClick={() => handleSend()}
                 disabled={(!input.trim() && !attachedFile) || isLoading}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-3 rounded-xl shadow-sm"
+                className="h-12 w-12 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center"
               >
-                <Send className="w-4 h-4" />
+                <Send className="h-5 w-5" />
               </Button>
             </div>
             
-            <div className="flex items-center justify-center mt-2 text-xs text-muted-foreground">
-              GPT-5 can make mistakes. Consider checking important information.
+            <div className="flex items-center justify-center mt-4 text-xs text-muted-foreground/80">
+              ChatGPT-5 can make mistakes. Consider checking important information.
             </div>
           </div>
         </div>

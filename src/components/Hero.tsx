@@ -22,29 +22,29 @@ const Hero = () => {
 
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Advanced AI</span>
+            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">ChatGPT-5</span>
             <br />
-            <span className="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">Tools & Chat</span>
+            <span className="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">AI Assistant</span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl leading-relaxed animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            Professional AI tools + intelligent conversation, all in one platform. 
+            Experience the power of ChatGPT-5 with advanced reasoning capabilities.
             <br className="hidden md:block" />
-            Advanced AI chat, content creation, and document analysis – everything you need to succeed.
+            Professional AI chat, document analysis, and content creation in one platform.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-slide-up" style={{ animationDelay: '0.3s' }}>
             <Link to="/chat">
               <Button className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group">
-                💬 Start Chatting Now
+                🚀 Try ChatGPT-5 Now
                 <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-smooth" />
               </Button>
             </Link>
             <Link to="/tools">
               <Button variant="outline" className="border-2 border-gray-700 text-gray-300 hover:bg-gray-800 px-8 py-4 text-lg rounded-xl">
-                Explore AI Tools
+                View AI Tools
               </Button>
             </Link>
           </div>
@@ -55,24 +55,24 @@ const Hero = () => {
               <div className="bg-gradient-primary rounded-lg w-12 h-12 flex items-center justify-center mb-4 shadow-glow-sm">
                 <Brain className="h-6 w-6 text-primary-foreground" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">AI Writing Assistant</h3>
-              <p className="text-muted-foreground">Advanced AI writing capabilities for content creators, blogs, and business communications.</p>
+              <h3 className="text-lg font-semibold mb-2">Advanced Reasoning</h3>
+              <p className="text-muted-foreground">ChatGPT-5's enhanced reasoning capabilities for complex problem-solving and analysis.</p>
             </div>
 
             <div className="bg-card/10 backdrop-blur-sm border border-border/20 rounded-lg p-6 hover:bg-card/20 transition-smooth">
               <div className="bg-gradient-secondary rounded-lg w-12 h-12 flex items-center justify-center mb-4 shadow-glow-accent">
                 <Zap className="h-6 w-6 text-primary-foreground" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">GPT-5 Image Generator</h3>
-              <p className="text-muted-foreground">Create stunning visuals with GPT-5 AI image generation technology for any creative project.</p>
+              <h3 className="text-lg font-semibold mb-2">Document Analysis</h3>
+              <p className="text-muted-foreground">Upload PDFs and images for intelligent analysis with ChatGPT-5's advanced understanding.</p>
             </div>
 
             <div className="bg-card/10 backdrop-blur-sm border border-border/20 rounded-lg p-6 hover:bg-card/20 transition-smooth">
               <div className="bg-gradient-primary rounded-lg w-12 h-12 flex items-center justify-center mb-4 shadow-glow-sm">
                 <Sparkles className="h-6 w-6 text-primary-foreground" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">GPT-5 Features</h3>
-              <p className="text-muted-foreground">Experience cutting-edge GPT-5 capabilities with professional-grade AI tools and features.</p>
+              <h3 className="text-lg font-semibold mb-2">Professional Content</h3>
+              <p className="text-muted-foreground">Create high-quality content with ChatGPT-5's superior language generation capabilities.</p>
             </div>
           </div>
 
