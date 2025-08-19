@@ -24,14 +24,23 @@ export const CompactAuthModal = ({ isOpen, onClose, onSuccess, showSubscription 
     setIsLoading(true);
     setError('');
     try {
+      // 使用当前域名或备用域名
+      const baseUrl = window.location.hostname === 'localhost' 
+        ? window.location.origin 
+        : 'https://gpt-5ai.com';
       const redirectUrl = subscribe && plan 
-        ? `${window.location.origin}/auth/callback?subscribe=true&plan=${plan}`
-        : `${window.location.origin}/auth/callback`;
+        ? `${baseUrl}/auth/callback?subscribe=true&plan=${plan}`
+        : `${baseUrl}/auth/callback`;
         
+      console.log('Attempting Google OAuth with redirect:', redirectUrl);
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: redirectUrl
+          redirectTo: redirectUrl,
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent'
+          }
         }
       });
       if (error) throw error;

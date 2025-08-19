@@ -247,7 +247,7 @@ const GPT5JobsImpact = () => {
             </p>
 
             <p>
-              Start with our <Link to="/tools/agent" className="text-primary hover:underline">Universal Agent Tool</Link> — just describe your task, and let GPT-5 plan, execute, and deliver results.
+              Start with our <Link to="/chat" className="text-primary hover:underline">AI Chat Interface</Link> — just describe your task, and let ChatGPT-5 plan, execute, and deliver results.
             </p>
 
             <p>
@@ -256,9 +256,9 @@ const GPT5JobsImpact = () => {
             </p>
 
             <div className="text-center my-8">
-              <Link to="/tools/agent">
+              <Link to="/chat">
                 <Button size="lg" className="bg-gradient-primary hover:opacity-90">
-                  Try the GPT-5 Agent now →
+                  Try ChatGPT-5 now →
                 </Button>
               </Link>
             </div>

@@ -43,8 +43,8 @@ const Dashboard = () => {
         <div className="container mx-auto px-4 py-8 pt-20">
           <div className="text-center">
             <h1 className="text-2xl font-bold mb-4">Please sign in to access your dashboard</h1>
-            <Link to="/sign-in">
-              <Button>Sign In</Button>
+            <Link to="/">
+              <Button>Go to Home & Sign In</Button>
             </Link>
           </div>
         </div>

@@ -1,5 +1,17 @@
 [
   {
+    "id": "is-gpt-5-a-letdown",
+    "title": "Is GPT-5 a Letdown? Why Users Miss GPT-4o",
+    "description": "Is GPT-5 really a downgrade? Discover why some users joke 'bring back 4o,' the hidden strengths of GPT-5, and where it truly shines.",
+    "category": "Opinion",
+    "readTime": "8 min read",
+    "datePublished": "2025-08-18",
+    "dateModified": "2025-08-18",
+    "path": "/blog/is-gpt-5-a-letdown",
+    "coverImage": "/images/blog/is-gpt-5-a-letdown.svg",
+    "featured": true
+  },
+  {
     "id": "what-is-gpt-5",
     "title": "What is GPT-5? Complete Guide to OpenAI's Latest AI",
     "description": "Everything you need to know about GPT-5, including its capabilities, features, and how it compares to previous models.",
@@ -8,8 +20,7 @@
     "datePublished": "2025-01-15",
     "dateModified": "2025-01-15",
     "path": "/blog/what-is-gpt-5",
-    "coverImage": "/images/what-is-gpt5-cover.jpg",
-    "featured": true
+    "coverImage": "/images/what-is-gpt5-cover.jpg"
   },
   {
     "id": "gpt-5-vs-claude-3",
@@ -153,16 +164,5 @@
     "dateModified": "2025-08-08",
     "path": "/blog/gpt-5-use-cases",
     "coverImage": "/images/blog/gpt5-use-cases.jpg"
-  },
-  {
-    "id": "is-gpt-5-a-letdown",
-    "title": "Is GPT-5 a Letdown? Why Users Miss GPT-4o",
-    "description": "Is GPT-5 really a downgrade? Discover why some users joke 'bring back 4o,' the hidden strengths of GPT-5, and where it truly shines.",
-    "category": "Opinion",
-    "readTime": "8 min read",
-    "datePublished": "2025-08-18",
-    "dateModified": "2025-08-18",
-    "path": "/blog/is-gpt-5-a-letdown",
-    "coverImage": "/images/blog/is-gpt-5-a-letdown.svg"
   }
 ] 

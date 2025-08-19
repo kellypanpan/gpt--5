@@ -56,11 +56,11 @@ export default function AuthCallback() {
   }, [navigate, searchParams]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center bg-background">
       <div className="text-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
-        <h2 className="mt-4 text-xl font-semibold">正在登录...</h2>
-        <p className="mt-2 text-gray-600">请稍候，我们正在验证您的身份</p>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary mx-auto"></div>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Signing you in...</h2>
+        <p className="mt-2 text-muted-foreground">Please wait while we verify your credentials</p>
       </div>
     </div>
   );
